@@ -5,6 +5,9 @@
     <%
     OperatorDaoImpl operatorDao=new OperatorDaoImpl();
         ResultSet rs=operatorDao.viewOperator();
+        int opertorId=Integer.parseInt(request.getParameter("opertorId"));
+        //System.out.println(opertorId);
+        operatorDao.deleteOperator(opertorId);
     %>
    
 <!DOCTYPE html>
@@ -58,13 +61,28 @@
     </style>
 </head>
 <body>
+	<%if(opertorId>0){ %>
+	<script type="text/javascript">
+		alert("Operator deleted Successfully");
+		</script>
+		<%} %>
+		
+	<% String sessionName=(String)session.getAttribute("AdminHome");
+	//System.out.println(sessionName);
+	if(sessionName.equals("UpdateOperatorSession")){
+		session.setAttribute("AdminHome", "HomeSession");
+	%>
+		<script type="text/javascript">
+		alert("Operator Updated Successfully");
+		</script>
+	<%}%>
     <div id="homeadmin">
         <ul>
              <li><a href="AdminHome.jsp">Home</a></li>
             <li><a href="AddBus.jsp">Add Bus</a></li>
             <li><a href="AddOperator.jsp">Add Operator</a></li>
             <li><a href="BusList.jsp">Bus list</a></li>
-            <li><a href="OperatorList.jsp">Operator list</a></li>
+            <li><a href="OperatorList.jsp?opertorId=0">Operator list</a></li>
             <li><a href="UserList.jsp">User list</a></li>
             <li><a href="BookingList.jsp">Booking list</a></li>
         </ul>
@@ -92,7 +110,7 @@
                     <td><%=rs.getLong(4) %></td>
                     <td><%=rs.getInt(5) %></td>
                     <td><%=rs.getString(6) %>
-                    <td><a href="UpdateOperator.jsp?operatorId=<%=rs.getInt(1)%>">edit</a> / <a href="operatorDelete?operatorId=<%=rs.getInt(1)%>">delete</a></td>
+                    <td><a href="UpdateOperator.jsp?operatorId=<%=rs.getInt(1)%>">edit</a> / <a href="OperatorList.jsp?opertorId=<%=rs.getInt(1)%>">delete</a></td>
                 </tr>
                 <% } %>
         

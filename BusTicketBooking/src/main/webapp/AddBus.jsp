@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+    <%@page import="javax.servlet.http.HttpSession" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -46,7 +47,7 @@
         #addbus{
             border: 1px solid black;
             padding: 15px;
-            height: 423px;
+            height: 480px;
         }
         #bustitle{
             padding-left: 180px;
@@ -56,6 +57,9 @@
         }
         input{
             height: 25px;
+        }
+        #seatStatus{
+            height: 13px;
         }
         table,tr,th{
             padding: 7px;
@@ -69,6 +73,7 @@
         }
         #btn{
             margin-left: 80px;
+            margin-top: -16px;
         }
         button:hover{
             background-color: rgb(247, 112, 112);
@@ -78,13 +83,24 @@
 </head>
 <body>
 
+	<% String sessionName=(String)session.getAttribute("AdminHome");
+	System.out.println(sessionName);
+	if(sessionName.equals("AddBusSession")){
+		session.setAttribute("AdminHome", "HomeSession");
+	%>
+		<script type="text/javascript">
+		alert("Bus added Successfully");
+		</script>
+	<%}%>
+	
+	
     <div id="homeadmin">
        <ul>
              <li><a href="AdminHome.jsp">Home</a></li>
             <li><a href="AddBus.jsp">Add Bus</a></li>
             <li><a href="AddOperator.jsp">Add Operator</a></li>
             <li><a href="BusList.jsp">Bus list</a></li>
-            <li><a href="OperatorList.jsp">Operator list</a></li>
+            <li><a href="OperatorList.jsp?opertorId=0">Operator list</a></li>
             <li><a href="UserList.jsp">User list</a></li>
             <li><a href="BookingList.jsp">Booking list</a></li>
         </ul>
@@ -122,7 +138,11 @@
                 <th><label for="totalSeat">Total Seat</label></th>
                 <th><input name="totalSeat" type="number" id="totalSeat" ></th>
             </tr>
-
+			<tr>
+                 <th><label for="seatStatus">Status</label></th>
+                 <th><input type="radio" id="seatStatus" name="seatStatus" value="available" required ><label for="available"> Available</label> 
+                    <input type="radio" id="seatStatus" value="unavailable" name="seatStatus" required ><label for="unavailable">UnAvailable</label></th>
+             </tr>
         </table>
 
         <div id="btn"><br>
@@ -131,5 +151,7 @@
         </div>
     </div>
     </form>
+
+   
 </body>
 </html>

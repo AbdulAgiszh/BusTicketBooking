@@ -80,7 +80,7 @@
             </tr>
             <tr>
                 <th><label for="password">Password</label></th>
-                <th><input name="password" type="password" id="password" autocomplete="off" pattern="^(?=.[a-z])(?=.[A-Z])(?=.\d)(?=.[@$!%?&])[A-Za-z\d@$!%?&]{8,15}$" title="weak-password" required></th>
+                <th><input name="password" type="password" id="password" autocomplete="off" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,15}$" title="weak-password" required></th>
             </tr>
             <tr>
                 <th><label for="dob">DOB</label></th>
@@ -108,6 +108,7 @@
 function register(){
 	if(true){
 		alert("Registered Successfully");
+		
 	}
 	else{
 		alert("not successfull");

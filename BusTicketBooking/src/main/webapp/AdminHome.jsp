@@ -47,7 +47,7 @@
              <li><a href="AddBus.jsp">Add Bus</a></li>
              <li><a href="AddOperator.jsp">Add Operator</a></li>
              <li><a href="BusList.jsp">Bus list</a></li>
-             <li><a href="OperatorList.jsp">Operator list</a></li>
+             <li><a href="OperatorList.jsp?opertorId=0">Operator list</a></li>
              <li><a href="UserList.jsp">User list</a></li>
              <li><a href="BookingList.jsp">Booking list</a></li>
          </ul>

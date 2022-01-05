@@ -1,11 +1,23 @@
+<%@page import="java.util.ArrayList"%>
+<%@page import="java.util.List"%>
+<%@page import="java.sql.ResultSet"%>
 <%@page import="com.busticketbooking.model.BookedTickets"%>
 <%@page import="com.busticketbooking.daoimpl.BookedTicketsDaoImpl"%>
 <%@page import="com.busticketbooking.model.User"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+    
+    <%List<BookedTickets> bookTicketsList; %>
     <%HttpSession session2=request.getSession();
+    BookedTicketsDaoImpl bookTicketsDao=new BookedTicketsDaoImpl();
+    BookedTickets bookTickets=new BookedTickets();
       User userModel=(User)session2.getAttribute("userModel");
-      BookedTicketsDaoImpl bookTicketsDao=new BookedTicketsDaoImpl();
+     bookTicketsList =new ArrayList<BookedTickets>();
+      if(session2.getAttribute("ticketdetailsresult") != null){
+      bookTicketsList=(List<BookedTickets>)session2.getAttribute("ticketdetailsresult");
+      }
+      
+      
       %>
 <!DOCTYPE html>
 <html>
@@ -162,6 +174,7 @@
                 <button class="dropbtn">Ticket 
                 </button>
                 <div class="dropdown-content">
+                  <a href="UserBookingHistory.jsp">Booking History</a>
                   <a href="MyTicket.jsp">My Ticket</a>
                   <a href="CancelTicket.jsp">Cancel Ticket</a>
                 </div>
@@ -182,6 +195,7 @@
 
     <fieldset id="invoicediv">
         <legend>Invoice</legend>
+        
         <table id="usertable">
             <tr>
                 <td><label for="username">UserName :</label></td>
@@ -196,59 +210,40 @@
                 <td><input type="text" value="<%=userModel.getUserGender() %>" readonly></td>
             </tr>
         </table>
+        
+        <form action="myticketservlet">
         <table id="ticketnotable">
             <tr>
                 <td>TICKET NO :</td>
-                <td><input type="text" placeholder="Enter the ticket number" id="tickettext" required></td>
-                <td><button id="btnticket" type="submit" onclick="ticketNumberClick()">Submit</button></td>
+                <td><input type="text" name="tickettext" placeholder="Enter the ticket number" id="tickettext" required></td>
+                <td><button id="btnticket" type="submit" >Submit</button></td>
             </tr>
         </table>
-
-        <table id="traveltable" style="visibility: hidden;">
+		</form>
+		<%if(bookTicketsList != null){ %>
+		<% for(BookedTickets bookTicket:bookTicketsList){%>
+        <table id="traveltable">
             <tr>
-                <td><label for="fromlocation">From Location : <h4 id="fromlocation"></h4></label></td>
-                <td><label for="tolocation">To Location : <h4 id="tolocation"></h4></label></td>
-                <td><label for="buscategory">Bus Category : <h4 id="buscategory"></hss4></label></td>
+            
+                <td><label for="fromlocation">From Location : <h4 id="fromlocation"><%=bookTicket.getBusModel().getFromCity()%></h4></label></td>
+                <td><label for="tolocation">To Location : <h4 id="tolocation"><%=bookTicket.getBusModel().getToCity()%></h4></label></td>
+                <td><label for="buscategory">Bus Category : <h4 id="buscategory"><%=bookTicket.getBusModel().getBusCategory()%></hss4></label></td>
             </tr>
             <tr>
-                <td><label for="departure">Departure At : <h4 id="departure"></h4></label></td>
-                <td><label for="arrival">Arrival At : <h4 id="arrival"></h4></label></td>
+                <td><label for="departure">Departure At : <h4 id="departure"><%=bookTicket.getBusModel().getDeparture()%></h4></label></td>
+                <td><label for="arrival">Arrival At : <h4 id="arrival"><%=bookTicket.getBusModel().getArrival()%></h4></label></td>
             </tr>
             <tr>
-                <td><label for="seatcount">Seat Count : <h4 id="seatcount"></h4></label></td>
-                <td><label for="totalfair">Total Fair : <h4 id="totalfair"></h4></label></td>
+                <td><label for="seatcount">Seat Count : <h4 id="seatcount"><%=bookTicket.getTicketCount()%></h4></label></td>
+                <td><label for="totalfair">Total Fair : <h4 id="totalfair"><%=bookTicket.getTotalPrice()%></h4></label></td>
+                <td><label for="bookingstatus">Booking Status : <h4 id="bookingstatus"><%=bookTicket.getBookingStatus()%></h4></label></td>
             </tr>
         </table>
+        <%} %>
+        <%} %>
     </fieldset>
 
     
 </body>
-<script>
-        
-    function ticketNumberClick(){
-    	
-    	var ticketNumber=document.getElementById("tickettext").value;
-    	
-    	<%BookedTickets bookTicketsModel=bookTicketsDao.findBookedTicketsDetails(ticketNumber);
-    	if(bookTicketsModel!=null){%>
-    	document.getElementById("traveltable").style.visibility="visible";
-    	
-    	document.getElementById("fromlocation").value="<%=bookTicketsModel.getBusModel().getFromCity()%>";
-        document.getElementById("tolocation").value="<%=bookTicketsModel.getBusModel().getToCity()%>";
-        document.getElementById("buscategory").value="<%=bookTicketsModel.getBusModel().getBusCategory()%>";
-        document.getElementById("departure").value="<%=bookTicketsModel.getBusModel().getDeparture()%>";
-        document.getElementById("arrival").value="<%=bookTicketsModel.getBusModel().getArrival()%>";
-        document.getElementById("seatcount").value="<%=bookTicketsModel.getTicketCount()%>";
-        document.getElementById("totalfair").value="<%=bookTicketsModel.getTotalPrice()%>";
-        <%}
-        else{
-        %>
-        alert("please enter correct ticket number");
-        request.sendRedirect("MyTicket.jsp");
-        <%}%>
-        
-        
-    }
-    
-    </script>
+
 </html>

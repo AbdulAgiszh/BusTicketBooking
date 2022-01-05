@@ -101,6 +101,7 @@
                 <button class="dropbtn">Ticket 
                 </button>
                 <div class="dropdown-content">
+                  <a href="UserBookingHistory.jsp">Booking History</a>
                   <a href="MyTicket.jsp">My Ticket</a>
                   <a href="CancelTicket.jsp">Cancel Ticket</a>
                 </div>

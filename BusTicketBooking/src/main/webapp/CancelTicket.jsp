@@ -1,13 +1,13 @@
+<%@page import="com.busticketbooking.daoimpl.UserDaoImpl"%>
 <%@page import="com.busticketbooking.model.BookedTickets"%>
 <%@page import="com.busticketbooking.daoimpl.BookedTicketsDaoImpl"%>
 <%@page import="com.busticketbooking.model.User"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-    <%HttpSession session2=request.getSession();
-      User userModel=(User)session2.getAttribute("userModel");
-      BookedTicketsDaoImpl bookTicketsDao=new BookedTicketsDaoImpl();
-      BookedTickets bookTicketsModel=new BookedTickets();
-      %>
+    <%@page import="javax.servlet.http.HttpSession" %>
+    <%User userModel=(User)session.getAttribute("userModel"); 
+      UserDaoImpl userDao=new UserDaoImpl();
+      User userModel1=userDao.getUserDetailsById(userModel.getUserId());%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -145,6 +145,17 @@
 </head>
 <body>
 
+	<%String cancelMessage=(String)session.getAttribute("userHome");
+    if(cancelMessage.equals("cancelSuccess")){
+    	session.setAttribute("userHome", "homeSession");
+    	%>
+    	<script>
+    	alert("Ticket cancelled successfully");
+    </script>
+    
+    <%} %>
+    
+
     <div id="nav">
         <ul>
             <li><span>Logo</span></li>
@@ -156,6 +167,7 @@
                 <button class="dropbtn">Ticket 
                 </button>
                 <div class="dropdown-content">
+                  <a href="UserBookingHistory.jsp">Booking History</a>
                   <a href="MyTicket.jsp">My Ticket</a>
                   <a href="CancelTicket.jsp">Cancel Ticket</a>
                 </div>
@@ -184,29 +196,24 @@
                 <td><label for="gender">Gender :</label></td>
             </tr>
             <tr>
-                <td><input type="text"></td>
-                <td><input type="text"></td>
-                <td><input type="text"></td>
-                <td><input type="text"></td>
+                <td><input type="text" value="<%=userModel.getUserName() %>" readonly></td>
+                <td><input type="text" value="<%=userModel.getUserDOB() %>" readonly></td>
+                <td><input type="text" value="<%=userModel.getUserContact() %>" readonly></td>
+                <td><input type="text" value="<%=userModel.getUserGender() %>" readonly></td>
             </tr>
         </table>
+        <form action="cancelticketservlet">
         <table id="ticketnotable">
             <tr>
                 <td>TICKET NO :</td>
-                <td><input id="tickettext" value="jadsfjjsfd" type="text" placeholder="Enter the ticket number"></td>
-                <td><button id="btnticket" type="submit" onclick="ticketNumberClick()">Submit</button></td>
+                <td><input id="tickettext" name="tickettext" type="text" placeholder="Enter the ticket number"></td>
+                <td><button id="btnticket" type="submit" >Submit</button></td>
             </tr>
         </table>
+        </form>
 </fieldset>
 <script type="text/javascript">
-function ticketNumberClick(){
-	
-	var ticketNumber=document.getElementById("tickettext").value;
-	
-	<%
-	bookTicketsModel=bookTicketsDao.findBookedTicketsDetails(ticketNumber);
-	if(bookTicketsModel!=null){
-	%>
+
 </script>
 </body>
 </html>

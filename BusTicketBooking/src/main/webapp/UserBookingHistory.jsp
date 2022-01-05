@@ -1,11 +1,17 @@
+<%@page import="com.busticketbooking.model.BookedTickets"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="java.util.List"%>
+<%@page import="com.busticketbooking.daoimpl.BookedTicketsDaoImpl"%>
 <%@page import="com.busticketbooking.daoimpl.UserDaoImpl"%>
 <%@page import="com.busticketbooking.model.User"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
     <%@page import="javax.servlet.http.HttpSession" %>
     <%User userModel=(User)session.getAttribute("userModel"); 
-      UserDaoImpl userDao=new UserDaoImpl();
-      User userModel1=userDao.getUserDetailsById(userModel.getUserId());
+      BookedTickets bookTickets=new BookedTickets();
+      BookedTicketsDaoImpl bookTicketsDao=new BookedTicketsDaoImpl();
+      List<BookedTickets> bookTicketsList=new ArrayList<BookedTickets>();
+      bookTicketsList=bookTicketsDao.getBookingDetailsForCurrentUser(userModel);
       %>
 <!DOCTYPE html>
 <html>
@@ -13,7 +19,7 @@
 <meta charset="ISO-8859-1">
 <title>Insert title here</title>
 <style>
-         *{
+        *{
         margin: 0;
         padding: 0;
         box-sizing: border-box;
@@ -79,41 +85,29 @@
         .dropdown:hover .dropdown-content {
             display: block;
         }
-        
-        
-        #balancediv{
-            border: 1px solid black;
-            border-radius: 15px;
-            width: 500px;
-            padding: 50px;
-            margin-top: 100px;
-            margin-left: 350px;
-        }
-        #btn a{
-        	text-decoration: none;
-            font-size: large;
-        }
-       #btn{
-            height: 45px;
-            width: 120px;
-            background-color: rgb(129, 168, 252);
-            outline: none;
-            border: none;
-            margin-left: 100px;
-            margin-top: 30px;
-            cursor: pointer;
-        }
-        #btn:hover{
-            background-color: rgb(247, 112, 112);
-        }
-        #availableamount{
-            font-size: 17px;
-            font-style: oblique;
-            border-radius: 5px;
-            border: 1px solid rgb(238, 225, 225);
-            padding: 10px;
-            margin-left: 10px;
-        }
+        a{
+                text-decoration: none;
+            }
+            #operatorlistdiv table tr th,td {
+                padding: 25px;
+                text-align: center;
+                border: 1px solid black;
+                border-collapse: collapse;
+             }
+            #operatorlistfieldset{
+                margin-top: 25px;
+                margin-left: 50px;
+                width: 1000px;
+            }
+            #operatorlistdiv{
+                padding: 40px;
+                margin-left: 20px;
+                margin-top: 10px;
+            }
+            legend{
+                font-size: 30px;
+                text-align: center;
+            }
     </style>
 </head>
 <body>
@@ -147,13 +141,39 @@
             <li><a href="UserRegister.html">SignUp</a></li>
             </ul>
         </div>
-      <form action="UpdateWallet.jsp">
-        <div id="balancediv">
-            <label for="balance">Current Balance</label>
-            <span id="availableamount"><%=userModel1.getUserWallet() %></span> <br><br>
-            <label for="clickbutton">Click here to update your wallet</label>
-            <button id="btn" name="btn" type="submit">Deposite</button>
-        </div>
-        </form>
+
+        <fieldset id="operatorlistfieldset">
+            <legend>Booking-History</legend>
+        <div id="operatorlistdiv">
+         
+            <table>
+                <tr>
+                    <th>Ticket No</th>
+                    <th>Booking_Date</th>
+                    <th>Bus Type</th>
+                    <th>Departure_Date</th>
+                    <th>Arrival_Date</th>
+                    <th>Seat Count</th>
+                    <th>Seat No</th>
+                    <th>Total Price</th>
+                    <th>Booking Status</th>
+                </tr>
+                <%for(BookedTickets bookTicket:bookTicketsList){%>
+				<tr>
+                    <td><%=bookTicket.getticketNo() %></td>
+                    <td><%=bookTicket.getBookingDate() %></td>
+                    <td><%=bookTicket.getBusModel().getBusCategory() %></td>
+                    <td><%=bookTicket.getBusModel().getDeparture() %></td>
+                    <td><%=bookTicket.getBusModel().getArrival() %></td>
+                    <td><%=bookTicket.getTicketCount() %></td>
+                    <td><%=bookTicket.getSeatNo()%></td>
+                    <td><%=bookTicket.getTotalPrice() %></td>
+                    <td><%=bookTicket.getBookingStatus() %></td>
+                </tr>
+                <%} %>
+            </table>
+            
+      </div>
+    </fieldset>
 </body>
 </html>

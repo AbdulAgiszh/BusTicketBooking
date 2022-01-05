@@ -29,10 +29,11 @@ public class UpdateOperatorController extends HttpServlet {
 		Operator operator= new Operator(operatorId,operatorName,
 				operatorEmail, operatorContact, operatorAge);
 		boolean updateOperatorFlag=operatorDao.updateOperator(operator);
-		
+		System.out.println(updateOperatorFlag);
 		if(updateOperatorFlag) {
 			try {
-				req.getRequestDispatcher("UpdateOperator.jsp").forward(req,res);
+				session.setAttribute("AdminHome", "UpdateOperatorSession");    
+				req.getRequestDispatcher("OperatorList.jsp?opertorId=0").forward(req,res);
 				
 			} catch (ServletException e) {
 				System.out.println(e.getMessage());

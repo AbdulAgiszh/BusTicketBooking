@@ -15,7 +15,7 @@ public interface BookedTicketsDAO {
 	
 	public List<BookedTickets> getBookingDetailsForCurrentUser(User userModel);
 	
-	public BookedTickets findBookedTicketsDetails(String bookingId);
+	public List<BookedTickets> findBookedTicketsDetails(String bookingId);
 	
 	public boolean cancelTicket(String ticketNo);
 	

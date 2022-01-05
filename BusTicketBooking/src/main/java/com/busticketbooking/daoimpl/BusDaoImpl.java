@@ -23,7 +23,7 @@ public class BusDaoImpl implements BusDAO {
 	SimpleDateFormat sdf=new SimpleDateFormat("dd-MM-yyyy hh:mm");
 	
 	public boolean insertBus(Bus busModel) {
-		String busInsert = "insert into bus_details (bus_category, from_city, to_city, departure, arrival, seater_fare, total_seat) values (?,?,?,?,?,?,?)";
+		String busInsert = "insert into bus_details (bus_category, from_city, to_city, departure, arrival, seater_fare, total_seat,seat_status) values (?,?,?,?,?,?,?,?)";
 		int result = 0 ;
 		try {
 			Connection con = ConnectionUtill.connectdb();
@@ -38,7 +38,8 @@ public class BusDaoImpl implements BusDAO {
 			pstatement.setTimestamp(5,  arrDateTime);
 			pstatement.setInt(6, busModel.getSeaterFare());
 			pstatement.setInt(7, busModel.getTotalseat());
-
+			pstatement.setString(8, busModel.getSeatStatus());
+			
 			result = pstatement.executeUpdate();
 
 		} catch (ClassNotFoundException e) {
@@ -187,6 +188,29 @@ public class BusDaoImpl implements BusDAO {
 				
 				pstatement.setInt(1, busModel.getTotalseat());
 				pstatement.setInt(2, busModel.getBusId());
+				result=pstatement.executeUpdate();
+				con.close();
+				pstatement.close();
+				}
+	    	    catch (ClassNotFoundException e) {
+	    			System.out.println(e.getMessage());
+	    		} catch (SQLException e) {
+	    			System.out.println(e.getMessage());
+	    		}
+	    	    return result>0;
+		}
+		
+		
+		public boolean updateBusStatus(String status,int busId) {
+			String updateStatus="update bus_details set seat_status=? where bus_id=?";
+			Connection con;
+			 int result=0;
+	    	    try {
+				con = ConnectionUtill.connectdb();
+				PreparedStatement pstatement=con.prepareStatement(updateStatus);
+				
+				pstatement.setString(1, status);
+				pstatement.setInt(2, busId);
 				result=pstatement.executeUpdate();
 				con.close();
 				pstatement.close();

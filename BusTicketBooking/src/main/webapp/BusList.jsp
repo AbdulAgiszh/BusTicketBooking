@@ -2,6 +2,7 @@
     pageEncoding="ISO-8859-1"%>
     <%@page import="com.busticketbooking.daoimpl.BusDaoImpl" %>
     <%@page import="java.sql.ResultSet" %>
+    <%@page import="javax.servlet.http.HttpSession" %>
     <%
     BusDaoImpl busDao=new BusDaoImpl();
         ResultSet rs=busDao.viewAllBus();
@@ -56,13 +57,24 @@
         }
     </style>
     <body>
+    
+    <% String sessionName=(String)session.getAttribute("AdminHome");
+	System.out.println(sessionName);
+	if(sessionName.equals("UpdateBusSession")){
+		session.setAttribute("AdminHome", "HomeSession");
+	%>
+		<script type="text/javascript">
+		alert("Bus updated Successfully");
+		</script>
+	<%}%>
+	
         <div id="homeadmin">
             <ul>
                 <li><a href="AdminHome.jsp">Home</a></li>
             <li><a href="AddBus.jsp">Add Bus</a></li>
             <li><a href="AddOperator.jsp">Add Operator</a></li>
             <li><a href="BusList.jsp">Bus list</a></li>
-            <li><a href="OperatorList.jsp">Operator list</a></li>
+            <li><a href="OperatorList.jsp?opertorId=0">Operator list</a></li>
             <li><a href="UserList.jsp">User list</a></li>
             <li><a href="BookingList.jsp">Booking list</a></li>
             </ul>

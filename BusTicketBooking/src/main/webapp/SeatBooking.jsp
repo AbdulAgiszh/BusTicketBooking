@@ -111,6 +111,11 @@
             font-size: xx-large;
             text-align: center;
         }
+        #seatsunavailable{
+        	padding: 15px;
+        	font-size: large;
+        	color: red;
+        }
         #seatbookingtable tr td{
             padding: 15px;
         }
@@ -194,8 +199,15 @@
                <%} %>
               </select>
            </div>
-
+		<%if(totalSeat!=0){ %>
          <button id="btn" name="btn" type="submit">BookTicket</button>
+         <%} else{ 
+        	 //boolean
+         busDao.updateBusStatus("unavailable", busModel.getBusId());%>
+         
+         <p id="seatsunavailable">Seats are unavailable</p>
+         <%} %>
+         
     </div>
     </form>  
         </fieldset>

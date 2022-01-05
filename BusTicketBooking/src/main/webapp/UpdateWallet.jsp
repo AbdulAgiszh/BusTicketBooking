@@ -133,6 +133,7 @@
                 <button class="dropbtn">Ticket 
                 </button>
                 <div class="dropdown-content">
+                  <a href="UserBookingHistory.jsp">Booking History</a>
                   <a href="MyTicket.jsp">My Ticket</a>
                   <a href="CancelTicket.jsp">Cancel Ticket</a>
                 </div>
@@ -158,9 +159,9 @@
                 <td>LoginId :</td>
                 <td><%=userModel1.getUserContact() %></td>
             </tr>
-            <%String walletMessage=(String)session.getAttribute("userWallet");
+            <%String walletMessage=(String)session.getAttribute("userHome");
             if(walletMessage.equals("insufficient")){
-            	session.setAttribute("userWallet", "sufficient");
+            	session.setAttribute("userHome", "homeSession");
             	%>
             <script>
             	alert("Insufficient Balance...You can't book ticket with this balance    Please Recharge your Wallet");

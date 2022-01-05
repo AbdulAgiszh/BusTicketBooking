@@ -53,6 +53,7 @@ public class UpdateBusController extends HttpServlet  {
 			
 			if(busUpdateFlag) {
 				try {
+					session.setAttribute("AdminHome", "UpdateBusSession");
 					req.getRequestDispatcher("BusList.jsp").forward(req,res);
 				} catch (ServletException e) {
 					System.out.println(e.getMessage());

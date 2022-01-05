@@ -4,10 +4,9 @@
     pageEncoding="ISO-8859-1"%>
     <%BookedTicketsDaoImpl bookTicketsDao=new BookedTicketsDaoImpl();
      BookedTickets bookedTickets=(BookedTickets) session.getAttribute("FinalBookTicketsModel");
-     System.out.println(bookedTickets);
-     int bookingTicketId=bookTicketsDao.findBookingId(bookedTickets);
-     System.out.println("bookid "+bookingTicketId);
-     BookedTickets bookTickets1=bookTicketsDao.findBookedTicketsDetails(bookingTicketId);
+     
+     //int bookingTicketId=bookTicketsDao.findBookingId(bookedTickets);
+     //BookedTickets bookTickets1=bookTicketsDao.findBookedTicketsObjectDetails(bookingTicketId);
      //System.out.println("objedtbookid" +bookTickets1.getBookingId());
     		 %>
 <!DOCTYPE html>
@@ -105,6 +104,7 @@
                 <button class="dropbtn">Ticket 
                 </button>
                 <div class="dropdown-content">
+                  <a href="UserBookingHistory.jsp">Booking History</a>
                   <a href="MyTicket.jsp">My Ticket</a>
                   <a href="CancelTicket.jsp">Cancel Ticket</a>
                 </div>

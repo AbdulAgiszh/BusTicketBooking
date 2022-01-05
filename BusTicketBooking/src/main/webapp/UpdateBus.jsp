@@ -55,6 +55,9 @@
              height: 25px;
              width: 200px;
          }
+         #seatStatus{
+            height: 13px;
+        }
          button{
              height: 35px;
              width: 100px;
@@ -77,7 +80,7 @@
         <li><a href="AddBus.jsp">Add Bus</a></li>
         <li><a href="AddOperator.jsp">Add Operator</a></li>
         <li><a href="BusList.jsp">Bus list</a></li>
-        <li><a href="OperatorList.jsp">Operator list</a></li>
+        <li><a href="OperatorList.jsp?opertorId=0">Operator list</a></li>
         <li><a href="UserList.jsp">User list</a></li>
         <li><a href="BookingList.jsp">Booking list</a></li>
         </ul>
@@ -95,7 +98,7 @@
              </tr>
              <tr>
                  <th><label for="operatorId">Operator ID</label></th>
-                 <th><input name="operatorId" type="text" id="operatorId"  placeholder="Enter operator Id" ></th>
+                 <th><input name="operatorId" type="text" id="operatorId"   placeholder="Enter operator Id" ></th>
              </tr>
              <tr>
                  <th><label for="busCategory">Bus Category</label></th>
@@ -127,8 +130,8 @@
              </tr>
              <tr>
                  <th><label for="seatStatus">Status</label></th>
-                 <th><input type="radio" id="seatStatus" name="seatStatus" value="Available" required ><label for="available"> Available</label> 
-                    <input type="radio" id="seatStatus" value="UnAvailable" name="seatStatus" required ><label for="unavailable">UnAvailable</label></th>
+                 <th><input type="radio" id="seatStatus" name="seatStatus" value="available" required ><label for="available"> Available</label> 
+                    <input type="radio" id="seatStatus" value="unavailable" name="seatStatus" required ><label for="unavailable">UnAvailable</label></th>
              </tr>
  
          </table>

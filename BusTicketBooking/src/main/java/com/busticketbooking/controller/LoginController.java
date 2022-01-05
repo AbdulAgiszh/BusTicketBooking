@@ -41,6 +41,7 @@ public class LoginController extends HttpServlet{
 				if(adminModel.getAdminPassword().equals(password)) {
 					try {
 						res.sendRedirect("AdminHome.jsp");
+						session.setAttribute("AdminHome", "HomeSession");
 					} catch (IOException e) {
 						System.out.println(e.getMessage());
 					}
@@ -91,7 +92,7 @@ public class LoginController extends HttpServlet{
 				if(userModel.getUserPassword().equals(password)) {
 					try {
 						session.setAttribute("userModel", userModel);
-						session.setAttribute("userWallet", "sufficient");
+						session.setAttribute("userHome", "homeSession");
 						res.sendRedirect("SearchBus.jsp");
 					} catch (IOException e) {
 						System.out.println(e.getMessage());

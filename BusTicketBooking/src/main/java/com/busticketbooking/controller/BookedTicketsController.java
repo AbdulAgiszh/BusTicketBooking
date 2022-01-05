@@ -36,7 +36,7 @@ public void service(HttpServletRequest req,HttpServletResponse res) {
 
 	    
 	    String randomNo=req.getParameter("randomnumber");
-	    System.out.println(randomNo);
+	    
 		int ticketCount=Integer.parseInt(req.getParameter("noofseats"));
 		int totalPrice=Integer.parseInt(req.getParameter("totalFair"));
 		
@@ -52,8 +52,7 @@ public void service(HttpServletRequest req,HttpServletResponse res) {
 				user.getUserGender(),user.getUserPassword(),updateAmountInWallet);
 		
 		
-		BookedTickets bookTickets=new BookedTickets(0,randomNo,userModel2,busModel,0,busModel.getDeparture(),"",ticketCount,totalPrice,"Success");
-		System.out.println("datetime " +busModel.getDeparture());
+		BookedTickets bookTickets=new BookedTickets(0,randomNo,userModel2,busModel,busModel.getDeparture(),"",ticketCount,totalPrice,"Success");
 		
 		boolean ticketInsertFlag=bookTicketsDao.insertBookedTickets(bookTickets);
 		session.setAttribute("FinalBookTicketsModel", bookTickets);
@@ -71,7 +70,7 @@ public void service(HttpServletRequest req,HttpServletResponse res) {
 		}
 		else {
 			try {
-				session.setAttribute("userWallet", "insufficient");
+				session.setAttribute("userHome", "insufficient");
 				res.sendRedirect("UpdateWallet.jsp");
 			} catch (IOException e) {
 				System.out.println(e.getMessage());
