@@ -22,9 +22,9 @@ public class Bus {
 	private int totalseat;
 	private String seatStatus;
 
+	
 	public Bus(int busId, int busNo, int operatorId, String busCategory, String fromCity, String toCity,
-			LocalDateTime departure, LocalDateTime arrival, int seaterFare, int totalseat,
-			String seatStatus) {
+			LocalDateTime departure, LocalDateTime arrival, int seaterFare, int totalseat, String seatStatus) {
 		super();
 		this.busId = busId;
 		this.busNo = busNo;
@@ -37,6 +37,28 @@ public class Bus {
 		this.seaterFare = seaterFare;
 		this.totalseat = totalseat;
 		this.seatStatus = seatStatus;
+	}
+
+	public Bus(int busId, String busCategory, String fromCity, String toCity,
+			LocalDateTime departure, LocalDateTime arrival, int seaterFare, int totalseat,
+			String seatStatus) {
+		super();
+		this.busId = busId;
+		this.busCategory = busCategory;
+		this.fromCity = fromCity;
+		this.toCity = toCity;
+		this.departure = departure;
+		this.arrival = arrival;
+		this.seaterFare = seaterFare;
+		this.totalseat = totalseat;
+		this.seatStatus = seatStatus;
+	}
+	
+	public Bus(int busId, int busNo, int operatorId) {
+		super();
+		this.busId = busId;
+		this.busNo = busNo;
+		this.operatorId = operatorId;
 	}
 
 

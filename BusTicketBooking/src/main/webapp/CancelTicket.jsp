@@ -141,6 +141,12 @@
         #btnticket:hover{
             background-color: rgb(247, 112, 112);
         }
+        #buslogo{
+            font-style: italic;
+            font-family: cursive;
+            font-size: 23px; 
+            color: rgb(95, 95, 224);
+        }
     </style>
 </head>
 <body>
@@ -154,7 +160,7 @@
     </script>
     
     <%}
-    else if(cancelMessage.equals("wrongTicketNumber")){%>
+    else if(cancelMessage.equals("wrongTicketNumber")){
     	session.setAttribute("userHome", "homeSession");
     	%>
     	<script>
@@ -163,33 +169,31 @@
 
 	<%} %>
     <div id="nav">
-        <ul>
-            <li><span>Logo</span></li>
-            <li><a href="SearchBus.jsp">Bus_Tickets</a></li>
-            <li><a href="AboutUs.jsp">About_us</a></li>
-            <li><a href="UserProfile.jsp">Profile</a></li>
-
-              <li><div class="dropdown">
-                <button class="dropbtn">Ticket 
-                </button>
-                <div class="dropdown-content">
-                  <a href="UserBookingHistory.jsp">Booking History</a>
-                  <a href="MyTicket.jsp">My Ticket</a>
-                  <a href="CancelTicket.jsp">Cancel Ticket</a>
-                </div>
-              </div> </li>
-              <li><div class="dropdown">
-                <button class="dropbtn">Wallet 
-                </button>
-                <div class="dropdown-content">
-                  <a href="ShowBalance.jsp">Show Balance</a>
-                  <a href="UpdateWallet.jsp">Update Wallet</a>
-                </div>
-              </div> </li>
-
-            <li><a href="Login.html">SignIn</a></li>
-            <li><a href="UserRegister.html">SignUp</a></li>
-            </ul>
+            <ul>
+                <li><span id="buslogo">BusHub</span></li>
+                <li><a href="SearchBus.jsp">Bus_Tickets</a></li>
+                <li><a href="AboutUs.jsp">About_us</a></li>
+                  <li><div class="dropdown">
+                    <button class="dropbtn">Ticket 
+                    </button>
+                    <div class="dropdown-content">
+                      <a href="UserBookingHistory.jsp">Booking History</a>
+                      <a href="MyTicket.jsp">My Ticket</a>
+                      <a href="CancelTicket.jsp">Cancel Ticket</a>
+                    </div>
+                  </div> </li>
+    
+                  <li><div class="dropdown">
+                    <button class="dropbtn">Wallet 
+                    </button>
+                    <div class="dropdown-content">
+                      <a href="ShowBalance.jsp">Show Balance</a>
+                      <a href="UpdateWallet.jsp">Update Wallet</a>
+                    </div>
+                  </div> 
+                  <li><a href="UserProfile.jsp">Profile</a></li>
+                  <li><a href="logout.jsp">LogOut</a></li>
+                </ul>
         </div>
 
     <fieldset id="invoicediv">
@@ -212,7 +216,7 @@
         <table id="ticketnotable">
             <tr>
                 <td>TICKET NO :</td>
-                <td><input id="tickettext" name="tickettext" type="text" placeholder="Enter the ticket number"></td>
+                <td><input id="tickettext" name="tickettext" type="text" placeholder="Enter the ticket number" autocomplete="off" required></td>
                 <td><button id="btnticket" type="submit" >Submit</button></td>
             </tr>
         </table>

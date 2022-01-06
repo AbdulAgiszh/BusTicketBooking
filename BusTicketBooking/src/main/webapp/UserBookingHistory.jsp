@@ -113,8 +113,8 @@
 <body>
     <div id="nav">
         <ul>
-            <li><span>Logo</span></li>
-            <li><a href="SearchBus.jsp">Bus_Tickets</a></li>
+            <li><span>BUS</span></li>
+            <li><a href="index.jsp">Bus_Tickets</a></li>
             <li><a href="AboutUs.jsp">About_us</a></li>
             <li><a href="UserProfile.jsp">Profile</a></li>
 
@@ -137,8 +137,8 @@
                 </div>
               </div> </li>
 
-            <li><a href="Login.html">SignIn</a></li>
-            <li><a href="UserRegister.html">SignUp</a></li>
+            <li><a href="Login.jsp">SignIn</a></li>
+            <li><a href="UserRegister.jsp">SignUp</a></li>
             </ul>
         </div>
 
@@ -154,19 +154,17 @@
                     <th>Departure_Date</th>
                     <th>Arrival_Date</th>
                     <th>Seat Count</th>
-                    <th>Seat No</th>
                     <th>Total Price</th>
                     <th>Booking Status</th>
                 </tr>
                 <%for(BookedTickets bookTicket:bookTicketsList){%>
 				<tr>
-                    <td><%=bookTicket.getticketNo() %></td>
+                    <td><%=bookTicket.getTicketNo() %></td>
                     <td><%=bookTicket.getBookingDate() %></td>
                     <td><%=bookTicket.getBusModel().getBusCategory() %></td>
                     <td><%=bookTicket.getBusModel().getDeparture() %></td>
                     <td><%=bookTicket.getBusModel().getArrival() %></td>
                     <td><%=bookTicket.getTicketCount() %></td>
-                    <td><%=bookTicket.getSeatNo()%></td>
                     <td><%=bookTicket.getTotalPrice() %></td>
                     <td><%=bookTicket.getBookingStatus() %></td>
                 </tr>

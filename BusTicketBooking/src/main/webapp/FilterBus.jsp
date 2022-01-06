@@ -1,9 +1,13 @@
+<%@page import="com.busticketbooking.model.User"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
     <%@page import="com.busticketbooking.daoimpl.BusDaoImpl" %>
     <%@page import="java.sql.ResultSet" %>
     <%@page import="java.time.LocalDate" %>
     <%@page import="java.time.format.DateTimeFormatter" %>
+     <%User userModel=(User)session.getAttribute("userModel"); 
+      //UserDaoImpl userDao=new UserDaoImpl();
+      //User userModel1=userDao.getUserDetailsById(userModel.getUserId());%>
     <%
     DateTimeFormatter formatTime = DateTimeFormatter.ofPattern("HH:mm");
     DateTimeFormatter formatDate = DateTimeFormatter.ofPattern("dd-mm-yyyy");
@@ -11,7 +15,6 @@
    	String fromLocation=request.getParameter("fromlocation");
     String toLocation=request.getParameter("tolocation");
     LocalDate date=LocalDate.parse(request.getParameter("date"));
-    
     BusDaoImpl busDao=new BusDaoImpl();
     ResultSet rs=busDao.searchhBus(date, fromLocation, toLocation);
     %>
@@ -139,7 +142,9 @@
                             <td><%=rs.getTime(7).toLocalTime().format(formatTime)%></td>
                             <td><%=rs.getTime(8).toLocalTime().format(formatTime)%></td>
                             <td><%=rs.getInt(9) %></td>
+                            <%if(userModel!=null){ %>
                             <td><button id="busId" name="busIdValue" value="<%=rs.getInt(1)%>">BOOK</button></td>
+                            <%} %>
                             
                         </tr>
                         <% } %>
@@ -147,7 +152,11 @@
                 </div>
              
             </fieldset>
+            <%if(userModel!=null){ %>
             <a href="SearchBus.jsp" id="backlink">GO BACK TO HOME</a>
+            <%} else{%>
+            <a href="index.jsp" id="backlink">GO BACK TO HOME</a>
+            <%} %>
         </div>
          </form>
     </body>

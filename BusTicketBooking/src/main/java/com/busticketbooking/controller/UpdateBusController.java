@@ -27,10 +27,6 @@ public class UpdateBusController extends HttpServlet  {
 			int busId=busModel.getBusId();
 			System.out.println(busId);
 			
-			int busNo=Integer.parseInt(req.getParameter("busNo"));
-			System.out.println(busNo);
-			int operatorId=Integer.parseInt(req.getParameter("operatorId"));
-			System.out.println(operatorId);
 			String busCategory=req.getParameter("busCategory");
 			System.out.println(busCategory);
 			String fromCity=req.getParameter("fromCity");
@@ -48,7 +44,7 @@ public class UpdateBusController extends HttpServlet  {
 			String status=req.getParameter("seatStatus");
 			System.out.println(status);	
 			
-			Bus bus=new Bus(busId,busNo,operatorId,busCategory,fromCity,toCity,departure,arrival,seaterFare,totalSeat,status);
+			Bus bus=new Bus(busId,0,0,busCategory,fromCity,toCity,departure,arrival,seaterFare,totalSeat,status);
 			boolean busUpdateFlag=busDao.updateBus(bus);
 			
 			if(busUpdateFlag) {

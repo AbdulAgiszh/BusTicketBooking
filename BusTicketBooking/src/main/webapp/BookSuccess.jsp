@@ -95,7 +95,7 @@
 
     <div id="nav">
         <ul>
-            <li><span>Logo</span></li>
+            <li><span id="buslogo">BusHub</span></li>
             <li><a href="SearchBus.jsp">Bus_Tickets</a></li>
             <li><a href="aboutus.html">About_us</a></li>
             <li><a href="UserProfile.jsp">Profile</a></li>
@@ -127,7 +127,7 @@
 
     <div id="successdiv">
         <h2> Ticket Successfully Booked </h2><br><br><br>
-        <h3>Your Ticket No :  <span><%=bookedTickets.getticketNo()%></span></h3>
+        <h3>Your Ticket No :  <span><%=bookedTickets.getTicketNo()%></span></h3>
         <p><--Use this Ticket No for further purpose--></p>
 
     </div>

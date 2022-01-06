@@ -38,7 +38,7 @@ public class UserDaoImpl implements UserDAO {
 
 	public boolean checkUser(long contact) {
 
-		String userLogin = "select * from user_details where user_contact='" + contact + "' and user_status='Active'";
+		String userLogin = "select * from user_details where user_contact='" + contact + "' and user_status='active'";
 		Connection con;
 		boolean checkUserFlag = true;
 		try {

@@ -1,6 +1,7 @@
 package com.busticketbooking.controller;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
@@ -12,63 +13,83 @@ import javax.servlet.http.HttpSession;
 
 import com.busticketbooking.daoimpl.BookedTicketsDaoImpl;
 import com.busticketbooking.daoimpl.BusDaoImpl;
+import com.busticketbooking.daoimpl.SeatDetailsDaoImpl;
 import com.busticketbooking.daoimpl.UserDaoImpl;
 import com.busticketbooking.model.BookedTickets;
 import com.busticketbooking.model.Bus;
+import com.busticketbooking.model.SeatDetails;
 import com.busticketbooking.model.User;
 
 @WebServlet("/confirmBooking")
 public class BookedTicketsController extends HttpServlet {
 
-	
-	BusDaoImpl busDao=new BusDaoImpl();
-	UserDaoImpl userDao=new UserDaoImpl();
-	BookedTicketsDaoImpl bookTicketsDao=new BookedTicketsDaoImpl();
-	
-public void service(HttpServletRequest req,HttpServletResponse res) {
-		
-	    HttpSession session=req.getSession();
-		User user1=(User)session.getAttribute("userModel");
-		User user=userDao.getUserDetailsById(user1.getUserId());
-		
-		int currentBusId2=(int) session.getAttribute("currentBusId");
-	    Bus busModel=busDao.findBusDetailsUsingID(currentBusId2);
+	BusDaoImpl busDao = new BusDaoImpl();
+	UserDaoImpl userDao = new UserDaoImpl();
+	BookedTicketsDaoImpl bookTicketsDao = new BookedTicketsDaoImpl();
+	SeatDetailsDaoImpl seatDetailsDao=new SeatDetailsDaoImpl();
+	SeatDetails seatDetails=new SeatDetails();
 
-	    
-	    String randomNo=req.getParameter("randomnumber");
-	    
-		int ticketCount=Integer.parseInt(req.getParameter("noofseats"));
-		int totalPrice=Integer.parseInt(req.getParameter("totalFair"));
+	public void service(HttpServletRequest req, HttpServletResponse res) {
+
+		HttpSession session = req.getSession();
+		//getting userdetails from session from logincontroller
+		User user1 = (User) session.getAttribute("userModel");
+		User user = userDao.getUserDetailsById(user1.getUserId());
 		
-		if(user.getUserWallet()>=totalPrice) {
+		//getting bus object by using current bus id
+		int currentBusId2 = (int) session.getAttribute("currentBusId");
+		Bus busModel = busDao.findBusDetailsUsingID(currentBusId2);
 		
-		int updateAmountInWallet=user.getUserWallet()-totalPrice;
-		int updateBusSeat=busModel.getTotalseat()-ticketCount;
-		
-		Bus busModel2=new Bus(busModel.getBusId(),busModel.getBusNo(),busModel.getOperatorId(),busModel.getBusCategory(),busModel.getFromCity(),
-				busModel.getToCity(),busModel.getDeparture(),busModel.getArrival(),busModel.getSeaterFare(),updateBusSeat,busModel.getSeatStatus());
-		boolean updateSeatFlag= busDao.updateSeatCount(busModel2);
-		User userModel2=new User(user.getUserId(),user.getUserName(),user.getUserDOB(),user.getUserEmail(),user.getUserContact(),
-				user.getUserGender(),user.getUserPassword(),updateAmountInWallet);
-		
-		BookedTickets bookTickets=new BookedTickets(0,randomNo,userModel2,busModel,busModel.getDeparture(),"",ticketCount,totalPrice,"Success");
-		boolean ticketInsertFlag=bookTicketsDao.insertBookedTickets(bookTickets);
-		
-		
-		
-		session.setAttribute("FinalBookTicketsModel", bookTickets);
-		session.setAttribute("FinalBusModel", busModel2);  
-	    session.setAttribute("FinalUserModel", userModel2);
-		
-		if(ticketInsertFlag) {
+		//getting details from seatbooking jsp page input entered by user
+		String randomNo = req.getParameter("randomnumber");
+		int ticketCount = Integer.parseInt(req.getParameter("noofseats"));
+		int totalPrice = Integer.parseInt(req.getParameter("totalFair"));
+
+		//checking balance from user to book ticket
+		if (user.getUserWallet() >= totalPrice) {
+
+			int updateAmountInWallet = user.getUserWallet() - totalPrice;
+			int updateBusSeat = busModel.getTotalseat() - ticketCount;
+
+			//creating new object by giving new seat update count and update in table 
+			Bus busModel2 = new Bus(busModel.getBusId(), busModel.getBusNo(), busModel.getOperatorId(),
+					busModel.getBusCategory(), busModel.getFromCity(), busModel.getToCity(), busModel.getDeparture(),
+					busModel.getArrival(), busModel.getSeaterFare(), updateBusSeat, busModel.getSeatStatus());
+			boolean updateSeatFlag = busDao.updateSeatCount(busModel2);
+			
+			//creating new object by giving new wallet update 
+			User userModel2 = new User(user.getUserId(), user.getUserName(), user.getUserDOB(), user.getUserEmail(),
+					user.getUserContact(), user.getUserGender(), user.getUserPassword(), updateAmountInWallet);
+			
+			//getting seat no from dao 
 			try {
-				res.sendRedirect("BookSuccess.jsp");
-			} catch (IOException e) {
-				System.out.println(e.getMessage());
+				seatDetailsDao.ticketexist(ticketCount, randomNo, busModel2, userModel2);
+			} catch (ClassNotFoundException e1) {
+				System.out.println(e1.getMessage());
+			} catch (SQLException e1) {
+				System.out.println(e1.getMessage());
 			}
+			
+			//inserting all getting values in booked tickets dao
+			BookedTickets bookTickets = new BookedTickets(0, randomNo, userModel2, busModel, busModel.getDeparture(),
+					ticketCount, totalPrice, "Success");
+			boolean ticketInsertFlag = bookTicketsDao.insertBookedTickets(bookTickets);
+
+			//creating final session by using all
+			session.setAttribute("FinalBookTicketsModel", bookTickets);
+			session.setAttribute("FinalBusModel", busModel2);
+			session.setAttribute("FinalUserModel", userModel2);
+
+			if (ticketInsertFlag) {
+				try {
+					res.sendRedirect("BookSuccess.jsp");
+				} catch (IOException e) {
+					System.out.println(e.getMessage());
+				}
+			}	
 		}
 		
-		}
+		//if user wallet is insufficient 
 		else {
 			try {
 				session.setAttribute("userHome", "insufficient");
@@ -77,9 +98,6 @@ public void service(HttpServletRequest req,HttpServletResponse res) {
 				System.out.println(e.getMessage());
 			}
 		}
-		
-		
-		
-		
+
 	}
 }

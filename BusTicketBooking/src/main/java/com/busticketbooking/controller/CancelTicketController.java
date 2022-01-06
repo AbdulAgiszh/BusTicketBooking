@@ -1,6 +1,7 @@
 package com.busticketbooking.controller;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,6 +13,7 @@ import javax.servlet.http.HttpSession;
 
 import com.busticketbooking.daoimpl.BookedTicketsDaoImpl;
 import com.busticketbooking.daoimpl.BusDaoImpl;
+import com.busticketbooking.daoimpl.SeatDetailsDaoImpl;
 import com.busticketbooking.daoimpl.UserDaoImpl;
 import com.busticketbooking.model.BookedTickets;
 import com.busticketbooking.model.Bus;
@@ -23,6 +25,7 @@ public class CancelTicketController extends HttpServlet {
 	BookedTicketsDaoImpl bookTicketsDao = new BookedTicketsDaoImpl();
 	BusDaoImpl busDao = new BusDaoImpl();
 	UserDaoImpl userDao = new UserDaoImpl();
+	SeatDetailsDaoImpl seatDetails=new SeatDetailsDaoImpl();
 	BookedTickets bookedTicketsModel = new BookedTickets();
 
 	public void service(HttpServletRequest req, HttpServletResponse res) {
@@ -36,8 +39,9 @@ public class CancelTicketController extends HttpServlet {
 		String ticketNo = req.getParameter("tickettext");
 
 		// to find booked tickets pojo class by using ticket no entered by user in cancel ticket jsp
-		bookedTicketsModel = bookTicketsDao.findBookedTicketsObjectDetails(ticketNo);
+		bookedTicketsModel= bookTicketsDao.findBookedTicketsObjectDetails(ticketNo);
 		if(bookedTicketsModel!=null) {
+			
 		// to update seat by using bus object from bookedtickets model
 		int totalSeatAlreadyAvailable=bookedTicketsModel.getBusModel().getTotalseat();
 		int seatToUpdate=totalSeatAlreadyAvailable+bookedTicketsModel.getTicketCount();
@@ -53,13 +57,22 @@ public class CancelTicketController extends HttpServlet {
 			// to reduce fine amount in 15% in userobject using updatedao
 			int fineFare = (bookedTicketsModel.getTotalPrice() / 100) * 15;
 			int refundFare = bookedTicketsModel.getTotalPrice() - fineFare;
-			int refundPrice = userModel1.getUserWallet() + refundFare;
-			boolean userUpdateWalletFlag = userDao.updateWallet(refundPrice, userModel1.getUserContact());
+			int refundPrice =bookedTicketsModel.getUserModel().getUserWallet()+refundFare;
+			boolean userUpdateWalletFlag = userDao.updateWallet(refundPrice,bookedTicketsModel.getUserModel().getUserContact());
 
 			if (userUpdateWalletFlag) {
 				// to cancel the ticket(changing status) in bookedticket class using cancelticketdao
 				boolean ticketCancelFlag = bookTicketsDao.cancelTicket(ticketNo);
-
+				
+				//to delete the ticketseats from ticket details table using ticket no and seat
+				try {
+					seatDetails.cancelSeatDetails(ticketNo);
+				} catch (ClassNotFoundException e1) {
+					System.out.println(e1.getMessage());
+				} catch (SQLException e1) {
+					System.out.println(e1.getMessage());
+				}
+				
 				if (ticketCancelFlag) {
 					// session.setAttribute("ticketdetailsresult", bookTicketsList);
 					try {

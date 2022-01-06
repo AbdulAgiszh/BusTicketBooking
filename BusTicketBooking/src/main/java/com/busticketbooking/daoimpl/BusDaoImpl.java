@@ -25,6 +25,7 @@ public class BusDaoImpl implements BusDAO {
 	public boolean insertBus(Bus busModel) {
 		String busInsert = "insert into bus_details (bus_category, from_city, to_city, departure, arrival, seater_fare, total_seat,seat_status) values (?,?,?,?,?,?,?,?)";
 		int result = 0 ;
+		System.out.println("busdao"+busInsert);
 		try {
 			Connection con = ConnectionUtill.connectdb();
 			PreparedStatement pstatement = con.prepareStatement(busInsert);
@@ -72,31 +73,28 @@ public class BusDaoImpl implements BusDAO {
 		return result>0;
 	}
 	
-	
+	//updating bus details without bus number and operator
 	public boolean updateBus(Bus busModel) {
 		
-            String busUpdate="update bus_details set bus_no=?,operator_id=?,bus_category=?, from_city=?, to_city=?, departure=?, arrival=?, seater_fare=?, total_seat=?,seat_status=? where bus_id='"+busModel.getBusId()+"'";
+            String busUpdate="update bus_details set bus_category=?, from_city=?, to_city=?, departure=?, arrival=?, seater_fare=?, total_seat=?,seat_status=? where bus_id='"+busModel.getBusId()+"'";
             int result=0;
     	    Connection con;
     	    try {
 			con = ConnectionUtill.connectdb();
 			PreparedStatement pstatement=con.prepareStatement(busUpdate);
 			
-			pstatement.setInt(1, busModel.getBusNo());
-			pstatement.setInt(2, busModel.getOperatorId());
-			pstatement.setString(3, busModel.getBusCategory());
-			pstatement.setString(4, busModel.getFromCity());
-			pstatement.setString(5, busModel.getToCity());
+			pstatement.setString(1, busModel.getBusCategory());
+			pstatement.setString(2, busModel.getFromCity());
+			pstatement.setString(3, busModel.getToCity());
 			Timestamp depDateTime = Timestamp.valueOf(busModel.getDeparture());
-			pstatement.setTimestamp(6,  depDateTime);
+			pstatement.setTimestamp(4,  depDateTime);
 			Timestamp arrDateTime = Timestamp.valueOf(busModel.getArrival());
-			pstatement.setTimestamp(7,  arrDateTime);
-			pstatement.setInt(8, busModel.getSeaterFare());
-			pstatement.setInt(9, busModel.getTotalseat());
-			pstatement.setString(10, busModel.getSeatStatus());
+			pstatement.setTimestamp(5,  arrDateTime);
+			pstatement.setInt(6, busModel.getSeaterFare());
+			pstatement.setInt(7, busModel.getTotalseat());
+			pstatement.setString(8, busModel.getSeatStatus());
 			
 			result=pstatement.executeUpdate();
-			
 			con.close();
 			pstatement.close();
 			}
@@ -109,6 +107,28 @@ public class BusDaoImpl implements BusDAO {
 	}
 	
 	
+	//to add bus number and operator when departure day by admin
+	public boolean updateBusNoAndOperator(Bus busModel) {
+		String busUpdate="update bus_details set bus_no=?,operator_id=? where bus_id='"+busModel.getBusId()+"'";
+        int result=0;
+	    Connection con;
+	    try {
+		con = ConnectionUtill.connectdb();
+		PreparedStatement pstatement=con.prepareStatement(busUpdate);
+		
+		pstatement.setInt(1, busModel.getBusNo());
+		pstatement.setInt(2, busModel.getOperatorId());
+		result=pstatement.executeUpdate();
+		con.close();
+		pstatement.close();
+		}
+	    catch (ClassNotFoundException e) {
+	    	System.out.println(e.getMessage());
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		}
+	    return result>0;
+	}
 	
 	
 	

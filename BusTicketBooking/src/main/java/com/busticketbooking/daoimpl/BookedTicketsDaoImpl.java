@@ -29,7 +29,7 @@ public class BookedTicketsDaoImpl implements BookedTicketsDAO {
 	public boolean insertBookedTickets(BookedTickets bookedTicketsModel) {
 		String ticketsInsert = "insert into Booked_tickets (ticket_no,user_id,bus_id,departure_date,ticket_count,total_price,payment_status) values (?,?,?,?,?,?,?)"; 
 		String updateWallet = "update user_details set user_wallet=? where user_id=?";
-		//,seat_no
+
 		Connection con;
 		int result=0;
 		
@@ -37,7 +37,7 @@ public class BookedTicketsDaoImpl implements BookedTicketsDAO {
 			con = ConnectionUtill.connectdb();
 			PreparedStatement pstatement=con.prepareStatement(ticketsInsert);
 			PreparedStatement pstatement1=con.prepareStatement(updateWallet);
-			pstatement.setString(1, bookedTicketsModel.getticketNo());
+			pstatement.setString(1, bookedTicketsModel.getTicketNo());
 			pstatement.setInt(2, bookedTicketsModel.getUserModel().getUserId());
 			pstatement.setInt(3, bookedTicketsModel.getBusModel().getBusId());
 			Timestamp departureDateTime = Timestamp.valueOf(bookedTicketsModel.getBusModel().getDeparture());
@@ -112,7 +112,7 @@ public class BookedTicketsDaoImpl implements BookedTicketsDAO {
 			while(rs.next()) {
 				busModel=busDao.findBusDetailsUsingID(rs.getInt(3));
 				userModel1=userDao.getUserDetailsById(userModel.getUserId());
-				BookedTickets bookedTicketsModel=new BookedTickets(rs.getInt(1),rs.getString(2),userModel1,busModel,rs.getDate(5).toLocalDate(),rs.getTimestamp(6).toLocalDateTime(),rs.getString(7),rs.getInt(8),rs.getInt(9),rs.getString(10),rs.getString(11));
+				BookedTickets bookedTicketsModel=new BookedTickets(rs.getInt(1),rs.getString(2),userModel1,busModel,rs.getDate(5).toLocalDate(),rs.getTimestamp(6).toLocalDateTime(),rs.getInt(7),rs.getInt(8),rs.getString(9),rs.getString(10));
 				bookingList.add(bookedTicketsModel);
 				
 			}	
@@ -147,7 +147,7 @@ public class BookedTicketsDaoImpl implements BookedTicketsDAO {
 				
 				busModel=busDao.findBusDetailsUsingID(rs.getInt(4));
 				userModel=userDao.getUserDetailsById(rs.getInt(3));
-				bookedTicketsModel=new BookedTickets(rs.getInt(1),rs.getString(2),userModel,busModel,rs.getDate(5).toLocalDate(),rs.getTimestamp(6).toLocalDateTime(),rs.getString(7),rs.getInt(8),rs.getInt(9),rs.getString(10),rs.getString(11));
+				bookedTicketsModel=new BookedTickets(rs.getInt(1),rs.getString(2),userModel,busModel,rs.getDate(5).toLocalDate(),rs.getTimestamp(6).toLocalDateTime(),rs.getInt(7),rs.getInt(8),rs.getString(9),rs.getString(10));
 				bookTickets.add(bookedTicketsModel);
 			}	
 			
@@ -234,7 +234,7 @@ public class BookedTicketsDaoImpl implements BookedTicketsDAO {
 				
 				busModel=busDao.findBusDetailsUsingID(rs.getInt(4));
 				userModel=userDao.getUserDetailsById(rs.getInt(3));
-				bookedTicketsModel=new BookedTickets(rs.getInt(1),rs.getString(2),userModel,busModel,rs.getDate(5).toLocalDate(),rs.getTimestamp(6).toLocalDateTime(),rs.getString(7),rs.getInt(8),rs.getInt(9),rs.getString(10),rs.getString(11));
+				bookedTicketsModel=new BookedTickets(rs.getInt(1),rs.getString(2),userModel,busModel,rs.getDate(5).toLocalDate(),rs.getTimestamp(6).toLocalDateTime(),rs.getInt(7),rs.getInt(8),rs.getString(9),rs.getString(10));
 			}	
 			
 		} catch (ClassNotFoundException e) {

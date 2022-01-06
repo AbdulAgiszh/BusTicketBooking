@@ -72,7 +72,7 @@ public class LoginController extends HttpServlet{
 		else if (loginId.endsWith("admin@gmail.com") == false && loginId.matches("[0-9]+") == false) {
 			session.setAttribute("erroruserid", "user name mismatch");
 			try {
-				req.getRequestDispatcher("Login.jsp").forward(req,res);
+				req.getRequestDispatcher("ShowUserName.jsp").forward(req,res);
 			} catch (ServletException e) {
 				System.out.println(e.getMessage());
 			} catch (IOException e) {
@@ -84,6 +84,7 @@ public class LoginController extends HttpServlet{
 		else {
 			boolean userCheckFlag;
 			long userId=Long.parseLong(loginId);
+			System.out.println(userId);
 			userCheckFlag=userDao.checkUser(userId);
 			if(userCheckFlag) {
 				userModel=userDao.loginUser(userId);
@@ -92,7 +93,7 @@ public class LoginController extends HttpServlet{
 				if(userModel.getUserPassword().equals(password)) {
 					try {
 						session.setAttribute("userModel", userModel);
-						session.setAttribute("userHome", "homeSession");
+						session.setAttribute("userHome", "loginSession");
 						res.sendRedirect("SearchBus.jsp");
 					} catch (IOException e) {
 						System.out.println(e.getMessage());

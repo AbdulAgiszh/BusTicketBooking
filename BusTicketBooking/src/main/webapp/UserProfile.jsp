@@ -124,7 +124,12 @@
               border: none;
               cursor: pointer;
          }
-        
+         #buslogo{
+            font-style: italic;
+            font-family: cursive;
+            font-size: 23px; 
+            color: rgb(95, 95, 224);
+        }
     </style>
 </head>
 <body>
@@ -141,34 +146,31 @@
             
             
     <div id="nav">
-        <ul>
-            <li><span>Logo</span></li>
-            <li><a href="SearchBus.jsp">Bus_Tickets</a></li>
-            <li><a href="AboutUs.jsp">About_us</a></li>
-            <li><a href="UserProfile.jsp">Profile</a></li>
-
-              <li><div class="dropdown">
-                <button class="dropbtn">Ticket 
-                </button>
-                <div class="dropdown-content">
-                  <a href="UserBookingHistory.jsp">Booking History</a>
-                  <a href="MyTicket.jsp">My Ticket</a>
-                  <a href="CancelTicket.jsp">Cancel Ticket</a>
-                </div>
-              </div> </li>
-
-              <li><div class="dropdown">
-                <button class="dropbtn">Wallet 
-                </button>
-                <div class="dropdown-content">
-                  <a href="ShowBalance.jsp">Show Balance</a>
-                  <a href="UpdateWallet.jsp">Update Wallet</a>
-                </div>
-              </div> </li>
-
-            <li><a href="Login.html">SignIn</a></li>
-            <li><a href="UserRegister.html">SignUp</a></li>
-            </ul>
+            <ul>
+                <li><span id="buslogo">BusHub</span></li>
+                <li><a href="SearchBus.jsp">Bus_Tickets</a></li>
+                <li><a href="AboutUs.jsp">About_us</a></li>
+                  <li><div class="dropdown">
+                    <button class="dropbtn">Ticket 
+                    </button>
+                    <div class="dropdown-content">
+                      <a href="UserBookingHistory.jsp">Booking History</a>
+                      <a href="MyTicket.jsp">My Ticket</a>
+                      <a href="CancelTicket.jsp">Cancel Ticket</a>
+                    </div>
+                  </div> </li>
+    
+                  <li><div class="dropdown">
+                    <button class="dropbtn">Wallet 
+                    </button>
+                    <div class="dropdown-content">
+                      <a href="ShowBalance.jsp">Show Balance</a>
+                      <a href="UpdateWallet.jsp">Update Wallet</a>
+                    </div>
+                  </div> 
+                  <li><a href="UserProfile.jsp">Profile</a></li>
+                  <li><a href="logout.jsp">LogOut</a></li>
+                </ul>
         </div>
     <%User userModel=(User) session.getAttribute("userModel"); 
     System.out.println(userModel.getUserContact());

@@ -80,10 +80,8 @@
                     <th>Ticket No</th>
                     <th>User Id</th>
                     <th>Bus Id</th>
-                    <th>Bus No</th>
                     <th>Booking_Date</th>
                     <th>Departure_Date</th>
-                    <th>Seat No</th>
                     <th>Ticket Count</th>
                     <th>Total Price</th>
                     <th>Booking Status</th>
@@ -95,14 +93,12 @@
                     <td><%=rs.getString(2)%></td>
                     <td><%=rs.getInt(3) %></td>
                     <td><%=rs.getInt(4) %></td>
-                    <td><%=rs.getInt(5) %></td>
-                    <td><%=rs.getDate(6).toLocalDate()%></td>
-                    <td><%=rs.getTimestamp(7).toLocalDateTime().format(format)%></td>
-                    <td><%=rs.getString(8) %></td>
-                    <td><%=rs.getInt(9) %></td>
-                    <td><%=rs.getInt(10) %></td>
-                    <td><%=rs.getString(11) %></td>
-                    <td><%=rs.getString(12) %></td>
+                    <td><%=rs.getDate(5).toLocalDate()%></td>
+                    <td><%=rs.getTimestamp(6).toLocalDateTime().format(format)%></td>
+                    <td><%=rs.getInt(7) %></td>
+                    <td><%=rs.getInt(8) %></td>
+                    <td><%=rs.getString(9) %></td>
+                    <td><%=rs.getString(10) %></td>
                 </tr>
                 <%} %>
             </table>
