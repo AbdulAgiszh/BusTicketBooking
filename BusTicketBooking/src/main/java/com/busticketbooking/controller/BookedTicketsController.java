@@ -51,10 +51,11 @@ public void service(HttpServletRequest req,HttpServletResponse res) {
 		User userModel2=new User(user.getUserId(),user.getUserName(),user.getUserDOB(),user.getUserEmail(),user.getUserContact(),
 				user.getUserGender(),user.getUserPassword(),updateAmountInWallet);
 		
-		
 		BookedTickets bookTickets=new BookedTickets(0,randomNo,userModel2,busModel,busModel.getDeparture(),"",ticketCount,totalPrice,"Success");
-		
 		boolean ticketInsertFlag=bookTicketsDao.insertBookedTickets(bookTickets);
+		
+		
+		
 		session.setAttribute("FinalBookTicketsModel", bookTickets);
 		session.setAttribute("FinalBusModel", busModel2);  
 	    session.setAttribute("FinalUserModel", userModel2);

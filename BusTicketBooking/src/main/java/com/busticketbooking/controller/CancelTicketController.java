@@ -37,7 +37,7 @@ public class CancelTicketController extends HttpServlet {
 
 		// to find booked tickets pojo class by using ticket no entered by user in cancel ticket jsp
 		bookedTicketsModel = bookTicketsDao.findBookedTicketsObjectDetails(ticketNo);
-
+		if(bookedTicketsModel!=null) {
 		// to update seat by using bus object from bookedtickets model
 		int totalSeatAlreadyAvailable=bookedTicketsModel.getBusModel().getTotalseat();
 		int seatToUpdate=totalSeatAlreadyAvailable+bookedTicketsModel.getTicketCount();
@@ -70,7 +70,21 @@ public class CancelTicketController extends HttpServlet {
 						e.printStackTrace();
 					}
 				}
+				
+				
 
+			}
+		}
+		}
+		
+		//if ticketnumber entered by user is wrong
+		else {
+			session.setAttribute("userHome", "wrongTicketNumber");
+			try {
+				res.sendRedirect("CancelTicket.jsp");
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			}
 		}
 	}

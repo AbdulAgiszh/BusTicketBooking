@@ -153,9 +153,15 @@
     	alert("Ticket cancelled successfully");
     </script>
     
-    <%} %>
-    
+    <%}
+    else if(cancelMessage.equals("wrongTicketNumber")){%>
+    	session.setAttribute("userHome", "homeSession");
+    	%>
+    	<script>
+    	alert("Oops!! Wrong Ticket Number Please Enter correct ticket number....");
+    </script>
 
+	<%} %>
     <div id="nav">
         <ul>
             <li><span>Logo</span></li>

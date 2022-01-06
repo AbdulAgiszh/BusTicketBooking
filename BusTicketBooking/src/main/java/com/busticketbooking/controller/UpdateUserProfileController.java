@@ -38,6 +38,7 @@ public class UpdateUserProfileController extends HttpServlet {
 		
 		if(userUpdateFlag) {
 			try {
+				session.setAttribute("userHome", "updateUserProfileServlet");
 				req.getRequestDispatcher("UserProfile.jsp").forward(req,res);
 				
 			} catch (ServletException e) {

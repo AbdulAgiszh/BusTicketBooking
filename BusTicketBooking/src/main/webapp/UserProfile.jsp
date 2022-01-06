@@ -128,6 +128,18 @@
     </style>
 </head>
 <body>
+
+	 <%String profileMessage=(String)session.getAttribute("userHome");
+            if(profileMessage.equals("updateUserProfileServlet")){
+            	session.setAttribute("userHome", "homeSession");
+            	%>
+            <script>
+            	alert("Profile Updated Successfully");
+            </script>
+            
+            <%} %>
+            
+            
     <div id="nav">
         <ul>
             <li><span>Logo</span></li>
