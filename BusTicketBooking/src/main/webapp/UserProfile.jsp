@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>Profile</title>
 <style>
         *{
         margin: 0;
@@ -172,13 +172,7 @@
                   <li><a href="logout.jsp">LogOut</a></li>
                 </ul>
         </div>
-    <%User userModel=(User) session.getAttribute("userModel"); 
-    System.out.println(userModel.getUserContact());
-    System.out.println(userModel.getUserName());
-    System.out.println(userModel.getUserEmail());
-    System.out.println(userModel.getUserDOB());
-    System.out.println(userModel.getUserPassword());
-    System.out.println(userModel.getUserGender());%>
+    <%User userModel=(User) session.getAttribute("userModel"); %>
     </ul>
     </div>
     <div  id="profiletable">
@@ -227,7 +221,7 @@
                 </tr>
                 <tr>
                     <th><label for="mobile">MobileNumber</label></th>
-                    <th><input type="text" name="mobile" id="mobile" required></th>
+                    <th><input type="text" name="mobile" id="mobile" readonly required></th>
                 </tr>
                 <tr>
                     <th><label for="password">Password</label></th>

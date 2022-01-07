@@ -11,7 +11,7 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>Wallet</title>
 <style>
          *{
         margin: 0;
@@ -155,7 +155,7 @@
             <label for="balance">Current Balance</label>
             <span id="availableamount"><%=userModel1.getUserWallet() %></span> <br><br>
             <label for="clickbutton">Click here to update your wallet</label>
-            <button id="btn" name="btn" type="submit">Deposite</button>
+            <button id="btn" name="btn" type="submit">Deposit</button>
         </div>
         </form>
 </body>

@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>Add Bus</title>
 </head>
 <style>
        *{
@@ -24,7 +24,7 @@
             list-style: none;
             display: inline-block;
             padding: 30px;
-            padding-left: 70px;
+            padding-left: 60px;
             }
         a{
             text-decoration: none;
@@ -103,6 +103,7 @@
             <li><a href="OperatorList.jsp?opertorId=0">Operator list</a></li>
             <li><a href="UserList.jsp">User list</a></li>
             <li><a href="BookingList.jsp">Booking list</a></li>
+            <li><a href="SeatList.jsp">Seat list</a></li>
         </ul>
     </div>
 
@@ -152,6 +153,28 @@
     </div>
     </form>
 
+ 
    
 </body>
+
+<script type="text/javascript">
+      
+    today();
+    function today(){
+        var today = new Date();
+        var dd = String(today.getDate()).padStart(2, '0');
+        var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+        var yyyy = today.getFullYear();
+        var yyyy1= today.getFullYear()+10;
+    maxdate =yyyy1 + '-' + mm + '-'+ dd +'-' + HH +'-'+ mm  ;
+    mindate =yyyy + '-' + mm + '-'+ dd +'-' + HH +'-'+ mm  ;
+    
+    document.getElementById("departure").setAttribute("max",maxdate);
+    
+    document.getElementById("departure").setAttribute("min",mindate);
+    
+    /* document.getElementById("arrival").setAttribute("max",maxdate);
+    document.getElementById("arrival").setAttribute("min",mindate); */
+    }
+    </script>
 </html>

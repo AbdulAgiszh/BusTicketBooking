@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>Sign Up</title>
 
 <style>
 		
@@ -115,5 +115,21 @@ function register(){
 	}
 }
 </script>
+
+<script type="text/javascript">
+      
+    today();
+    function today(){
+        var today = new Date();
+        var dd = String(today.getDate()).padStart(2, '0');
+        var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+        var yyyy = today.getFullYear();
+        var yyyy1= today.getFullYear()-90;
+    mindate =yyyy1 + '-' + mm + '-'+ dd  ;
+    maxdate =yyyy + '-' + mm + '-'+ dd  ;
+    document.getElementById("dob").setAttribute("max",maxdate);
+    document.getElementById("dob").setAttribute("min",mindate);
+    }
+    </script>
 </body>
 </html>

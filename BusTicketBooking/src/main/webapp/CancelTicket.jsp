@@ -12,7 +12,7 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>Cancel Ticket</title>
 <style>
         *{
         margin: 0;
@@ -124,6 +124,13 @@
         #traveltable{
             margin-left: 220px;
         }
+        #deductedmessage{
+            position: absolute;
+            color: red;
+            font-size: 20px;
+            margin-left: 340px;
+            margin-top: -20px;
+        }
         #btnticket{
             margin-left: 40px;
             
@@ -157,6 +164,7 @@
     	%>
     	<script>
     	alert("Ticket cancelled successfully");
+    	alert("Your (85%)refund amount will be credit with your wallet with in 7 working days ")
     </script>
     
     <%}
@@ -167,7 +175,19 @@
     	alert("Oops!! Wrong Ticket Number Please Enter correct ticket number....");
     </script>
 
-	<%} %>
+	<%} 
+	else if(cancelMessage.equals("BusAlreadyDeparture")){
+    	session.setAttribute("userHome", "homeSession");%>
+    	<script>
+    	alert("Bus departure date is ended..you can't cancel the ticket");
+    </script>
+    <%}
+    else if(cancelMessage.equals("TicketAlreadyCancel")){
+    	session.setAttribute("userHome", "homeSession");%>
+    	<script>
+    	alert("Oops This ticket was already cancelled by you");
+    </script>
+    <%} %>
     <div id="nav">
             <ul>
                 <li><span id="buslogo">BusHub</span></li>
@@ -220,6 +240,7 @@
                 <td><button id="btnticket" type="submit" >Submit</button></td>
             </tr>
         </table>
+        <label for="deductedmessage" id="deductedmessage">If you want to cancel your ticket(15% amount will be deducted)</label>
         </form>
 </fieldset>
 <script type="text/javascript">

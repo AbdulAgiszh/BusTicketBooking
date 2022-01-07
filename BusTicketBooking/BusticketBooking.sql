@@ -58,7 +58,6 @@ CREATE TABLE BOOKED_TICKETS (
   BUS_ID int NOT NULL,
   BOOKING_DATE date DEFAULT sysdate,
   DEPARTURE_DATE date,
-  SEAT_NO varchar(50) ,
   TICKET_COUNT int NOT NULL,
   TOTAL_PRICE int,
   BOOKING_STATUS varchar(30) DEFAULT 'confirmed',
@@ -71,19 +70,19 @@ CREATE TABLE BOOKED_TICKETS (
 
 insert into ticket_details (ticket_no,user_id,bus_id) values('564K210',1,2);
 
-select * from ticket_details;
+select * from ticket_details; 
 CREATE TABLE TICKET_DETAILS (
- TICKET_NO VARCHAR(50) NOT NULL ,
- USER_ID INT NOT NULL,
- BUS_ID INT NOT NULL,
- SEAT_NO INT NULL
- 
-  CONSTRAINT fk_ticket_ticketno FOREIGN KEY (ticket_no) REFERENCES booked_tickets (ticket_no),
-  CONSTRAINT fk_ticket_busid FOREIGN KEY (bus_Id) REFERENCES bus_details (bus_Id),
-  CONSTRAINT fk_ticket_userid FOREIGN KEY (user_Id) REFERENCES user_details (user_Id) 
+ TICKET_NO VARCHAR(50),
+ USER_ID INT,
+ BUS_ID INT,
+ SEAT_NO INT,
+ SEAT_STATUS varchar2(80) default 'booked'
+--  CONSTRAINT fk_ticket_ticketno FOREIGN KEY (ticket_no) REFERENCES booked_tickets (ticket_no),
+--  CONSTRAINT fk_ticket_busid FOREIGN KEY (bus_Id) REFERENCES bus_details (bus_Id),
+--  CONSTRAINT fk_ticket_userid FOREIGN KEY (user_Id) REFERENCES user_details (user_Id) 
 );
  
-
+drop table ticket_details;
 
 CREATE TABLE ADMIN_DETAILS (
  ADMIN_ID int GENERATED ALWAYS AS IDENTITY START WITH 1,
@@ -111,7 +110,7 @@ commit;
 select * from bus_details where to_char(departure,'dd-mm-yyyy')='24-12-2021' and from_city='Madurai' and to_city='Chennai';
 select booking_id from booked_tickets where user_id=21 and booking_date='23-12-21';
 commit;
-drop table bus_details cascade constraints;
+drop table booked_tickets cascade constraints;
 
 select * from user_details;
 select * from bus_operators;
@@ -122,7 +121,9 @@ COMMIT;
 select * from admin_details;
 select * from user_details where user_contact=7373639018 and user_status='Inactive';
 select * from booked_tickets;
+select * from ticket_details;
 
+delete from ticket_details where ticket_no='hqgGH8s';
 alter table booked_tickets drop column bus_no;
 
 
@@ -130,6 +131,14 @@ update bus_details set seat_status='Available'  where bus_id=1;
 
 --------------------------------------------------------------------------------------------------------
 ----------------------------------------------------------------------------------------------------------
-
-
+desc ticket_details;
+select * from ticket_details;
 select * from booked_tickets where ticket_no='1iMWhc6';
+delete from ticket_details where seat_no in (4,5,8);
+alter table ticket_details add status varchar2(80);
+commit;
+insert into ticket_details(user_id,bus_id,seat_no) values(1,2,2);
+update ticket_details
+set seat_no = 2;
+select * from ticket_details where seat_no in 1  and bus_id in 2 and status in 'notyet';
+select *from ticket_details where seat_no in 2 and user_id in 1 and bus_id in 2 and status in 'notyet';

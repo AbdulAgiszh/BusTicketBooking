@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>Add Operator</title>
 </head>
 <style>
        *{
@@ -24,7 +24,7 @@
             list-style: none;
             display: inline-block;
             padding: 30px;
-            padding-left: 70px;
+            padding-left: 60px;
             }
         a{
             text-decoration: none;
@@ -91,6 +91,7 @@
             <li><a href="OperatorList.jsp?opertorId=0">Operator list</a></li>
             <li><a href="UserList.jsp">User list</a></li>
             <li><a href="BookingList.jsp">Booking list</a></li>
+            <li><a href="SeatList.jsp">Seat list</a></li>
         </ul>
     </div>
 

@@ -14,7 +14,7 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>Booking List</title>
 <style>
         *{
             margin: 0;
@@ -26,29 +26,28 @@
                 border: 1px solid black;
                 height: 85px;
                 background-color: rgb(166, 166, 233);
-               
             }
             #homeadmin ul li {
                 list-style: none;
                 display: inline-block;
                 padding: 30px;
-                padding-left: 70px;
+                padding-left: 60px;
                 }
             a{
                 text-decoration: none;
             }
-            #operatorlistdiv table tr th,td {
+            #bookinglistdiv table tr th,td {
                 padding: 20px;
                 text-align: center;
                 border: 1px solid black;
                 border-collapse: collapse;
              }
-            #operatorlistfieldset{
+            #bookinglistfieldset{
                 margin-top: 25px;
-                margin-left: 20px;
+                margin-left: 70px;
                 width: 1000px;
             }
-            #operatorlistdiv{
+            #bookinglistdiv{
                 padding: 35px;
                 margin-left: 20px;
                 margin-top: 10px;
@@ -69,11 +68,12 @@
             <li><a href="OperatorList.jsp?opertorId=0">Operator list</a></li>
             <li><a href="UserList.jsp">User list</a></li>
             <li><a href="BookingList.jsp">Booking list</a></li>
+            <li><a href="SeatList.jsp">Seat list</a></li>
         </ul>
             
-        <fieldset id="operatorlistfieldset">
+        <fieldset id="bookinglistfieldset">
             <legend>Booking List</legend>
-        <div id="operatorlistdiv">
+        <div id="bookinglistdiv">
             <table>
                 <tr>
                 	<th>Booking Id</th>

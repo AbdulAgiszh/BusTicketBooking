@@ -26,7 +26,7 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>Booking</title>
 <style>
           *{
         margin: 0;
@@ -124,7 +124,7 @@
         }
         #seatinfotable tr td{
             padding: 15px;
-            padding-left: 30px;
+            padding-left: 20px;
         }
         #seatcount{
             width: 70px;
@@ -134,8 +134,15 @@
         label{
             font-size: larger;
         }
+        input{
+            border: none;
+            outline: none;
+            font-size: 22px;
+        }
         #seatcountdiv{
-            margin-left: 120px;
+            margin-left: 438px;
+   		    position: absolute;
+            margin-top: -202px;
         }
         #btn{
             height: 45px;
@@ -144,7 +151,8 @@
             outline: none;
             border: none;
             margin-left: 100px;
-            margin-top: 30px;
+            margin-top: -30px;
+             position: absolute;
             cursor:pointer;
         }
         #btn:hover{

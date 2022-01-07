@@ -4,7 +4,10 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.busticketbooking.connection.ConnectionUtill;
 import com.busticketbooking.model.BookedTickets;
@@ -13,9 +16,13 @@ import com.busticketbooking.model.SeatDetails;
 import com.busticketbooking.model.User;
 
 public class SeatDetailsDaoImpl {
+	
+//	BusDaoImpl busDao=new BusDaoImpl();s
+//	UserDaoImpl userDao=new UserDaoImpl();
+	BookedTicketsDaoImpl tickedDao=new BookedTicketsDaoImpl();
 
 	public boolean insertSeat(SeatDetails seatDetails) {
-		String seatInsert = "insert into seat_details (booking_id,bus_id,user_id,seat_no,seat_status) values (?,?,?,?,?)"; 
+		String seatInsert = "insert into seat_details (booking_id,user_id,bus_id,seat_no,seat_status) values (?,?,?,?,?)"; 
 		
 		//,seat_no
 		Connection con;
@@ -26,8 +33,8 @@ public class SeatDetailsDaoImpl {
 			PreparedStatement pstatement=con.prepareStatement(seatInsert);
 			
 			pstatement.setInt(1, seatDetails.getBookedTickets().getBookingId());
-			pstatement.setInt(2, seatDetails.getUser().getUserId());
-			pstatement.setInt(3, seatDetails.getBus().getBusId());
+			pstatement.setInt(2, seatDetails.getBookedTickets().getUserModel().getUserId());
+			pstatement.setInt(3, seatDetails.getBookedTickets().getBusModel().getBusId());
 			pstatement.setInt(4, seatDetails.getSeatNo());
 			pstatement.setString(5, seatDetails.getStatus());
 		
@@ -42,11 +49,10 @@ public class SeatDetailsDaoImpl {
 	}
 	
 	public boolean ticketexist(int ticketCountEntered,String ticketRandomNumber,Bus bus,User user) throws ClassNotFoundException, SQLException {
-//		System.out.println(seat+busid+userid);
 		
 	Connection	con = ConnectionUtill.connectdb();
-	String query = "select * from ticket_details where seat_no=?  and bus_id=? and status in 'yes'";
-	String query1 = "insert into ticket_details(ticket_no,user_id,bus_id,seat_no) values(?,?,?,?)";
+	String query = "select * from seat_details where seat_no=?  and bus_id=? and seat_status in 'booked'";
+	String query1 = "insert into seat_details(ticket_no,user_id,bus_id,seat_no) values(?,?,?,?)";
 	PreparedStatement pstatement=con.prepareStatement(query);
 	int busseat = bus.getTotalseat();
 	int seatcount = 0;
@@ -88,7 +94,7 @@ public class SeatDetailsDaoImpl {
 	
 	
 	public boolean cancelSeatDetails(String ticketNo) throws ClassNotFoundException, SQLException {
-		String seatCancel="delete from ticket_details where ticket_no=?";
+		String seatCancel="delete from seat_details where ticket_no=?";
 		
 		Connection	con = ConnectionUtill.connectdb();
 		int result=0;
@@ -99,5 +105,67 @@ public class SeatDetailsDaoImpl {
 		
 		return result>0;
 		
+	}
+	
+	
+	
+	public List<SeatDetails> showSeatList() {
+		String seatDetailsQuery="select * from seat_details";
+		
+		Connection con;
+//		Bus busModel=null;
+//		User userModel=null;
+		BookedTickets bookTickets=null;
+	   	ResultSet rs = null;
+	   	List<SeatDetails> seatDetailsList=new ArrayList<SeatDetails>();
+			try {
+				con = ConnectionUtill.connectdb();	
+				Statement pstatement=con.createStatement();
+				rs=pstatement.executeQuery(seatDetailsQuery);
+				
+//				busModel=busDao.findBusDetailsUsingID(rs.getInt(3));
+//				userModel=userDao.getUserDetailsById(rs.getInt(2));
+				while(rs.next()) {
+					bookTickets=tickedDao.findBookedTicketsObjectDetails(rs.getString(1));
+					SeatDetails seatDetails=new SeatDetails(bookTickets,rs.getInt(4),rs.getString(5));
+					seatDetailsList.add(seatDetails);
+				}
+				
+				return seatDetailsList;
+			} catch (ClassNotFoundException e) {
+				System.out.println(e.getMessage());
+			} catch (SQLException e) {
+				System.out.println(e.getMessage());
+			}
+			return seatDetailsList;
+	}
+	
+	
+	
+	public List<SeatDetails> getSeatDetailsUsingTicketNo(String ticketNo) {
+		String seatDetailsQuery="select * from seat_details where ticket_NO=?";
+		
+		Connection con;
+		BookedTickets bookTickets=null;
+	   	ResultSet rs = null;
+	   	List<SeatDetails> seatDetailsList=new ArrayList<SeatDetails>();
+			try {
+				con = ConnectionUtill.connectdb();	
+				PreparedStatement pstatement=con.prepareStatement(seatDetailsQuery);
+				pstatement.setString(1, ticketNo);
+				rs=pstatement.executeQuery();
+				
+				while(rs.next()) {
+					bookTickets=tickedDao.findBookedTicketsObjectDetails(rs.getString(1));
+					SeatDetails seatDetails=new SeatDetails(bookTickets,rs.getInt(4),rs.getString(5));
+					seatDetailsList.add(seatDetails);
+				}
+				return seatDetailsList;
+			} catch (ClassNotFoundException e) {
+				System.out.println(e.getMessage());
+			} catch (SQLException e) {
+				System.out.println(e.getMessage());
+			}
+			return seatDetailsList;
 	}
 }

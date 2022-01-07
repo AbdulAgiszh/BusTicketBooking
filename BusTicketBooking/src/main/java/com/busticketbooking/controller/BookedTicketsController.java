@@ -72,7 +72,7 @@ public class BookedTicketsController extends HttpServlet {
 			
 			//inserting all getting values in booked tickets dao
 			BookedTickets bookTickets = new BookedTickets(0, randomNo, userModel2, busModel, busModel.getDeparture(),
-					ticketCount, totalPrice, "Success");
+					ticketCount, totalPrice, "success");
 			boolean ticketInsertFlag = bookTicketsDao.insertBookedTickets(bookTickets);
 
 			//creating final session by using all

@@ -10,7 +10,7 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>Wallet</title>
 <style>
      *{
         margin: 0;
@@ -179,7 +179,7 @@
         </table>
     <div id="amountdiv">
         <label for="enteramount">Enter the amount</label>
-        <input id="amounttext" name="amountentered" type="number" placeholder="To be added to your wallet" autocomplete="off" required>
+        <input id="amounttext" name="amountentered" type="number" placeholder="To be added to your wallet" autocomplete="off" min="100" required>
     </div>
          <button id="btn" name="btn" type="submit">Submit</button>
     </div>

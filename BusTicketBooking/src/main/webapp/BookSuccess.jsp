@@ -13,7 +13,7 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>Booking</title>
 <style>
         *{
         margin: 0;
@@ -132,7 +132,7 @@
 
     </div>
     <script>
-            alert("payment paid successfully");
+            alert("Booked successfully!! payment was deducted from your wallet");
     </script>
 </body>
 </html>

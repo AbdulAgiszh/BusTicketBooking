@@ -5,8 +5,6 @@ import java.util.Objects;
 public class SeatDetails {
 
 	private BookedTickets bookedTickets;
-	private Bus bus;
-	private User user;
 	private int seatNo;
 	private String status;
 	
@@ -15,11 +13,9 @@ public class SeatDetails {
 		// TODO Auto-generated constructor stub
 	}
 
-	public SeatDetails(BookedTickets bookedTickets, Bus bus, User user, int seatNo, String status) {
+	public SeatDetails(BookedTickets bookedTickets, int seatNo, String status) {
 		super();
 		this.bookedTickets = bookedTickets;
-		this.bus = bus;
-		this.user = user;
 		this.seatNo = seatNo;
 		this.status = status;
 	}
@@ -30,22 +26,6 @@ public class SeatDetails {
 
 	public void setBookedTickets(BookedTickets bookedTickets) {
 		this.bookedTickets = bookedTickets;
-	}
-
-	public Bus getBus() {
-		return bus;
-	}
-
-	public void setBus(Bus bus) {
-		this.bus = bus;
-	}
-
-	public User getUser() {
-		return user;
-	}
-
-	public void setUser(User user) {
-		this.user = user;
 	}
 
 	public int getSeatNo() {
@@ -66,13 +46,12 @@ public class SeatDetails {
 
 	@Override
 	public String toString() {
-		return "Ticket_Details [bookedTickets=" + bookedTickets + ", bus=" + bus + ", user=" + user + ", seatNo="
-				+ seatNo + ", status=" + status + "]";
+		return "SeatDetails [bookedTickets=" + bookedTickets + ", seatNo=" + seatNo + ", status=" + status + "]";
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(bookedTickets, bus, seatNo, status, user);
+		return Objects.hash(bookedTickets, seatNo, status);
 	}
 
 	@Override
@@ -84,9 +63,10 @@ public class SeatDetails {
 		if (getClass() != obj.getClass())
 			return false;
 		SeatDetails other = (SeatDetails) obj;
-		return Objects.equals(bookedTickets, other.bookedTickets) && Objects.equals(bus, other.bus)
-				&& seatNo == other.seatNo && Objects.equals(status, other.status) && Objects.equals(user, other.user);
+		return Objects.equals(bookedTickets, other.bookedTickets) && seatNo == other.seatNo
+				&& Objects.equals(status, other.status);
 	}
+
 	
 	
 }

@@ -1,3 +1,4 @@
+<%@page import="com.busticketbooking.model.SeatDetails"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.util.List"%>
 <%@page import="java.sql.ResultSet"%>
@@ -8,13 +9,17 @@
     pageEncoding="ISO-8859-1"%>
     
     <%List<BookedTickets> bookTicketsList; %>
-    <%HttpSession session2=request.getSession();
+    <%
     BookedTicketsDaoImpl bookTicketsDao=new BookedTicketsDaoImpl();
     BookedTickets bookTickets=new BookedTickets();
-      User userModel=(User)session2.getAttribute("userModel");
+   
+      User userModel=(User)session.getAttribute("userModel");
      bookTicketsList =new ArrayList<BookedTickets>();
-      if(session2.getAttribute("ticketdetailsresult") != null){
-      bookTicketsList=(List<BookedTickets>)session2.getAttribute("ticketdetailsresult");
+     
+     String seatNumbers=null;
+      if(session.getAttribute("ticketdetailsresult") != null){
+      bookTicketsList=(List<BookedTickets>)session.getAttribute("ticketdetailsresult");
+      seatNumbers=(String) session.getAttribute("seatnumberdetailsresult");
       }
       
       
@@ -142,6 +147,15 @@
         #traveltable{
             margin-left: 220px;
         }
+        #bookingstatus{
+            border: 1px solid black;
+            position: absolute;
+            margin-left: 910px;
+            margin-top: -185px;
+            padding: 25px;
+            border-radius: 80px;
+            background-color: rgb(250, 173, 198);
+        }
         #btnticket{
             margin-left: 40px;
             
@@ -219,7 +233,7 @@
         <table id="ticketnotable">
             <tr>
                 <td>TICKET NO :</td>
-                <td><input type="text" name="tickettext" placeholder="Enter the ticket number" id="tickettext" required></td>
+                <td><input type="text" name="tickettext" placeholder="Enter the ticket number" id="tickettext" autocomplete="off" required></td>
                 <td><button id="btnticket" type="submit" >Submit</button></td>
             </tr>
         </table>
@@ -240,14 +254,16 @@
             <tr>
                 <td><label for="seatcount">Seat Count : <h4 id="seatcount"><%=bookTicket.getTicketCount()%></h4></label></td>
                 <td><label for="totalfair">Total Fair : <h4 id="totalfair"><%=bookTicket.getTotalPrice()%></h4></label></td>
-                <td><label for="bookingstatus">Booking Status : <h4 id="bookingstatus"><%=bookTicket.getBookingStatus()%></h4></label></td>
+                <%-- <%if(seatNumbers.equals(null)){
+                	System.out.println(seatNumbers);%> --%>
+                <td><label for="seatno">Seat No : <h4 id="seatno"><%=seatNumbers%></h4></label></td>
+               
             </tr>
         </table>
+        <label for="bookingstatus" id="bookingstatus">Booking Status : <h4><%=bookTicket.getBookingStatus()%></h4></label>
         <%} %>
         <%} %>
     </fieldset>
 
-    
 </body>
-
 </html>
