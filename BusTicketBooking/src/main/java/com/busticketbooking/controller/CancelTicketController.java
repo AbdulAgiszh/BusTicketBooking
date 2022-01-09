@@ -51,31 +51,37 @@ public class CancelTicketController extends HttpServlet {
 		// to find booked tickets pojo class by using ticket no entered by user in
 		// cancel ticket jsp
 		bookedTicketsModel = bookTicketsDao.findBookedTicketsObjectDetails(ticketNo);
+
+		// to check ticket number entered by user is correct or not
 		if (bookedTicketsModel != null) {
-
-			// to update seat by using bus object from bookedtickets model
-			int totalSeatAlreadyAvailable = bookedTicketsModel.getBusModel().getTotalseat();
-			int seatToUpdate = totalSeatAlreadyAvailable + bookedTicketsModel.getTicketCount();
-
-			// update seat to bus constructor
-			Bus bus = new Bus(bookedTicketsModel.getBusModel().getBusId(), bookedTicketsModel.getBusModel().getBusNo(),
-					bookedTicketsModel.getBusModel().getOperatorId(), bookedTicketsModel.getBusModel().getBusCategory(),
-					bookedTicketsModel.getBusModel().getFromCity(), bookedTicketsModel.getBusModel().getToCity(),
-					bookedTicketsModel.getBusModel().getDeparture(), bookedTicketsModel.getBusModel().getArrival(),
-					bookedTicketsModel.getBusModel().getSeaterFare(), seatToUpdate,
-					bookedTicketsModel.getBusModel().getSeatStatus());
-			boolean busSeatUpdateFlag = busDao.updateSeatCount(bus);
 
 			// to convert local date to date format
 			LocalDate date = bookedTicketsModel.getDepartureDate().toLocalDate();
 			Date localDepartureDate = java.sql.Date.valueOf(date);
 
-			// checking seat count updated
-			if (busSeatUpdateFlag) {
+			if (localDepartureDate.after(getCurrentDate())) {
 
-				if (localDepartureDate.after(getCurrentDate())) {
+				if (!(bookedTicketsModel.getBookingStatus().equals("Cancelled"))) {
 
-					if (!(bookedTicketsModel.getBookingStatus().equals("Cancelled"))) {
+					// to update seat by using bus object from bookedtickets model
+					int totalSeatAlreadyAvailable = bookedTicketsModel.getBusModel().getTotalseat();
+					int seatToUpdate = totalSeatAlreadyAvailable + bookedTicketsModel.getTicketCount();
+
+					// update seat to bus constructor
+					Bus bus = new Bus(bookedTicketsModel.getBusModel().getBusId(),
+							bookedTicketsModel.getBusModel().getBusNo(),
+							bookedTicketsModel.getBusModel().getOperatorId(),
+							bookedTicketsModel.getBusModel().getBusCategory(),
+							bookedTicketsModel.getBusModel().getFromCity(),
+							bookedTicketsModel.getBusModel().getToCity(),
+							bookedTicketsModel.getBusModel().getDeparture(),
+							bookedTicketsModel.getBusModel().getArrival(),
+							bookedTicketsModel.getBusModel().getSeaterFare(), seatToUpdate,
+							bookedTicketsModel.getBusModel().getSeatStatus());
+					boolean busSeatUpdateFlag = busDao.updateSeatCount(bus);
+
+					// checking seat count updated
+					if (busSeatUpdateFlag) {
 
 						// to reduce fine amount in 15% in userobject using updatedao
 						int fineFare = (bookedTicketsModel.getTotalPrice() / 100) * 15;
@@ -85,6 +91,7 @@ public class CancelTicketController extends HttpServlet {
 								bookedTicketsModel.getUserModel().getUserContact());
 
 						if (userUpdateWalletFlag) {
+
 							// to cancel the ticket(changing status) in bookedticket class using
 							// cancelticketdao
 							boolean ticketCancelFlag = bookTicketsDao.cancelTicket(ticketNo);
@@ -107,22 +114,13 @@ public class CancelTicketController extends HttpServlet {
 									// TODO Auto-generated catch block
 									e.printStackTrace();
 								}
-							}
-						}
-					}
-
-					else {
-						session.setAttribute("userHome", "TicketAlreadyCancel");
-						try {
-							res.sendRedirect("CancelTicket.jsp");
-						} catch (IOException e) {
-							// TODO Auto-generated catch block
-							e.printStackTrace();
-						}
-					}
-
-				} else {
-					session.setAttribute("userHome", "BusAlreadyDeparture");
+							} // cancel flag
+						} // wallet falg
+					} // seat flag
+				}
+				// already cancel
+				else {
+					session.setAttribute("userHome", "TicketAlreadyCancel");
 					try {
 						res.sendRedirect("CancelTicket.jsp");
 					} catch (IOException e) {
@@ -130,9 +128,19 @@ public class CancelTicketController extends HttpServlet {
 						e.printStackTrace();
 					}
 				}
-			}
 
+			} // already date flag
+			else {
+				session.setAttribute("userHome", "BusAlreadyDeparture");
+				try {
+					res.sendRedirect("CancelTicket.jsp");
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
 		}
+
 		// if ticketnumber entered by user is wrong
 		else {
 			session.setAttribute("userHome", "wrongTicketNumber");

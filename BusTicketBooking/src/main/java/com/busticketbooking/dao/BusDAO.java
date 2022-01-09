@@ -10,7 +10,7 @@ public interface BusDAO {
 
 	public boolean insertBus(Bus busModel);
 	
-	public boolean deleteBus(Bus busModel);
+//	public boolean deleteBus(Bus busModel);
 	
 	public boolean updateBus(Bus busModel);
 	

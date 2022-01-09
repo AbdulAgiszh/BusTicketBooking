@@ -9,9 +9,10 @@
 
     <style>
         body{
-            background: url(‫images/juan-encalada-6mcVaoGNz1w-unsplash.jpg);
+            background: url("imagelogin.jpg");
             background-size: cover;
-            
+            background-repeat: no-repeat;
+            height: 537px;
         }
         div,img{
             width: 20px;
@@ -36,6 +37,10 @@
             background-color: rgb(228, 208, 208);
             border-radius: 30px ; 
             box-shadow: 0 0 15px rgb(255, 255, 255); 
+        }
+        #loginuserpng{
+        width:38px;
+        height:40px;
         }
         .pngtitle{
             margin-left: 90px;
@@ -95,11 +100,11 @@
 
         <table id="tablee">
             <tr>
-                <th><img src="images/profile.png"   ></th>
-                <th><input name="name" type="text" placeholder="LoginId" autocomplete="off" required><br><br></th>
+                <th><img src="LoginPngUserName.png" id="loginuserpng"></th>
+                <th><input name="name" type="text" placeholder="Login Id" autocomplete="off" required><br><br></th>
             </tr>
             <tr>
-                <th><img src="‫images/password.png" alt=""></th>
+                <th><img src="password2.png"></th>
                 <th><input name="password" type="password" placeholder="Password" autocomplete="off" required><br><br></th>
             </tr>
             

@@ -1,12 +1,15 @@
+<%@page import="java.util.ArrayList"%>
+<%@page import="java.util.List"%>
+<%@page import="com.busticketbooking.daoimpl.BusDaoImpl"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
     <%@page import="com.busticketbooking.model.User" %>
     <%@page import="com.busticketbooking.daoimpl.UserDaoImpl" %>
     <%@page import="javax.servlet.http.HttpSession" %>
-    <%
-    	//User userModel=new User();
-    	//System.out.println(userModel);
-     %>
+    <%BusDaoImpl busDao=new BusDaoImpl();
+    List<String> locationList=new ArrayList<String>(); 
+    locationList=busDao.getLocations();
+    %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -20,12 +23,18 @@
         box-sizing: border-box;
         font-family: Arial, Helvetica, sans-serif;
         }
+        body{
+            background: url("seat2.jpg");
+            background-size: cover;
+            background-repeat: no-repeat;
+            height: 537px;
+        }
         ul,li{
             list-style: none;
             display: flex;
-            margin-left: 15px;
-            padding: 100px;
-            padding-left: 10px;
+            margin-left: 10px;
+    		padding: 102px;
+    		padding-left: 6px;
             padding-top: 0px;
             margin-top: 15px;
         }
@@ -95,7 +104,12 @@
             padding-top: 5px;
             padding-left: 30px;
             margin-left: 10px;
+            background-color: blanchedalmond;
         }
+        /* input,option{
+                    background-color: blanchedalmond;
+        
+        } */
         span{
             font-size: larger;
         }
@@ -111,6 +125,8 @@
             width: 1030px;
             margin-left: 150px;
             margin-top: 100px;
+            background-color: blanchedalmond;
+            border:none;
         }.fromto{
             border: 0.100px solid black;
             width: 300px;
@@ -186,26 +202,26 @@
                 <tr>
                     <td><div class="fromto">
                         <span>FROM</span><br>
-                        <input name="fromlocation"  id="fromlocation" placeholder="Search Locations" list = "from" required>
+                        <input name="fromlocation"  id="fromlocation" autocomplete="off" placeholder="Search Locations" list = "from" required>
                             <datalist id = "from">
-                            <option value="madurai">Madurai</option>
-                            <option value="chennai">Chennai</option>
-                            <option value="bangalore">Salem</option>
+                            <%for(int i=0;i<locationList.size();i++){%>
+                        	<option value="<%=locationList.get(i)%>"><%=locationList.get(i)%></option>
+                       	    <%}%>
                             </datalist></div></td																																																																																																		>
                     <td><div class="fromto">
                         <span>TO</span><br>
-                        <input name="tolocation" id="tolocation" placeholder="Search Locations" list = "to" required>
+                        <input name="tolocation" id="tolocation" autocomplete="off" placeholder="Search Locations" list = "to" required>
                         <datalist id = "to">
-                        <option value="madurai">Madurai</option>
-      					<option value="chennai">Chennai</option>
-                        <option value="bangalore">Salem</option>
+                        <%for(int i=0;i<locationList.size();i++){%>
+                        <option value="<%=locationList.get(i)%>"><%=locationList.get(i)%></option>
+                        <%}%>
                         </datalist></div></td>
                     <td><div class="fromto">
                         <span>DATE</span><br>
                         <input name="date" id="date" type="date" required></div></td>
                 </tr>
             </table>
-            <button type="submit" id="searchbutton"><h3>SEARCH</h3></button>
+            <button type="submit" id="searchbutton" onclick="return validate()"><h3>SEARCH</h3></button>
 
         </div>
         </form>
@@ -225,6 +241,17 @@
     mindate =yyyy + '-' + mm + '-'+ dd  ;
     document.getElementById("date").setAttribute("max",maxdate);
     document.getElementById("date").setAttribute("min",mindate);
+    }
+    function validate(){
+        var from=document.getElementById("fromlocation");
+        var to=document.getElementById("tolocation");
+        if(from.value.trim()==to.value.trim()){
+        	alert("please enter correct location");
+            return false;
+        }
+        else{
+        return true;
+        }
     }
     </script>
 </body>

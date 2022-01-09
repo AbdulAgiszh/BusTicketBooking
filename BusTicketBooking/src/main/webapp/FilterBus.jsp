@@ -17,6 +17,10 @@
     LocalDate date=LocalDate.parse(request.getParameter("date"));
     BusDaoImpl busDao=new BusDaoImpl();
     ResultSet rs=busDao.searchhBus(date, fromLocation, toLocation);
+    
+    /* if(fromLocation.equals(toLocation)){
+    	session
+    } */
     %>
 <!DOCTYPE html>
 <head>
@@ -155,6 +159,9 @@
             <%if(userModel!=null){ %>
             <a href="SearchBus.jsp" id="backlink">GO BACK TO HOME</a>
             <%} else{%>
+            <script type="text/javascript">
+            	alert("please log in for booking...");
+            </script>
             <a href="index.jsp" id="backlink">GO BACK TO HOME</a>
             <%} %>
         </div>

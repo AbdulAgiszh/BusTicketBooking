@@ -24,9 +24,9 @@
         ul,li{
             list-style: none;
             display: flex;
-            margin-left: 15px;
-            padding: 70px;
-            padding-left: 10px;
+            margin-left: 10px;
+    		padding: 102px;
+    		padding-left: 6px;
             padding-top: 0px;
             margin-top: 15px;
         }
@@ -39,6 +39,13 @@
             text-decoration: none;
             font-size: 20px;
         }
+        
+        #signlink {
+            display: flex;
+            margin-left: 540px;
+        }
+
+
         .dropdown .dropbtn {
             font-size: 20px;  
             border: none;
@@ -65,7 +72,6 @@
             padding: 12px 16px;
             text-decoration: none;
             display: block;
-            cursor: pointer;
         }
 
         .dropdown-content a:hover {
@@ -94,34 +100,31 @@
 <body>
 
     <div id="nav">
-        <ul>
-            <li><span id="buslogo">BusHub</span></li>
-            <li><a href="SearchBus.jsp">Bus_Tickets</a></li>
-            <li><a href="aboutus.html">About_us</a></li>
-            <li><a href="UserProfile.jsp">Profile</a></li>
-
-              <li><div class="dropdown">
-                <button class="dropbtn">Ticket 
-                </button>
-                <div class="dropdown-content">
-                  <a href="UserBookingHistory.jsp">Booking History</a>
-                  <a href="MyTicket.jsp">My Ticket</a>
-                  <a href="CancelTicket.jsp">Cancel Ticket</a>
-                </div>
-              </div> </li>
-
-              <li><div class="dropdown">
-                <button class="dropbtn">Wallet 
-                </button>
-                <div class="dropdown-content">
-                  <a href="ShowBalance.jsp">Show Balance</a>
-                  <a href="UpdateWallet.jsp">Update Wallet</a>
-                </div>
-              </div> </li>
-
-            <li><a href="Login.jsp">SignIn</a></li>
-            <li><a href="UserRegister.jsp">SignUp</a></li>
-        </ul>
+            <ul>
+                <li><span id="buslogo">BusHub</span></li>
+                <li><a href="SearchBus.jsp">Bus_Tickets</a></li>
+                <li><a href="AboutUs.jsp">About_us</a></li>
+                  <li><div class="dropdown">
+                    <button class="dropbtn">Ticket 
+                    </button>
+                    <div class="dropdown-content">
+                      <a href="UserBookingHistory.jsp">Booking History</a>
+                      <a href="MyTicket.jsp">My Ticket</a>
+                      <a href="CancelTicket.jsp">Cancel Ticket</a>
+                    </div>
+                  </div> </li>
+    
+                  <li><div class="dropdown">
+                    <button class="dropbtn">Wallet 
+                    </button>
+                    <div class="dropdown-content">
+                      <a href="ShowBalance.jsp">Show Balance</a>
+                      <a href="UpdateWallet.jsp">Update Wallet</a>
+                    </div>
+                  </div> 
+                  <li><a href="UserProfile.jsp">Profile</a></li>
+                  <li><a href="logout.jsp">LogOut</a></li>
+                </ul>
         </div>
 
 

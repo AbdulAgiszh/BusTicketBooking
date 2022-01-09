@@ -17,6 +17,7 @@ import com.busticketbooking.model.User;
 @WebServlet("/registerpage")
 public class UserRegisterController extends HttpServlet{
 
+	UserDaoImpl userDao=new UserDaoImpl();
 	public void service(HttpServletRequest req,HttpServletResponse res) {
 		
 		HttpSession session=req.getSession();
@@ -27,6 +28,8 @@ public class UserRegisterController extends HttpServlet{
 		System.out.println(email);
 		long mobile=Long.parseLong(req.getParameter("mobile"));
 		System.out.println(mobile);
+		boolean checkMobile=userDao.checkUser(mobile);
+		if(checkMobile=false) {
 		String password=req.getParameter("password");
 		System.out.println(password);
 		LocalDate dob=LocalDate.parse(req.getParameter("dob"));
@@ -47,6 +50,10 @@ public class UserRegisterController extends HttpServlet{
 		}
 		else {
 			System.out.println("not register");
+		}
+	}
+		else {
+			
 		}
 	}
 	

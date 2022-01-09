@@ -1,41 +1,12 @@
-<%@page import="com.busticketbooking.model.SeatDetails"%>
-<%@page import="java.util.ArrayList"%>
-<%@page import="java.util.List"%>
-<%@page import="java.sql.ResultSet"%>
-<%@page import="com.busticketbooking.model.BookedTickets"%>
-<%@page import="com.busticketbooking.daoimpl.BookedTicketsDaoImpl"%>
-<%@page import="com.busticketbooking.model.User"%>
+
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-    
-    <%List<BookedTickets> bookTicketsList; %>
-    <%
-    BookedTicketsDaoImpl bookTicketsDao=new BookedTicketsDaoImpl();
-    BookedTickets bookTickets=new BookedTickets();
-   
-      User userModel=(User)session.getAttribute("userModel");
-     bookTicketsList =new ArrayList<BookedTickets>();
-     
-     String seatNumbers=null;
-      if(session.getAttribute("ticketdetailsresult") != null){
-      bookTicketsList=(List<BookedTickets>)session.getAttribute("ticketdetailsresult");
-      seatNumbers=(String) session.getAttribute("seatnumberdetailsresult");
-      }
       
-      
-      %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Invoice</title>
+<title>Invoice</title>
     <style>
         *{
         margin: 0;
@@ -43,12 +14,12 @@
         box-sizing: border-box;
         font-family: Arial, Helvetica, sans-serif;
         }
-        #nav ul,li{
+        ul,li{
             list-style: none;
             display: flex;
-            margin-left: 15px;
-            padding: 70px;
-            padding-left: 10px;
+            margin-left: 10px;
+    		padding: 102px;
+    		padding-left: 6px;
             padding-top: 0px;
             margin-top: 15px;
         }
@@ -68,7 +39,7 @@
         }
 
 
-		.dropdown .dropbtn {
+        .dropdown .dropbtn {
             font-size: 20px;  
             border: none;
             outline: none;
@@ -104,22 +75,19 @@
             display: block;
         }
 
-
         legend{
             font-size: xx-large;
             text-align: center;
             
         }
         #invoicediv {
-            border:  solid black;
-            padding: 30px;
-        }
-        #usertable tr td{
-            padding: 0 45px;
-        }
-        #usertable tr td input{
-            height: 30px;                                                                                                                                                                                                                                                                                                                                                                                                         : none;
-        }
+    		border: solid black;
+   			 padding: 18px;
+    		height: 200px;
+    		width: 640px;
+    		margin-left: 350px;
+    		margin-top: 100px;
+    		}
         #tickettext {
             border-top: none;
             border-left: none;
@@ -132,29 +100,14 @@
             color: rgb(24, 11, 7);
             width: 200px;
             text-align: center;
+            margin-left:20px;
         }
-        #usertable{
-            margin-left: 50px;
-        }
-        #traveltable tr td{
-            padding: 25px;
-            
+        #ticketnoword{
+         color: rgb(95, 95, 224);
         }
         #ticketnotable{
             padding: 35px;
-            margin-left: 350px;
-        }
-        #traveltable{
-            margin-left: 220px;
-        }
-        #bookingstatus{
-            border: 1px solid black;
-            position: absolute;
-            margin-left: 910px;
-            margin-top: -185px;
-            padding: 25px;
-            border-radius: 80px;
-            background-color: rgb(250, 173, 198);
+            margin-left: 30px;
         }
         #btnticket{
             margin-left: 40px;
@@ -183,87 +136,57 @@
 </head>
 <body>
 
-    <div id="nav">
-            <ul>
-                <li><span id="buslogo">BusHub</span></li>
-                <li><a href="SearchBus.jsp">Bus_Tickets</a></li>
-                <li><a href="AboutUs.jsp">About_us</a></li>
-                  <li><div class="dropdown">
-                    <button class="dropbtn">Ticket 
-                    </button>
-                    <div class="dropdown-content">
-                      <a href="UserBookingHistory.jsp">Booking History</a>
-                      <a href="MyTicket.jsp">My Ticket</a>
-                      <a href="CancelTicket.jsp">Cancel Ticket</a>
-                    </div>
-                  </div> </li>
+<%String cancelMessage=(String)session.getAttribute("userHome");
+    if(cancelMessage.equals("cancelSuccess")){
+    	session.setAttribute("userHome", "homeSession");
+    	%>
+    	<script>
+    	alert("Please enter correct ticket number");
+    </script>
     
-                  <li><div class="dropdown">
-                    <button class="dropbtn">Wallet 
-                    </button>
-                    <div class="dropdown-content">
-                      <a href="ShowBalance.jsp">Show Balance</a>
-                      <a href="UpdateWallet.jsp">Update Wallet</a>
-                    </div>
-                  </div> 
-                  <li><a href="UserProfile.jsp">Profile</a></li>
-                  <li><a href="logout.jsp">LogOut</a></li>
-                </ul>
-        </div>
+    <%}%>
+    
+    
+    <div id="nav">
+        <ul>
+            <li><span id="buslogo">BusHub</span></li>
+            <li><a href="SearchBus.jsp" onclick="searchbusfunc()">Bus_Tickets</a></li>
+            <li><a href="AboutUs.jsp" onclick="aboutusfunc()">About_us</a></li>
+              <li><div class="dropdown">
+                <button class="dropbtn">Ticket 
+                </button>
+                <div class="dropdown-content">
+                  <a href="UserBookingHistory.jsp" onclick="bookinghistoryfunc()">Booking History</a>
+                  <a href="MyTicket.jsp" onclick="myticketfunc()">My Ticket</a>
+                  <a href="CancelTicket.jsp" onclick="cancelticketfunc()">Cancel Ticket</a>
+                </div>
+              </div> </li>
+
+              <li><div class="dropdown">
+                <button class="dropbtn">Wallet 
+                </button>
+                <div class="dropdown-content">
+                  <a href="ShowBalance.jsp" onclick="showbalancefunc()">Show Balance</a>
+                  <a href="UpdateWallet.jsp" onclick="updatewalletfunc()">Update Wallet</a>
+                </div>
+              </div> 
+              <li><a href="UserProfile.jsp" onclick="profilefunc()">Profile</a></li>
+              <li><a href="logout.jsp" onclick="logoutfunc()">LogOut</a></li>
+            </ul>
+    </div>
 
     <fieldset id="invoicediv">
         <legend>Invoice</legend>
         
-        <table id="usertable">
-            <tr>
-                <td><label for="username">UserName :</label></td>
-                <td><label for="age">Age :</label></td>
-                <td><label for="mobile">Mobile :</label></td>
-                <td><label for="gender">Gender :</label></td>
-            </tr>
-            <tr>
-                <td><input type="text" value="<%=userModel.getUserName() %>" readonly></td>
-                <td><input type="text" value="<%=userModel.getUserDOB() %>" readonly></td>
-                <td><input type="text" value="<%=userModel.getUserContact() %>" readonly></td>
-                <td><input type="text" value="<%=userModel.getUserGender() %>" readonly></td>
-            </tr>
-        </table>
-        
         <form action="myticketservlet">
         <table id="ticketnotable">
             <tr>
-                <td>TICKET NO :</td>
+                <td><h3 id="ticketnoword">TICKET NUMBER:</h3></td>
                 <td><input type="text" name="tickettext" placeholder="Enter the ticket number" id="tickettext" autocomplete="off" required></td>
                 <td><button id="btnticket" type="submit" >Submit</button></td>
             </tr>
         </table>
 		</form>
-		<%if(bookTicketsList != null){ %>
-		<% for(BookedTickets bookTicket:bookTicketsList){%>
-        <table id="traveltable">
-            <tr>
-            
-                <td><label for="fromlocation">From Location : <h4 id="fromlocation"><%=bookTicket.getBusModel().getFromCity()%></h4></label></td>
-                <td><label for="tolocation">To Location : <h4 id="tolocation"><%=bookTicket.getBusModel().getToCity()%></h4></label></td>
-                <td><label for="buscategory">Bus Category : <h4 id="buscategory"><%=bookTicket.getBusModel().getBusCategory()%></hss4></label></td>
-            </tr>
-            <tr>
-                <td><label for="departure">Departure At : <h4 id="departure"><%=bookTicket.getBusModel().getDeparture()%></h4></label></td>
-                <td><label for="arrival">Arrival At : <h4 id="arrival"><%=bookTicket.getBusModel().getArrival()%></h4></label></td>
-            </tr>
-            <tr>
-                <td><label for="seatcount">Seat Count : <h4 id="seatcount"><%=bookTicket.getTicketCount()%></h4></label></td>
-                <td><label for="totalfair">Total Fair : <h4 id="totalfair"><%=bookTicket.getTotalPrice()%></h4></label></td>
-                <%-- <%if(seatNumbers.equals(null)){
-                	System.out.println(seatNumbers);%> --%>
-                <td><label for="seatno">Seat No : <h4 id="seatno"><%=seatNumbers%></h4></label></td>
-               
-            </tr>
-        </table>
-        <label for="bookingstatus" id="bookingstatus">Booking Status : <h4><%=bookTicket.getBookingStatus()%></h4></label>
-        <%} %>
-        <%} %>
     </fieldset>
-
 </body>
 </html>

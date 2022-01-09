@@ -16,9 +16,9 @@
         ul,li{
             list-style: none;
             display: flex;
-            margin-left: 15px;
-            padding: 70px;
-            padding-left: 10px;
+            margin-left: 10px;
+    		padding: 102px;
+    		padding-left: 6px;
             padding-top: 0px;
             margin-top: 15px;
         }
@@ -169,7 +169,7 @@
                     </div>
                   </div> 
                   <li><a href="UserProfile.jsp">Profile</a></li>
-                  <li><a href="logout.jsp">LogOut</a></li>
+                  <li><a href="logout">LogOut</a></li>
                 </ul>
         </div>
     <%User userModel=(User) session.getAttribute("userModel"); %>

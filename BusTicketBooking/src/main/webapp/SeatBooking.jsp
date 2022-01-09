@@ -28,7 +28,7 @@
 <meta charset="ISO-8859-1">
 <title>Booking</title>
 <style>
-          *{
+         *{
         margin: 0;
         padding: 0;
         box-sizing: border-box;
@@ -38,7 +38,7 @@
             list-style: none;
             display: flex;
             margin-left: 15px;
-            padding: 70px;
+            padding: 100px;
             padding-left: 10px;
             padding-top: 0px;
             margin-top: 15px;
@@ -59,7 +59,7 @@
         }
 
 
-		.dropdown .dropbtn {
+        .dropdown .dropbtn {
             font-size: 20px;  
             border: none;
             outline: none;
@@ -97,15 +97,16 @@
         
         
         fieldset{
-            padding: 40px;
+            padding: 47px;
+    		width: 500px;
+    		margin-left:300px;
         }
         #bookingdiv{
             border: 1px solid black;
-            border-radius: 30px;
-            padding-left: 100px;
-            padding: 60px;
-            width: 700px;
-            margin-left: 270px;
+    		border-radius: 30px;
+    		padding-left: 100px;
+    		padding: 20px;
+    		width: 696px;
         }
         legend{
             font-size: xx-large;
@@ -132,7 +133,7 @@
             text-align: center;
         }
         label{
-            font-size: larger;
+            font-size: 17px;
         }
         input{
             border: none;
@@ -140,24 +141,26 @@
             font-size: 22px;
         }
         #seatcountdiv{
-            margin-left: 438px;
-   		    position: absolute;
-            margin-top: -202px;
+            margin-left: 378px;
+    		position: absolute;
+    		margin-top: -190px;
         }
         #btn{
             height: 45px;
-            width: 120px;
-            background-color: rgb(129, 168, 252);
-            outline: none;
-            border: none;
-            margin-left: 100px;
-            margin-top: -30px;
-             position: absolute;
-            cursor:pointer;
+    		width: 213px;
+    		background-color: rgb(129, 168, 252);
+    		outline: none;
+    		border: none;
+    		margin-left: 213px;
+    		margin-top: -50px;
+    		position: absolute;
+    		cursor: pointer;
+    		color:white;
+    		font-size: 19px;
         }
-        #btn:hover{
-            background-color: rgb(247, 112, 112);
-        }
+        /* #btn:hover{
+            background-color: rgba(213, 253, 101, 0.911);
+        } */
     </style>
 </head>
 <body>
@@ -178,20 +181,17 @@
         </table>
         <table id="seatinfotable">
             <tr>
-                <td> <label for="buscategory">Bus Category :  </label></td>
-                <td><input id="buscategory" type="text" value="<%=busModel.getBusCategory() %>" ></td>
+                <td> <label for="buscategory">Bus Category :  <input id="buscategory" type="text" value="<%=busModel.getBusCategory() %>" ></label></td>
+                
             </tr>
             <tr>
-                <td><label for="availableseat">Available Seat : </label></td>
-                <td><input id="availableseat" type="text" value="<%=busModel.getTotalseat()%> "readonly ></td>
+                <td><label for="availableseat">Available Seat : <input id="availableseat" type="text" value="<%=busModel.getTotalseat()%> "readonly ></label></td>
             </tr>
             <tr>
-                <td><label for="noofselectedseat">No OF Seats Selected :</label></td>
-                <td><input id="noofseatsselected" name="noofseats" type="text" readonly ></td>
+                <td><label for="noofselectedseat">No OF Seats Selected :  <input id="noofseatsselected" name="noofseats" type="text" readonly ></label></td>
             </tr>
             <tr>
-                <td><label for="totalfair">Total Fair :</label></td>
-                <td><input id="totalFair" name="totalFair" type="text" readonly ></td>
+                <td><label for="totalfair">Total Fair : <input id="totalFair" name="totalFair" type="text" readonly ></label></td>
             </tr>
             <tr>
                 <td><input id="randomnumber" name="randomnumber" type="text" style="visibility: hidden;" ></td>

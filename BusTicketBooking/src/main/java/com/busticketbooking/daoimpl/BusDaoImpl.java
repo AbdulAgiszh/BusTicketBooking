@@ -273,12 +273,35 @@ public class BusDaoImpl implements BusDAO {
 			
 			 return busModel;
 		}
-
-	@Override
-	public boolean deleteBus(Bus busModel) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-
+	 
+	 	public List<String> getLocations() {
+	 		String locationQuery="select distinct(from_city) from bus_details";
+	 		Connection	 con = null;
+			PreparedStatement pstatement=null;
+			List<String> locationList=new ArrayList<String>();
+	 		try {
+					con = ConnectionUtill.connectdb();
+					pstatement=con.prepareStatement(locationQuery);
+					ResultSet rs=pstatement.executeQuery();
+					while(rs.next()) {
+						locationList.add(rs.getString(1));
+					}
+					con.close();
+					pstatement.close();
+				} catch (ClassNotFoundException e) {
+					System.out.println(e.getMessage());
+				} catch (SQLException e) {
+					System.out.println(e.getMessage());
+				}
+				return locationList;
+	 	}
 }
+
+		
+	 		
+	 	
+
+	
+
+
+

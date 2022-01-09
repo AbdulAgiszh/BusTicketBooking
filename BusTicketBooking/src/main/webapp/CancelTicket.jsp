@@ -20,12 +20,12 @@
         box-sizing: border-box;
         font-family: Arial, Helvetica, sans-serif;
         }
-        #nav ul,li{
+        ul,li{
             list-style: none;
             display: flex;
-            margin-left: 15px;
-            padding: 70px;
-            padding-left: 10px;
+            margin-left: 10px;
+    		padding: 102px;
+    		padding-left: 6px;
             padding-top: 0px;
             margin-top: 15px;
         }
@@ -45,7 +45,7 @@
         }
 
 
-		.dropdown .dropbtn {
+        .dropdown .dropbtn {
             font-size: 20px;  
             border: none;
             outline: none;
@@ -91,12 +91,6 @@
             border:  solid black;
             padding: 30px;
         }
-        #usertable tr td{
-            padding: 0 45px;
-        }
-        #usertable tr td input{
-            height: 30px;                                                                                                                                                                                                                                                                                                                                                                                                         : none;
-        }
         #tickettext {
             border-top: none;
             border-left: none;
@@ -110,25 +104,30 @@
             width: 200px;
             text-align: center;
         }
-        #usertable{
-            margin-left: 50px;
-        }
         #traveltable tr td{
             padding: 25px;
             
         }
         #ticketnotable{
             padding: 35px;
-            margin-left: 350px;
+            margin-left: 30px;
         }
         #traveltable{
             margin-left: 220px;
         }
+        #invoicediv {
+    		border: solid black;
+   			 padding: 18px;
+    		height: 200px;
+    		width: 640px;
+    		margin-left: 350px;
+    		margin-top: 100px;
+    		}
         #deductedmessage{
             position: absolute;
             color: red;
-            font-size: 20px;
-            margin-left: 340px;
+            font-size: 17px;
+            margin-left: 58px;
             margin-top: -20px;
         }
         #btnticket{
@@ -218,20 +217,6 @@
 
     <fieldset id="invoicediv">
         <legend>CancelTicket</legend>
-        <table id="usertable">
-            <tr>
-                <td><label for="username">UserName :</label></td>
-                <td><label for="age">Age :</label></td>
-                <td><label for="mobile">Mobile :</label></td>
-                <td><label for="gender">Gender :</label></td>
-            </tr>
-            <tr>
-                <td><input type="text" value="<%=userModel.getUserName() %>" readonly></td>
-                <td><input type="text" value="<%=userModel.getUserDOB() %>" readonly></td>
-                <td><input type="text" value="<%=userModel.getUserContact() %>" readonly></td>
-                <td><input type="text" value="<%=userModel.getUserGender() %>" readonly></td>
-            </tr>
-        </table>
         <form action="cancelticketservlet">
         <table id="ticketnotable">
             <tr>

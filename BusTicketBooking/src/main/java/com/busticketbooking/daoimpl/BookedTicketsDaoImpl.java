@@ -236,13 +236,12 @@ public class BookedTicketsDaoImpl implements BookedTicketsDAO {
 				userModel=userDao.getUserDetailsById(rs.getInt(3));
 				bookedTicketsModel=new BookedTickets(rs.getInt(1),rs.getString(2),userModel,busModel,rs.getDate(5).toLocalDate(),rs.getTimestamp(6).toLocalDateTime(),rs.getInt(7),rs.getInt(8),rs.getString(9),rs.getString(10));
 			}	
-			
+			return bookedTicketsModel;
 		} catch (ClassNotFoundException e) {
 			e.getMessage();
 		} catch (SQLException e) {
 			e.getMessage();
 		}
-		System.out.println(bookedTicketsModel);
 		return bookedTicketsModel;
 	}
 	}

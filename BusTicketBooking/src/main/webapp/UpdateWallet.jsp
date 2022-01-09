@@ -21,9 +21,9 @@
         ul,li{
             list-style: none;
             display: flex;
-            margin-left: 15px;
-            padding: 70px;
-            padding-left: 10px;
+            margin-left: 10px;
+    		padding: 102px;
+    		padding-left: 6px;
             padding-top: 0px;
             margin-top: 15px;
         }
@@ -43,7 +43,7 @@
         }
 
 
-		.dropdown .dropbtn {
+        .dropdown .dropbtn {
             font-size: 20px;  
             border: none;
             outline: none;
@@ -179,7 +179,7 @@
         </table>
     <div id="amountdiv">
         <label for="enteramount">Enter the amount</label>
-        <input id="amounttext" name="amountentered" type="number" placeholder="To be added to your wallet" autocomplete="off" min="100" required>
+        <input id="amounttext" name="amountentered" type="number" placeholder="To be added to your wallet" autocomplete="off" min="100" autofocus required>
     </div>
          <button id="btn" name="btn" type="submit">Submit</button>
     </div>

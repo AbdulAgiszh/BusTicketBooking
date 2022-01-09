@@ -13,13 +13,13 @@
 </head>
 <body>
 
- <%if(userModel1!=null){%>
+ <%-- <%if(userModel1!=null){%>
  <script>
  alert("Welcome _ <%=userModel1.getUserName() %>");
 </script>
  
   response.sendRedirect("index.jsp");
-   <%}%>
+   <%}%> --%>
  
 </body>
 </html>

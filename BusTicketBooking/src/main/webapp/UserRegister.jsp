@@ -10,10 +10,10 @@
 		
 
         body{
-            background: url(‫images/juan-encalada-6mcVaoGNz1w-unsplash.jpg);
+            background: url("imagelogin.jpg");
             background-size: cover;
-            background-repeat: no-repeat    ;
-            
+            background-repeat: no-repeat;
+            height: 537px;
         }
         .signup{
             width: 400px;
@@ -46,7 +46,7 @@
             background-color: tomato;
         }
         label,h2{
-            color: black;
+            color: white;
         }
         #male{
             margin-left: 0%;

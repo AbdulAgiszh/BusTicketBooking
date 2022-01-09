@@ -18,7 +18,7 @@ public class UserDaoImpl implements UserDAO {
 		try {
 			con = ConnectionUtill.connectdb();
 			PreparedStatement pstatement = con.prepareStatement(userLogin);
-
+ 
 			Statement statement = con.createStatement();
 			ResultSet rs = statement.executeQuery(userLogin);
 
@@ -60,6 +60,7 @@ public class UserDaoImpl implements UserDAO {
 
 		return checkUserFlag;
 	}
+	
 
 	public boolean registrationUser(User userModel) {
 

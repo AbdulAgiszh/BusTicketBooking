@@ -71,7 +71,7 @@ CREATE TABLE BOOKED_TICKETS (
 insert into ticket_details (ticket_no,user_id,bus_id) values('564K210',1,2);
 
 select * from ticket_details; 
-CREATE TABLE TICKET_DETAILS (
+CREATE TABLE SEAT_DETAILS (
  TICKET_NO VARCHAR(50),
  USER_ID INT,
  BUS_ID INT,
@@ -110,18 +110,22 @@ commit;
 select * from bus_details where to_char(departure,'dd-mm-yyyy')='24-12-2021' and from_city='Madurai' and to_city='Chennai';
 select booking_id from booked_tickets where user_id=21 and booking_date='23-12-21';
 commit;
-drop table booked_tickets cascade constraints;
+drop table ticket_details cascade constraints;
 
 select * from user_details;
 select * from bus_operators;
 select  * from bus_details; 
-
-desc booked_tickets;
-COMMIT;
 select * from admin_details;
 select * from user_details where user_contact=7373639018 and user_status='Inactive';
 select * from booked_tickets;
-select * from ticket_details;
+select * from SEAT_DETAILS;
+
+select seat_no from seat_details where ticket_NO='oSm1No4';
+
+select * from seat_details
+order by bus_id,seat_no;
+
+select distinct(from_city) from bus_details;
 
 delete from ticket_details where ticket_no='hqgGH8s';
 alter table booked_tickets drop column bus_no;

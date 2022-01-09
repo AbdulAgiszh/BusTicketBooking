@@ -110,7 +110,7 @@ public class SeatDetailsDaoImpl {
 	
 	
 	public List<SeatDetails> showSeatList() {
-		String seatDetailsQuery="select * from seat_details";
+		String seatDetailsQuery="select * from seat_details order by bus_id,seat_no";
 		
 		Connection con;
 //		Bus busModel=null;
@@ -141,10 +141,34 @@ public class SeatDetailsDaoImpl {
 	}
 	
 	
+	public List<String> getSeatNoListUsingTicketNo(String ticketNo) {
+		String seatDetailsQuery="select seat_no from seat_details where ticket_NO=?";
+		
+		Connection con;
+		BookedTickets bookTickets=null;
+	   	ResultSet rs = null;
+	   	List<String> seatList=new ArrayList<String>();
+			try {
+				con = ConnectionUtill.connectdb();	
+				PreparedStatement pstatement=con.prepareStatement(seatDetailsQuery);
+				pstatement.setString(1, ticketNo);
+				rs=pstatement.executeQuery();
+				
+				while(rs.next()) {
+					seatList.add(rs.getString(1));
+				}
+				return seatList;
+			} catch (ClassNotFoundException e) {
+				System.out.println(e.getMessage());
+			} catch (SQLException e) {
+				System.out.println(e.getMessage());
+			}
+			return seatList;
+	}
+	
 	
 	public List<SeatDetails> getSeatDetailsUsingTicketNo(String ticketNo) {
 		String seatDetailsQuery="select * from seat_details where ticket_NO=?";
-		
 		Connection con;
 		BookedTickets bookTickets=null;
 	   	ResultSet rs = null;
@@ -168,4 +192,32 @@ public class SeatDetailsDaoImpl {
 			}
 			return seatDetailsList;
 	}
+	
+	
+//	public List<SeatDetails> getSeatDetailsUsingTicketNo(String ticketNo) {
+//		String seatDetailsQuery="select * from seat_details where ticket_NO=?";
+//		
+//		Connection con;
+//		BookedTickets bookTickets=null;
+//	   	ResultSet rs = null;
+//	   	List<SeatDetails> seatDetailsList=new ArrayList<SeatDetails>();
+//			try {
+//				con = ConnectionUtill.connectdb();	
+//				PreparedStatement pstatement=con.prepareStatement(seatDetailsQuery);
+//				pstatement.setString(1, ticketNo);
+//				rs=pstatement.executeQuery();
+//				
+//				while(rs.next()) {
+//					bookTickets=tickedDao.findBookedTicketsObjectDetails(rs.getString(1));
+//					SeatDetails seatDetails=new SeatDetails(bookTickets,rs.getInt(4),rs.getString(5));
+//					seatDetailsList.add(seatDetails);
+//				}
+//				return seatDetailsList;
+//			} catch (ClassNotFoundException e) {
+//				System.out.println(e.getMessage());
+//			} catch (SQLException e) {
+//				System.out.println(e.getMessage());
+//			}
+//			return seatDetailsList;
+//	}
 }
