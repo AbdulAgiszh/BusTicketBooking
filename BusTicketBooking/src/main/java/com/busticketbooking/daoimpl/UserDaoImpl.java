@@ -60,7 +60,7 @@ public class UserDaoImpl implements UserDAO {
 
 		return checkUserFlag;
 	}
-	
+
 
 	public boolean registrationUser(User userModel) {
 

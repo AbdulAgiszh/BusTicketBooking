@@ -18,7 +18,7 @@
         }
             #headeraddbus {
     padding: 0px;
-    box-shadow: 0px 0px 10px 0px #c7c7c7;
+     
     text-align: center;
         }
         #headeraddbus,#addbus{

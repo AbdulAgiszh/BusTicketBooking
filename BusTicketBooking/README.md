@@ -1,43 +1,61 @@
-#BusTicketBooking
+# BusTicketBooking
 
-
-####objective
+#### objective
 *Booking Ticket*
 
+### Features
 
-###Features
+* Login (User & Admin)
 
+* Username & Password Validation
 
-*Login (User & Admin)
-*Username & Password Validation
-*User can Search Bus without login
-*Search Bus by (Source,Destination,date)
-*Ticket Booking
-*Cancel Booking
-*Invoice Booking
-*Seat Allocation
-*User Wallet
+* User can Search Bus without login
 
+* Search Bus by (Source,Destination,date)
 
-##Admin
+* Ticket Booking
 
-*Add buses
-*Add operator
-*update bus & operator
-*Show booking list
-*Show seat details list
-*Show bus & operator list
+* Cancel Booking
+
+* Invoice Booking
+
+* Seat Allocation
+
+* User Wallet
 
 
-##User
+## Admin
 
-*Registration
-*Manage Profile
-*User can view buses by searching 
-*User can book a tikcet
-*cancel ticket
-*User can see invoice
-*User can update wallet
+1.Add buses
+
+2.Add operator
+
+3.update bus & operator
+
+4.Show booking list
+
+5.Show seat details list
+
+6.Show bus & operator list
+
+
+## User
+
+1.Registration
+
+2.Manage Profile
+
+3.User can view buses by searching 
+
+4.User can book a tikcet
+
+5.cancel ticket
+
+6.User can see invoice
+
+7.User can update wallet
+
+
 
 
 

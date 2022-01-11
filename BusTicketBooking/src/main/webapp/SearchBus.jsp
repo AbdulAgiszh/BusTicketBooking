@@ -15,83 +15,10 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Home</title>
+<link rel="stylesheet" href="css/NavStyleUser.css">
 
 <style>
-        *{
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-        font-family: Arial, Helvetica, sans-serif;
-        }
-        body{
-            background: color("#D4EFDF");
-            background-size: cover;
-            background-repeat: no-repeat;
-            height: 537px;
-        }
-        ul,li{
-            list-style: none;
-            display: flex;
-            margin-left: 10px;
-    		padding: 102px;
-    		padding-left: 6px;
-            padding-top: 0px;
-            margin-top: 15px;
-        }
-        #nav{
-            border: 1px solid blanchedalmond ;
-            height: 90px;
-            background-color: blanchedalmond;
-        }
-        #nav a{
-            text-decoration: none;
-            font-size: 20px;
-        }
-        
-        #signlink {
-            display: flex;
-            margin-left: 540px;
-        }
-
-
-        .dropdown .dropbtn {
-            font-size: 20px;  
-            border: none;
-            outline: none;
-            color: rgb(113, 99, 177);
-        }
-        .dropbtn{
-            font-size: 20px;  
-            border: none;
-            outline: none;
-        }
-
-        .dropdown-content {
-            display: none;
-            position: absolute;
-            background-color: #f9f9f9;
-            min-width: 160px;
-  
-        }
-
-        .dropdown-content a {
-            float: none;
-            color: black;
-            padding: 12px 16px;
-            text-decoration: none;
-            display: block;
-        }
-
-        .dropdown-content a:hover {
-            background-color: #ddd;
-        }
-
-        .dropdown:hover .dropdown-content {
-            display: block;
-        }
-        
-        
-        input{
+        #searchlocation input{
             height: 30px;
             width: 220px;
             border-top: none;
@@ -99,75 +26,66 @@
             border-right: none;
             outline: none;
         }
-        input,type{
-            font-size: 20px;
-            padding-top: 5px;
-            background-color: blanchedalmond;
-        }
-        /* input,option{
-                    background-color: blanchedalmond;
-        
-        } */
-        span{
-            font-size: larger;
-        }
-        table,tr,td{
-            padding: 0px;
-            border-spacing: 0px;
-        }
-        #searchlocation{
-            padding: 40px;
-            border: 1px solid black;
-            border-radius: 15px;
-            height: 247px;
-            width: 1030px;
-            margin-left: 150px;
-            margin-top: 100px;
-            background-color: blanchedalmond;
-            border:none;
-        }.fromto{
-            border: 0.100px solid black;
-            width: 300px;
-            height: 105px;
-            font-size: 20px;
-            padding: 20px;
-            margin-top: 0px;
-                text-align: center;
-        }
-        #searchbutton{
-            height: 50px;
-            width: 200px;
-            margin-top: 80px;
-            margin-left: 360px;
-            color: white;
-            background-color: rgb(88, 88, 219);
-            border: none;
-            border-radius: 10px;
-            cursor: pointer;
-        }
+		#searchlocation input, type {
+    		font-size: 20px;
+    		padding-top: 5px;
+    		background-color: white;
+    		padding: 15px 20px;
+    		border-radius: 5px;
+    		margin-top: 10px;
+		}
+		#searchlocation table, tr, td {
+    		box-shadow: -8px 4px 20px 0px #4283af52;
+    		padding: 0px;
+    		border-spacing: 0px;
+    		margin: auto;
+		}
+      #searchlocation {
+    		padding: 40px;
+    		border: 1px solid black;
+    		border-radius: 15px;
+    		height: 247px;
+    		width: 1030px;
+    		margin-left: 150px;
+    		margin-top: 100px;
+    		background: linear-gradient(45deg, #066bb3, #1197e566);
+    		border: none;
+	}
+		.fromto {
+    		width: 300px;
+   			 font-size: 20px;
+    		padding: 20px;
+    		margin-top: 0px;
+    		text-align: center;
+	}
+       #searchbutton {
+    		height: 50px;
+    		width: 200px;
+    		margin-top: 70px;
+    		margin-left: 360px;
+    		color: black;
+    		background-color: rgb(255 255 255);
+    		border: none;
+    		border-radius: 10px;
+    		cursor: pointer;
+    		box-shadow: 0px 0px 5px 0px black;
+	}
         #usernameshow{
             font-size: larger;
             margin-left: 1100px;
         }
-        #buslogo{
-            font-style: italic;
-            font-family: cursive;
-            font-size: 23px; 
-            color: rgb(95, 95, 224);
-        }
+       
     </style>
 </head>
 
 
 <body>
-
-	   
-            
+   
         <%session.setAttribute("userHome", "homeSession");%>
            
     <div id="nav">
             <ul>
-                <li><span id="buslogo">BusHub</span></li>
+                <li><h3 id="buslogo">BusHub</h3></li>
                 <li><a href="SearchBus.jsp">Bus_Tickets</a></li>
                 <li><a href="AboutUs.jsp">About_us</a></li>
                   <li><div class="dropdown">

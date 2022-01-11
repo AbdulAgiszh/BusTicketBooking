@@ -11,128 +11,9 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Invoice</title>
+<link rel="stylesheet" href="css/NavStyleUser.css">
  <style>
-        *{
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-        font-family: Arial, Helvetica, sans-serif;
-        }
-        #nav ul,li{
-            list-style: none;
-            display: flex;
-            margin-left: 10px;
-    		padding: 102px;
-    		padding-left: 6px;
-            padding-top: 0px;
-            margin-top: 15px;
-        }
-        #nav{
-            border: 1px solid blanchedalmond ;
-            height: 90px;
-            background-color: blanchedalmond;
-        }
-        #nav a{
-            text-decoration: none;
-            font-size: 20px;
-        }
         
-        #signlink {
-            display: flex;
-            margin-left: 540px;
-        }
-
-
-		.dropdown .dropbtn {
-            font-size: 20px;  
-            border: none;
-            outline: none;
-            color: rgb(113, 99, 177);
-        }
-        .dropbtn{
-            font-size: 20px;  
-            border: none;
-            outline: none;
-        }
-
-        .dropdown-content {
-            display: none;
-            position: absolute;
-            background-color: #f9f9f9;
-            min-width: 160px;
-  
-        }
-
-        .dropdown-content a {
-            float: none;
-            color: black;
-            padding: 12px 16px;
-            text-decoration: none;
-            display: block;
-        }
-
-        .dropdown-content a:hover {
-            background-color: #ddd;
-        }
-
-        .dropdown:hover .dropdown-content {
-            display: block;
-        }
-
-
-        /* legend{
-            font-size: xx-large;
-            text-align: center;
-            
-        }
-        #invoicediv {
-            border:  solid black;
-            padding: 30px;
-        }
-        #usertable tr td{
-            padding: 0 45px;
-        }
-        #usertable tr td input{
-            height: 30px;                                                                                                                                                                                                                                                                                                                                                                                                         : none;
-        }
-        #usertable{
-            margin-left: 50px;
-        }
-        #tickettext {
-            border-top: none;
-            border-left: none;
-            border-right: none;
-        }
-        #tickettext{
-            height: 30px;    
-            font-size: 18px;
-            outline: none;
-            color: rgb(24, 11, 7);
-            width: 200px;
-            text-align: center;
-        }
-        #traveltable tr td{
-            padding: 25px;
-        }
-        #ticketnotable{
-            padding: 35px;
-            margin-left: 350px;
-        }
-        #traveltable{
-            margin-left: 220px;
-        }
-        #btnticket{
-            margin-left: 40px;
-        }*/
-        /* #bookingstatus{
-            border: 1px solid black;
-            position: absolute;
-            margin-left: 910px;
-            margin-top: -185px;
-            padding: 25px;
-            border-radius: 80px;
-            background-color: rgb(250, 173, 198);
-        }  */
         #btnticket{
             height: 45px;
             width: 120px;
@@ -170,6 +51,7 @@
             width: 788px;
             margin-left: 300px;
             height: 530px;
+            margin-top:10px;
         }
         #heading{
             text-align: center;
@@ -195,15 +77,6 @@
         #seattable{
             margin-top: -40px;
         }
-        /* #usertable tr td input{
-            height: 30px;                                                                                                                                                                                                                                                                                                                                                                                                         : none;
-        } */
-        /* #usertable{
-            margin-left: 50px;
-        } */
-        /* #seattable{
-            margin-left: 90px;
-        } */
         
 
     </style>
@@ -237,7 +110,7 @@
                     </div>
                   </div> 
                   <li><a href="UserProfile.jsp">Profile</a></li>
-                  <li><a href="logout.jsp">LogOut</a></li>
+                  <li><a href="logout">LogOut</a></li>
                 </ul>
         </div>
 

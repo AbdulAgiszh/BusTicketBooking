@@ -18,87 +18,11 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Booking History</title>
+<link rel="stylesheet" href="css/NavStyleUser.css">
 <style>
-        *{
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-        font-family: Arial, Helvetica, sans-serif;
-        }
-        ul,li{
-            list-style: none;
-            display: flex;
-            margin-left: 10px;
-    		padding: 102px;
-    		padding-left: 6px;
-            padding-top: 0px;
-            margin-top: 15px;
-        }
-        #nav{
-            border: 1px solid blanchedalmond ;
-            height: 90px;
-            background-color: blanchedalmond;
-           /*  position: fixed; */
-            overflow: hidden;
-            top: 0;
-        }
-        #nav a{
-            text-decoration: none;
-            font-size: 20px;
-        }
-        
-        #signlink {
-            display: flex;
-            margin-left: 540px;
-        }
-
-
-        .dropdown .dropbtn {
-            font-size: 20px;  
-            border: none;
-            outline: none;
-            color: rgb(113, 99, 177);
-        }
-        .dropbtn{
-            font-size: 20px;  
-            border: none;
-            outline: none;
-        }
-
-        .dropdown-content {
-            display: none;
-            position: absolute;
-            background-color: #f9f9f9;
-            min-width: 160px;
-  
-        }
-
-        .dropdown-content a {
-            float: none;
-            color: black;
-            padding: 12px 16px;
-            text-decoration: none;
-            display: block;
-/*             z-index: 5; */
-            
-        }
-
-        .dropdown-content a:hover {
-            background-color: #ddd;
-        }
-
-        .dropdown:hover .dropdown-content {
-            display: block;
-        }
-        #buslogo{
-            font-style: italic;
-            font-family: cursive;
-            font-size: 23px; 
-            color: rgb(95, 95, 224);
-        }
-        a{
-                text-decoration: none;
-            }
+       #nav{
+       position:fixed;
+       }
             #operatorlistdiv table tr th,td {
                 padding: 25px;
                 text-align: center;
@@ -116,7 +40,7 @@
                 margin-left: 20px;
                 margin-top: 10px;
             }
-            legend{
+            #operatorlistfieldset legend{
                 font-size: 30px;
                 text-align: center;
             }
@@ -147,7 +71,7 @@
                     </div>
                   </div> 
                   <li><a href="UserProfile.jsp">Profile</a></li>
-                  <li><a href="logout.jsp">LogOut</a></li>
+                  <li><a href="logout">LogOut</a></li>
                 </ul>
         </div>
 

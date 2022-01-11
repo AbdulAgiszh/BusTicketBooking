@@ -59,7 +59,7 @@ public class CancelTicketController extends HttpServlet {
 			LocalDate date = bookedTicketsModel.getDepartureDate().toLocalDate();
 			Date localDepartureDate = java.sql.Date.valueOf(date);
 
-			if (localDepartureDate.after(getCurrentDate())) {
+			if(localDepartureDate.after(getCurrentDate())) {
 
 				if (!(bookedTicketsModel.getBookingStatus().equals("Cancelled"))) {
 

@@ -28,68 +28,6 @@
 <meta charset="ISO-8859-1">
 <title>Booking</title>
 <style>
-         *{
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-        font-family: Arial, Helvetica, sans-serif;
-        }
-        ul,li{
-            list-style: none;
-            display: flex;
-            margin-left: 15px;
-            padding: 100px;
-            padding-left: 10px;
-            padding-top: 0px;
-            margin-top: 15px;
-        }
-        #nav{
-            border: 1px solid blanchedalmond ;
-            height: 90px;
-            background-color: blanchedalmond;
-        }
-        #nav a{
-            text-decoration: none;
-            font-size: 20px;
-        }
-        
-        #signlink {
-            display: flex;
-            margin-left: 540px;
-        }
-        .dropdown .dropbtn {
-            font-size: 20px;  
-            border: none;
-            outline: none;
-            color: rgb(113, 99, 177);
-        }
-        .dropbtn{
-            font-size: 20px;  
-            border: none;
-            outline: none;
-        }
-        .dropdown-content {
-            display: none;
-            position: absolute;
-            background-color: #f9f9f9;
-            min-width: 160px;
-  
-        }
-        .dropdown-content a {
-            float: none;
-            color: black;
-            padding: 12px 16px;
-            text-decoration: none;
-            display: block;
-        }
-        .dropdown-content a:hover {
-            background-color: #ddd;
-        }
-        .dropdown:hover .dropdown-content {
-            display: block;
-        }
-        
-        
         fieldset{
             padding: 47px;
     		width: 500px;
