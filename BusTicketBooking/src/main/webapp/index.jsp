@@ -24,6 +24,10 @@
         box-sizing: border-box;
         font-family: Arial, Helvetica, sans-serif;
         }
+        .fromto span {
+    margin-bottom: -16px;
+    display: block;
+}
         body{
             background: url("seat2.jpg");
             background-size: cover;

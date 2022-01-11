@@ -12,49 +12,39 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
+<link href="css/bootstrap.css" rel="stylesheet" >
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" ></script>
 <title>User Lists</title>
-</head>
+<link rel="stylesheet" href="css/NavStyleAdmin.css">
+
  <style>
-        *{
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: Arial, Helvetica, sans-serif;
-            }
-            #homeadmin{
-                border: 1px solid black;
-                height: 85px;
-                background-color: rgb(166, 166, 233);
-               
-            }
-            #homeadmin ul li {
-                list-style: none;
-                display: inline-block;
-                padding: 30px;
-                padding-left: 60px;
-                }
-            a{
-                text-decoration: none;
-            }
-            #operatorlistdiv table tr th,td {
+ #userlistdiv table tr th {
+        background: #79a6dd;
+    color: aliceblue;
+}
+#userlistdiv table tr:hover {
+    background: #e7e7e7;
+}
+#userlistfieldset table{
+        border-collapse: collapse;
+        }
+            #userlistdiv table tr th,td {
                 padding: 20px;
-                text-align: center;
-                border: 1px solid black;
-                border-collapse: collapse;
+            text-align: center;
+            border: 1px solid black;
+            border-collapse: collapse;
              }
-            #operatorlistfieldset{
-                margin-top: 25px;
-                margin-left: 100px;
-                width: 1000px;
+            #userlistfieldset{
+               margin-top: 20px;
             }
-            #operatorlistdiv{
-                padding: 35px;
-                margin-left: 20px;
-                margin-top: 10px;
+            #userlistdiv{
+                margin-top: 20px;
+                margin-left: 150px;
             }
-            legend{
+            #userlistfieldset legend{
                 font-size: 30px;
-                text-align: center;
+            font-weight:bold;
+            text-align: center;
             }
         </style>
 </head>
@@ -70,10 +60,10 @@
             <li><a href="BookingList.jsp">Booking list</a></li>
             <li><a href="SeatList.jsp">Seat list</a></li>
         </ul>
-            
-        <fieldset id="operatorlistfieldset">
-            <legend>Operator_Details</legend>
-        <div id="operatorlistdiv">
+            </div>
+        <fieldset id="userlistfieldset">
+            <legend>User Details</legend>
+        <div id="userlistdiv">
             <table>
                 <tr>
                     <th>User Id</th>
@@ -102,6 +92,6 @@
             </table>
       </div>
     </fieldset>
-    </div>
+    
 </body>
 </html>

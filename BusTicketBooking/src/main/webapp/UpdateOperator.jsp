@@ -8,73 +8,62 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Update Operator</title>
+<link href="css/bootstrap.css" rel="stylesheet" >
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" ></script>
+<title>Add Operator</title>
+<link rel="stylesheet" href="css/NavStyleAdmin.css">
 <style>
-    *{
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-        font-family: Arial, Helvetica, sans-serif;
-        }
-        #homeadmin{
-            border: 1px solid black;
-            height: 85px;
-            background-color: rgb(166, 166, 233);
-        }
-        #homeadmin ul li {
-            list-style: none;
-            display: inline-block;
-            padding: 30px;
-            padding-left: 60px;
-            }
-        a{
-            text-decoration: none;
-        }
-        
-        legend{
-            font-size: 30px;
-            text-align: center;
-        }
+     #addOperator label {
+        display: inline-block;
+    padding: 0px 7px;
+}
         #headeraddoperator{
-             border: 1px solid black;
-             height: 35px;
-             background-color: rgb(200, 210, 238);
-             margin-top:60px;
-             padding: 5px;
+             padding: 0px;
+    box-shadow: 0px 0px 10px 0px #c7c7c7;
+    text-align: center;
          }
          #headeraddoperator,#addOperator{
-             width: 430px;
-             margin-left: 150px;
+             margin: 0px auto;
          }
          #operatortitle{
-             padding-left: 150px;
-             font-size: 20px;
+              padding: 0px;
+    font-size: 30px;
+    font-weight:bold;
+     text-align: center;
          }
          #addOperator{
-             border: 1px solid black;
-             padding: 25px;
-             height: 310px;
-             padding-left: 40px;
+              padding: 17px;
+    box-shadow: 0px 0px 10px 0px #c7c7c7;
+    border: none;
+    margin: 55px auto;
+            
          }
          #addOperator table tr td,th{
-             padding: 10px;
+              padding: 7px 0px;
+    margin: 14px auto;
          }
-         input{
+         #addOperator table {
+         margin-top:20px;
+         text-align:center;
+         }
+         /* input{
              height: 25px;
-         }
-         button{
-             height: 35px;
-             width: 100px;
-             background-color: rgb(129, 168, 252);
-             outline: none;
-             border: none;
-         }
-         #btn{
-             margin-left: 45px;
-         }
-         button:hover{
-             background-color: rgb(247, 112, 112);
-         }
+         } */
+          #btn button{
+           height: 35px;
+    width: 100px;
+    outline: none;
+    border: none;
+    box-shadow: 0px 0px 10px 0px #c7c7c7;
+    background: none;
+    margin: 0px 20px;
+        }
+        #btn{
+            text-align:center
+        }
+        #btn button:hover{
+            background-color: rgb(247, 112, 112);
+        }
     </style>
 </head>
 <body>
@@ -93,9 +82,10 @@
     </div>
     
 
-<div id="headeraddoperator"> <label id="operatortitle" for="operatortitle">Operator</label> </div>
 <form action="UpdateOpertaorjsp">
-     <div id="addOperator">
+     <div id="addOperator" class="col-sm-4">
+     <div id="headeraddoperator"> <label id="operatortitle" for="operatortitle">Operator</label> </div>
+     
          <table >
              <tr>
                  <th><label for="operatorName">Operator Name</label></th>

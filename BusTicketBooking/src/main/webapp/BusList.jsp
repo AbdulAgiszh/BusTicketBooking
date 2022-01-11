@@ -11,31 +11,20 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
+<link href="css/bootstrap.css" rel="stylesheet" >
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" ></script>
 <title>Bus List</title>
-</head>
+<link rel="stylesheet" href="css/NavStyleAdmin.css">
+
 <style>
-        *{
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-        font-family: Arial, Helvetica, sans-serif;
-        }
-        #homeadmin{
-            border: 1px solid black;
-            height: 85px;
-            background-color: rgb(166, 166, 233);
-           
-        }
-        #homeadmin ul li {
-            list-style: none;
-            display: inline-block;
-            padding: 30px;
-            padding-left: 60px;
-            }
-        a{
-            text-decoration: none;
-        }
-        table{
+#buslistdiv table tr th {
+        background: #79a6dd;
+    color: aliceblue;
+}
+#buslistdiv table tr:hover {
+    background: #e7e7e7;
+}
+        #buslistfieldset table{
         border-collapse: collapse;
         }
         #buslistdiv table tr th,td {
@@ -51,11 +40,14 @@
         #buslistdiv{
             margin-top: 20px;
         }
-        legend{
+        #buslistfieldset legend{
             font-size: 30px;
+            font-weight:bold;
             text-align: center;
         }
     </style>
+    
+</head>
     <body>
     
     <% String sessionName=(String)session.getAttribute("AdminHome");
@@ -82,7 +74,7 @@
                 
         </div>
         <fieldset id="buslistfieldset">
-            <legend>Bus_Details</legend>
+            <legend>Bus Details</legend>
         <div id="buslistdiv">
             <table>
                 <tr>
@@ -112,7 +104,7 @@
                     <td><%=rs.getInt(9) %></td>
                     <td><%=rs.getInt(10) %></td>
                     <td><%=rs.getString(11) %></td>
-                    <td><a href="UpdateBus.jsp?busId=<%=rs.getInt(1)%>">edit</a></td>
+                    <td><a href="UpdateBus.jsp?busId=<%=rs.getInt(1)%>">Edit</a></td>
                 </tr>
                 <%} %>
             </table>

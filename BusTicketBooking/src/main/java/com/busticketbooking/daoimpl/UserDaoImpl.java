@@ -67,6 +67,7 @@ public class UserDaoImpl implements UserDAO {
 		String insertUser = "insert into user_details (user_name,user_dob,user_email,user_contact,user_gender,user_password) values (?,?,?,?,?,?)";
 		Connection con;
 		boolean registerFlag=true;
+		int result =0;
 		try {
 			con = ConnectionUtill.connectdb();
 			PreparedStatement pstatement = con.prepareStatement(insertUser);
@@ -78,18 +79,18 @@ public class UserDaoImpl implements UserDAO {
 			pstatement.setString(5, userModel.getUserGender());
 			pstatement.setString(6, userModel.getUserPassword());
 
-			int result = pstatement.executeUpdate();
-			if (result > 0) {
-				return registerFlag;
-			} else {
-				return registerFlag=false;
-			}
+			result	= pstatement.executeUpdate();
+//			if (result > 0) {
+//				return registerFlag;
+//			} else {
+//				return registerFlag=false;
+//			}
 		} catch (ClassNotFoundException e) {
 			System.out.println(e.getMessage());
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
 		}
-		 return registerFlag;
+		 return result>0;
 
 	}
 

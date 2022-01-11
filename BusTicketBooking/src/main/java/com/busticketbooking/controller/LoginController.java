@@ -11,143 +11,116 @@ import javax.servlet.http.HttpSession;
 
 import com.busticketbooking.daoimpl.AdminDaoImpl;
 import com.busticketbooking.daoimpl.UserDaoImpl;
+import com.busticketbooking.exception.LoginPasswordException;
+import com.busticketbooking.exception.LoginUserNameException;
 import com.busticketbooking.model.Admin;
 import com.busticketbooking.model.User;
 
-
 @WebServlet("/loginWay")
-public class LoginController extends HttpServlet{
+public class LoginController extends HttpServlet {
 
-	public void service(HttpServletRequest req,HttpServletResponse res) {
-		
-		HttpSession session=req.getSession();
-		
-		String loginId=req.getParameter("name");
-		String password=req.getParameter("password");
-		
-//		System.out.println(loginId);
-//		System.out.println(password);
-		AdminDaoImpl adminDao=new AdminDaoImpl();
-		UserDaoImpl userDao=new UserDaoImpl();
+	public void service(HttpServletRequest req, HttpServletResponse res) {
+
+		HttpSession session = req.getSession();
+
+		String loginId = req.getParameter("name");
+		String password = req.getParameter("password");
+
+		AdminDaoImpl adminDao = new AdminDaoImpl();
+		UserDaoImpl userDao = new UserDaoImpl();
 		Admin adminModel;
-		User userModel=new User();
-		
-		//admin Login
-		if(loginId.endsWith("admin@gmail.com")) {
+		User userModel = new User();
+
+		// admin Login
+		if (loginId.endsWith("admin@gmail.com")) {
 			boolean adminCheckFlag;
-			adminCheckFlag=adminDao.checkadmin(loginId);
-			if(adminCheckFlag) {
-				adminModel=adminDao.adminLogin(loginId);
-				if(adminModel.getAdminPassword().equals(password)) {
-					try {
-						res.sendRedirect("AdminHome.jsp");
-						session.setAttribute("AdminHome", "HomeSession");
-					} catch (IOException e) {
-						System.out.println(e.getMessage());
-					}
-				}
-				else
-					{
-						session.setAttribute("erroruserid", "password is incorrect");
+			adminCheckFlag = adminDao.checkadmin(loginId);
+			try {
+				if (adminCheckFlag) {
+					adminModel = adminDao.adminLogin(loginId);
+					if (adminModel.getAdminPassword().equals(password)) {
 						try {
-							req.getRequestDispatcher("Login.jsp").forward(req,res);
-						} catch (ServletException e) {
-							System.out.println(e.getMessage());
+							res.sendRedirect("AdminHome.jsp");
+							session.setAttribute("AdminHome", "HomeSession");
 						} catch (IOException e) {
 							System.out.println(e.getMessage());
 						}
+					} else {
+						throw new LoginPasswordException();
 					}
-			}
-			else {
-				session.setAttribute("erroruserid", "user name mismatch");
+				} else {
+					throw new LoginUserNameException();
+				}
+			} catch (LoginUserNameException e) {
+				session.setAttribute("erroruserid", e.getUserNameLoginMessage());
 				try {
-					req.getRequestDispatcher("Login.jsp").forward(req,res);
-				} catch (ServletException e) {
-					System.out.println(e.getMessage());
-				} catch (IOException e) {
-					System.out.println(e.getMessage());
+					res.sendRedirect("Login.jsp");
+				} catch (IOException e1) {
+					System.out.println(e1.getMessage());
+				}
+			} catch (LoginPasswordException e) {
+				session.setAttribute("erroruserid", e.getPasswordLoginMessage());
+				try {
+					res.sendRedirect("Login.jsp");
+				} catch (IOException e1) {
+					System.out.println(e1.getMessage());
 				}
 			}
-			}
-		else if (loginId.endsWith("admin@gmail.com") == false && loginId.matches("[0-9]+") == false) {
-			session.setAttribute("erroruserid", "user name mismatch");
+		} else if (loginId.contains("admin@gmail.com") == false && loginId.matches("[0-9]+") == false) {
 			try {
-				req.getRequestDispatcher("ShowUserName.jsp").forward(req,res);
-			} catch (ServletException e) {
-				System.out.println(e.getMessage());
-			} catch (IOException e) {
-				System.out.println(e.getMessage());
+				throw new LoginUserNameException();
+			} catch (LoginUserNameException e) {
+				session.setAttribute("erroruserid", e.getUserNameLoginMessage());
+				try {
+					res.sendRedirect("Login.jsp");
+				} catch (IOException e1) {
+					System.out.println(e1.getMessage());
+				}
 			}
 		}
-		
-		//userLogin
+
+		// userLogin
 		else {
 			boolean userCheckFlag;
-			long userId=Long.parseLong(loginId);
+			long userId = Long.parseLong(loginId);
 			System.out.println(userId);
-			userCheckFlag=userDao.checkUser(userId);
-			if(userCheckFlag) {
-				userModel=userDao.loginUser(userId);
-				System.out.println(userModel.getUserPassword());
-				
-				if(userModel.getUserPassword().equals(password)) {
-					try {
-						session.setAttribute("userModel", userModel);
-						session.setAttribute("userHome", "loginSession");
-						res.sendRedirect("SearchBus.jsp");
-					} catch (IOException e) {
-						System.out.println(e.getMessage());
-					}
-				}
-				else
-				{
-					session.setAttribute("erroruserid", "password is incorrect");
-					try {
-						req.getRequestDispatcher("Login.jsp").forward(req,res);
-					} catch (ServletException e) {
-						System.out.println(e.getMessage());
-					} catch (IOException e) {
-						System.out.println(e.getMessage());
-					}
-				}
-			}
-			else {
-				session.setAttribute("erroruserid", "user name mismatch");
-				try {
-					req.getRequestDispatcher("Login.jsp").forward(req,res);
-				} catch (ServletException e) {
-					System.out.println(e.getMessage());
-				} catch (IOException e) {
-					System.out.println(e.getMessage());
-				}
-			}
-					
+			userCheckFlag = userDao.checkUser(userId);
+			try {
+				if (userCheckFlag) {
+					userModel = userDao.loginUser(userId);
+					System.out.println(userModel.getUserPassword());
 
-	}
+					if (userModel.getUserPassword().equals(password)) {
+						try {
+							session.setAttribute("userModel", userModel);
+							session.setAttribute("userHome", "loginSession");
+							res.sendRedirect("SearchBus.jsp");
+						} catch (IOException e) {
+							System.out.println(e.getMessage());
+						}
+					} else {
+						throw new LoginPasswordException();
+					}
+
+				} else {
+					throw new LoginUserNameException();
+				}
+			} catch (LoginUserNameException e) {
+				session.setAttribute("erroruserid", e.getUserNameLoginMessage());
+				try {
+					res.sendRedirect("Login.jsp");
+				} catch (IOException e1) {
+					System.out.println(e1.getMessage());
+				}
+
+			} catch (LoginPasswordException e) {
+				session.setAttribute("erroruserid", e.getPasswordLoginMessage());
+				try {
+					res.sendRedirect("Login.jsp");
+				} catch (IOException e1) {
+					System.out.println(e1.getMessage());
+				}
+			}
+		}
 	}
 }
-	
-
-
-
-//HttpSession session=req.getSession();
-//session.setAttribute("error", "user name and password mismatch");
-//req.getRequestDispatcher("login.jsp").forward(req,res);
-//<% String error=(String)session.getAttribute("error");
-//if(error!=null) {%>
-//<p ><%=session.getAttribute("error") %></p>
-//<%} session.removeAttribute("error"); %>
-
-
-
-
-
-
-
-
-
-
-
-
-
-

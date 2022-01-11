@@ -57,8 +57,6 @@
             display: flex;
             margin-left: 540px;
         }
-
-
         .dropdown .dropbtn {
             font-size: 20px;  
             border: none;
@@ -70,7 +68,6 @@
             border: none;
             outline: none;
         }
-
         .dropdown-content {
             display: none;
             position: absolute;
@@ -78,7 +75,6 @@
             min-width: 160px;
   
         }
-
         .dropdown-content a {
             float: none;
             color: black;
@@ -86,11 +82,9 @@
             text-decoration: none;
             display: block;
         }
-
         .dropdown-content a:hover {
             background-color: #ddd;
         }
-
         .dropdown:hover .dropdown-content {
             display: block;
         }
@@ -120,9 +114,13 @@
         #seatbookingtable tr td{
             padding: 15px;
         }
-        #seatinfodiv{
-            padding: 20px;
-        }
+        #seatcountdiv {
+    /* margin-left: 378px; */
+    /* position: absolute; */
+    /* margin-top: -190px; */
+    text-align: center;
+    margin-bottom: 14px;
+}
         #seatinfotable tr td{
             padding: 15px;
             padding-left: 20px;
@@ -135,29 +133,43 @@
         label{
             font-size: 17px;
         }
-        input{
-            border: none;
-            outline: none;
-            font-size: 22px;
-        }
-        #seatcountdiv{
-            margin-left: 378px;
-    		position: absolute;
-    		margin-top: -190px;
-        }
-        #btn{
-            height: 45px;
-    		width: 213px;
-    		background-color: rgb(129, 168, 252);
-    		outline: none;
-    		border: none;
-    		margin-left: 213px;
-    		margin-top: -50px;
-    		position: absolute;
-    		cursor: pointer;
-    		color:white;
-    		font-size: 19px;
-        }
+input {
+    border: none;
+    outline: none;
+    font-size: 22px;
+    text-align: center;
+    width: 100%;
+    margin-top: 14px;
+    padding: 5px;
+}
+      #bookingdiv {
+    border: 1px solid #237c85;
+    border-radius: 30px;
+    padding-left: 100px;
+    padding: 20px;
+    width: 696px;
+    background: antiquewhite;
+}
+   
+element.style {
+}
+#btn {
+    height: 45px;
+    width: 213px;
+    background-color: rgb(255 255 255);
+    outline: none;
+    border: none;
+    margin-left: 213px;
+    /* margin-top: -50px; */
+    /* position: absolute; */
+    cursor: pointer;
+    color: white;
+    font-size: 19px;
+}
+button#btn:hover {
+    background: black;
+    color: white;
+}
         /* #btn:hover{
             background-color: rgba(213, 253, 101, 0.911);
         } */
@@ -223,37 +235,23 @@
 </body>
 
 <script type="text/javascript">
-
 function check(){
-
-
 var numberSeats=document.getElementById('noofseatsselected'); 
 var price=document.getElementById('totalFair');
 var seatcount=document.getElementById('seatcount');
 var randomNo=document.getElementById('randomnumber');
-
 var count=seatcount.options[seatcount.selectedIndex].value;
 console.log(count);
-
 numberSeats.value=count;
 price.value=<%=busModel.getSeaterFare()%>*count;
-
 console.log(numberSeats.value);
 console.log(price.value);
-
-
 var text = "";
 var random = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-
 for (var i = 0; i < 7; i++)
   text += random.charAt(Math.floor(Math.random() * random.length));
-
-
 randomNo.value=text;
 console.log(randomNo.value);
 }
-
-
-
 </script>
 </html>

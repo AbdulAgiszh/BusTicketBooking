@@ -4,44 +4,14 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
+<link href="css/bootstrap.css" rel="stylesheet" >
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" ></script>
 <title>Home</title>
-</head>
-    <style>
-        *{
-         margin: 0;
-         padding: 0;
-         box-sizing: border-box;
-         font-family: Arial, Helvetica, sans-serif;
-         }
-         #homeadmin{
-             border: 1px solid black;
-             height: 85px;
-             background-color: rgb(166, 166, 233);
-            
-         }
-         #homeadmin ul li {
-             list-style: none;
-             display: inline-block;
-             padding: 30px;
-             padding-left: 60px;
-             }
-         a{
-             text-decoration: none;
-         }
-         #profiletable table tr th,td{
-            padding: 20px;
-        }
-        #profiletable{
-            margin-left: 100px;
-            margin-top: 50px;
-        }
-        legend{
-            text-align: center;
-        }
-     </style>
+<link rel="stylesheet" href="css/NavStyleAdmin.css">
+
  </head>
  <body>
-     <div id="homeadmin">
+     <div id="homeadmin" class="container-fluid">
          <ul>
              <li><a href="AdminProfile.jsp">Home</a></li>
              <li><a href="AddBus.jsp">Add Bus</a></li>

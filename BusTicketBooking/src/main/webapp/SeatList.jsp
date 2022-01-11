@@ -14,32 +14,23 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
+<link href="css/bootstrap.css" rel="stylesheet" >
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" ></script>
 <title>Seat List</title>
+<link rel="stylesheet" href="css/NavStyleAdmin.css">
 <style>
-        *{
-         margin: 0;
-         padding: 0;
-         box-sizing: border-box;
-         font-family: Arial, Helvetica, sans-serif;
-         }
-         #homeadmin{
-             border: 1px solid black;
-             height: 85px;
-             background-color: rgb(166, 166, 233);
-            
-         }
-         #homeadmin ul li {
-             list-style: none;
-             display: inline-block;
-             padding: 30px;
-             padding-left: 60px;
-             }
-         a{
-             text-decoration: none;
-         }
+#seatlistdiv table tr th {
+        background: #79a6dd;
+    color: aliceblue;
+}
+#seatlistdiv table tr:hover {
+    background: #e7e7e7;
+}
+#seatlistfieldset table{
+        border-collapse: collapse;
+        }
         #seatlistdiv table tr th,td {
-            padding: 0 60px;
-            height: 65px;
+            padding: 20px;
             text-align: center;
             border: 1px solid black;
             border-collapse: collapse;
@@ -47,16 +38,14 @@
          
         #seatlistfieldset{
             margin-top: 20px;
-            margin-left: 130px;
-            width: 0%;
         }
         #seatlistdiv{
-            padding: 35px;
-            margin-left: 20px;
-            margin-top: 10px;
+            margin-top: 20px;
+                margin-left: 150px;
         }
-        legend{
-            font-size: 30px;
+        #seatlistfieldset legend{
+           font-size: 30px;
+            font-weight:bold;
             text-align: center;
         }
      </style>

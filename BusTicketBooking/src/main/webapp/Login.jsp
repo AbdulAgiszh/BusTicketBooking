@@ -116,10 +116,8 @@
 		
 			<%String erroruserid=(String)session.getAttribute("erroruserid");
 			if(erroruserid!=null){ %>
-			<p id="errorcontent"><%=session.getAttribute("erroruserid") %></p>
+			<p id="errorcontent"><%=erroruserid %></p>
 			<%} session.removeAttribute("erroruserid"); %>
-
-
          </form>        
            
  </div>

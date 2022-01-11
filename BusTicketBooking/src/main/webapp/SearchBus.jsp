@@ -24,7 +24,7 @@
         font-family: Arial, Helvetica, sans-serif;
         }
         body{
-            background: url("seat2.jpg");
+            background: color("#D4EFDF");
             background-size: cover;
             background-repeat: no-repeat;
             height: 537px;
@@ -102,8 +102,6 @@
         input,type{
             font-size: 20px;
             padding-top: 5px;
-            padding-left: 30px;
-            margin-left: 10px;
             background-color: blanchedalmond;
         }
         /* input,option{
@@ -134,6 +132,7 @@
             font-size: 20px;
             padding: 20px;
             margin-top: 0px;
+                text-align: center;
         }
         #searchbutton{
             height: 50px;
@@ -190,7 +189,7 @@
                     </div>
                   </div> 
                   <li><a href="UserProfile.jsp">Profile</a></li>
-                  <li><a href="logout.jsp">LogOut</a></li>
+                  <li><a href="logout">LogOut</a></li>
                 </ul>
         </div>
 	

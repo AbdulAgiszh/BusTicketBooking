@@ -110,7 +110,7 @@ commit;
 select * from bus_details where to_char(departure,'dd-mm-yyyy')='24-12-2021' and from_city='Madurai' and to_city='Chennai';
 select booking_id from booked_tickets where user_id=21 and booking_date='23-12-21';
 commit;
-drop table ticket_details cascade constraints;
+drop table SEAT_DETAILS cascade constraints;
 
 select * from user_details;
 select * from bus_operators;
@@ -120,6 +120,7 @@ select * from user_details where user_contact=7373639018 and user_status='Inacti
 select * from booked_tickets;
 select * from SEAT_DETAILS;
 
+update  user_details set user_wallet=500;
 select seat_no from seat_details where ticket_NO='oSm1No4';
 
 select * from seat_details

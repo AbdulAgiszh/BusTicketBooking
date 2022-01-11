@@ -55,16 +55,21 @@
         input{
             outline: none;
         }
+        #errormsg{
+        	color:white;
+        	font-size:20px;
+        }
     </style>
 </head>
 
 
 <body>
+	
+	
 
-<form action="registerpage" onsubmit="return register()">
     <fieldset class="signup">
-        <legend><h2>Registeration</h2></legend>
-
+        <legend><h2>Registration</h2></legend>
+	<form action="registerpage" >
         <table id="signuptable" style="border-spacing: 5px;">
             <tr>
                 <th><label for="name">UserName</label></th>
@@ -101,10 +106,19 @@
                 <td><button type="submit"><a href="index.jsp"> Home</a></button></td>
             </tr>
         </table>
+        <%String errorMsg=(String)session.getAttribute("registerMessage"); 
+        if(errorMsg!=null){%>
+        <h3 id="errormsg"><%=errorMsg %></h3>
+        <%} 
+        session.removeAttribute("registerMessage");%>
+        </form>
         
     </fieldset>
-</form>
-<script type="text/javascript">
+    
+    
+
+<!-- <script type="text/javascript">
+onsubmit="return register()"
 function register(){
 	if(true){
 		alert("Registered Successfully");
@@ -114,7 +128,7 @@ function register(){
 		alert("not successfull");
 	}
 }
-</script>
+</script> -->
 
 <script type="text/javascript">
       

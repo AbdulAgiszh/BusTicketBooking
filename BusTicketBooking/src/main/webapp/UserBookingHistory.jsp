@@ -38,7 +38,7 @@
             border: 1px solid blanchedalmond ;
             height: 90px;
             background-color: blanchedalmond;
-            position: fixed;
+           /*  position: fixed; */
             overflow: hidden;
             top: 0;
         }
@@ -79,6 +79,7 @@
             padding: 12px 16px;
             text-decoration: none;
             display: block;
+/*             z-index: 5; */
             
         }
 
@@ -108,6 +109,7 @@
                 margin-top: 110px;
                 margin-left: 100px;
                 width: 1000px;
+                
             }
             #operatorlistdiv{
                 padding: 40px;

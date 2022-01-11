@@ -6,31 +6,27 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Update Bus</title>
-</head>
+<link href="css/bootstrap.css" rel="stylesheet" >
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" ></script>
+<title>Add Bus</title>
+<link rel="stylesheet" href="css/NavStyleAdmin.css">
 <style>
-     *{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: Arial, Helvetica, sans-serif;
-    }
-    #homeadmin{
-        border: 1px solid black;
-        height: 85px;
-        background-color: rgb(166, 166, 233);
-       
-    }
-    #homeadmin ul li {
-        list-style: none;
-        display: inline-block;
-        padding: 30px;
-        padding-left: 60px;
+    
+     #bustitle{
+                padding: 0px;
+    font-size: 30px;
+    font-weight:bold;
+     text-align: center;
         }
-    a{
-        text-decoration: none;
-    }
-        #headeraddbus{
+            #headeraddbus {
+    padding: 0px;
+    box-shadow: 0px 0px 10px 0px #c7c7c7;
+    text-align: center;
+        }
+        #headeraddbus,#addbus{
+                margin: 0px auto;
+        }
+      /*   #headeraddbus{
              border: 1px solid black;
              height: 40px;
              background-color: rgb(200, 210, 238);
@@ -38,61 +34,77 @@
              padding: 10px;
              text-align: center;
              font-size: larger;
-         }
+         } */
          #headeraddbus2{
-             border: 1px solid black;
-             height: 40px;
-             background-color: rgb(200, 210, 238);
-             margin-top:-370px;
-             padding: 10px;
-             text-align: center;
-             font-size: larger;
+             padding: 0px;
+    box-shadow: 0px 0px 10px 0px #c7c7c7;
+    text-align: center;
          }
          
-         #headeraddbus,#addbus{
+         /* #headeraddbus,#addbus{
              width: 430px;
              margin-left: 120px;
-         }
+         } */
+         
          #headeraddbus2,#addbus2{
-            width: 430px;
-            margin-left: 736px;
+            margin: 0px auto;
          }
          #addbus{
-             border: 1px solid black;
-             padding: 25px;
-             height: 480px;
+              padding: 15px;
+    box-shadow: 0px 0px 10px 0px #c7c7c7;
+    border: none;
+    margin: 10px auto;
+    margin-left: 70px;
+    margin-top: 30px;
          }
          #addbus2{
-             border: 1px solid black;
-             padding: 25px;
+              padding: 15px;
+    box-shadow: 0px 0px 10px 0px #c7c7c7;
+    border: none;
+    margin: 10px auto;
+        margin-left: 750px;
+    margin-top: -392px;
          }
 
          #addbus table tr th,td{
-            padding: 7px;
+            padding: 7px 0px;
+    margin: 14px auto;
          }
          #addbus2 table tr th,td{
-            padding: 8px;
+            padding: 7px 0px;
+    margin: 14px auto;
          }
-         input{
+         #addbus label {
+        display: inline-block;
+    padding: 0px 7px;
+}
+#addbus table,#addbus2 table{
+margin-top:20px;
+margin-left:20px;
+}
+        /*  input{
              height: 25px;
              width: 200px;
-         }
+         } */
          #seatStatus{
             height: 13px;
         }
-         button{
-             height: 35px;
-             width: 100px;
-             background-color: rgb(129, 168, 252);
-             outline: none;
-             border: none;
-         }
-         #btn{
-             margin-left: 80px;
-         }
-         button:hover{
-             background-color: rgb(247, 112, 112);
-         }
+          #btn button {
+    height: 35px;
+    width: 100px;
+    outline: none;
+    border: none;
+    box-shadow: 0px 0px 10px 0px #c7c7c7;
+    background: none;
+    margin: 0px 20px;
+}
+        #btn{
+            text-align:center
+        }
+        #btn button:hover{
+            background-color: rgb(247, 112, 112);
+        }
+        
      </style>
  </head>
  <body>
@@ -111,8 +123,9 @@
             
     </div>
  
-     <div id="headeraddbus"> <label id="bustitle" for="bus">Bus</label> </div>
-        <div id="addbus">
+        <div id="addbus" class="col-sm-4">
+             <div id="headeraddbus"> <label id="bustitle" for="bus">Bus</label> </div>
+        
             <form action="updateBusPage">
                 <table>
                     <tr>
@@ -157,8 +170,9 @@
                 </form>
                 </div>
 
-     <div id="headeraddbus2"> <label id="bustitle" for="bus">Bus</label> </div>
-     <div id="addbus2">
+     <div id="addbus2" class="col-sm-4">
+          <div id="headeraddbus2"> <label id="bustitle" for="bus">Bus</label> </div>
+     
         <form action="busAndOperatorPage">
             <table>
                 <tr>
