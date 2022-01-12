@@ -113,11 +113,11 @@ button#btn:hover {
         } */
     </style>
 </head>
-<body>
+<body onmouseover="check()">
   
     <fieldset>
         <legend>Booking Form</legend>
-        <form  action="confirmBooking" onmouseover="check()">
+        <form  action="confirmBooking" >
         <div id="bookingdiv" >
         <table id="seatbookingtable">
             <tr>
@@ -179,17 +179,16 @@ var price=document.getElementById('totalFair');
 var seatcount=document.getElementById('seatcount');
 var randomNo=document.getElementById('randomnumber');
 var count=seatcount.options[seatcount.selectedIndex].value;
-console.log(count);
+
 numberSeats.value=count;
 price.value=<%=busModel.getSeaterFare()%>*count;
-console.log(numberSeats.value);
-console.log(price.value);
+
 var text = "";
 var random = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
 for (var i = 0; i < 7; i++)
   text += random.charAt(Math.floor(Math.random() * random.length));
 randomNo.value=text;
-console.log(randomNo.value);
+
 }
 </script>
 </html>

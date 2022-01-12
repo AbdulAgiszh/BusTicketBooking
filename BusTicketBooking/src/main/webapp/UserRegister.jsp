@@ -10,7 +10,7 @@
 		
 
         body{
-            background: url("imagelogin.jpg");
+            background: url("Assets/imagelogin.jpg");
             background-size: cover;
             background-repeat: no-repeat;
             height: 537px;

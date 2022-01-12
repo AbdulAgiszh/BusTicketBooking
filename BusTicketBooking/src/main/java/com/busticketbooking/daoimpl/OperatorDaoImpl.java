@@ -79,7 +79,7 @@ public class OperatorDaoImpl implements OperatorDAO{
 		
 	   String inactive="InActive";
 		String operatorDelete="update bus_operators set operator_status='"+inactive+"' where operator_id=?";
-		
+		String commitQuery="commit";
 		Connection con;
 		int result=0;
 		
@@ -89,6 +89,7 @@ public class OperatorDaoImpl implements OperatorDAO{
 			
 			pstatement.setInt(1, operatorId);
 			result=pstatement.executeUpdate();
+			pstatement.executeQuery(commitQuery);
 //			if(result==1) {
 //			System.out.println("Operator Details Successfully deleted");
 //			pstatement.close();

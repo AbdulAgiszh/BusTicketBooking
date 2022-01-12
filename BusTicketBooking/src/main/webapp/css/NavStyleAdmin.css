@@ -33,10 +33,6 @@
     font-weight: bold;
     padding: 10px 20px;
 }
-#homeadmin ul li a {
-    color: white;
-    font-weight: bold;
-}
  #homeadmin ul li {
      list-style: none;
      display: inline-block;
@@ -44,7 +40,3 @@
 a{
      text-decoration: none;
  }
-#homeadmin ul li:hover {
-    background: white;
-    color: black;
-}

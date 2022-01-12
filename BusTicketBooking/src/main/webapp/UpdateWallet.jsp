@@ -88,7 +88,7 @@
                   <li><a href="logout">LogOut</a></li>
                 </ul>
         </div>
-<form action="UserHome.jsp">
+<form action="WalletUpdate" method="post">
     <div id="updatewalletdiv">
         <table>
             <tr>

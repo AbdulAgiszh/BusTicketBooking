@@ -9,7 +9,7 @@
 
     <style>
         body{
-            background: url("imagelogin.jpg");
+            background: url("Assets/imagelogin.jpg");
             background-size: cover;
             background-repeat: no-repeat;
             height: 537px;
@@ -100,11 +100,11 @@
 
         <table id="tablee">
             <tr>
-                <th><img src="LoginPngUserName.png" id="loginuserpng"></th>
+                <th><img src="Assets/LoginPngUserName.png" id="loginuserpng"></th>
                 <th><input name="name" type="text" placeholder="Login Id" autocomplete="off" required><br><br></th>
             </tr>
             <tr>
-                <th><img src="password2.png"></th>
+                <th><img src="Assets/password2.png"></th>
                 <th><input name="password" type="password" placeholder="Password" autocomplete="off" required><br><br></th>
             </tr>
             

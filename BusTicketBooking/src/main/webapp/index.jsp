@@ -10,7 +10,12 @@
     List<String> locationList=new ArrayList<String>(); 
     locationList=busDao.getLocations();
     %>
-    
+       <!--  background: linear-gradient(
+45deg
+, #0aacf9, #1197e566); -->
+    <!-- background: linear-gradient(
+45deg
+, #0aacf9, #11bee566); -->
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,6 +23,10 @@
 <title>Bus Hub</title>
 <link rel="stylesheet" href="css/NavStyleIndex.css">
 <style>
+#nav ul li a:hover {
+    font-size:25px;
+    color: black;
+}
     </style>
 </head>
 
@@ -93,8 +102,16 @@
         	alert("please enter correct location");
             return false;
         }
+        <%for(int i=0;i<locationList.size();i++){%>
+        else if(from.value.trim()=="<%=locationList.get(i)%>" || to.value.trim()=="<%=locationList.get(i)%>"){
+        	console.log("rei");
+        	console.log("<%=locationList%>");
+        	return true;
+        }
+        <%}%>
         else{
-        return true;
+        	alert("please enter correct location1");
+        return false;
         }
     }
     </script>

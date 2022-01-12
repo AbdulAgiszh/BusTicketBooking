@@ -41,7 +41,7 @@
         }
         #seatlistdiv{
             margin-top: 20px;
-                margin-left: 150px;
+                margin-left: 380px;
         }
         #seatlistfieldset legend{
            font-size: 30px;
@@ -53,7 +53,7 @@
  <body>
      <div id="homeadmin">
          <ul>
-             <li><a href="AdminProfile.jsp">Home</a></li>
+             <li><a href="AdminHome.jsp">Home</a></li>
              <li><a href="AddBus.jsp">Add Bus</a></li>
              <li><a href="AddOperator.jsp">Add Operator</a></li>
              <li><a href="BusList.jsp">Bus list</a></li>

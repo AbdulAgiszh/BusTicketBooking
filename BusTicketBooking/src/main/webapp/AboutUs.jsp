@@ -54,7 +54,7 @@
                     </div>
                   </div> 
                   <li><a href="UserProfile.jsp">Profile</a></li>
-                  <li><a href="logout.jsp">LogOut</a></li>
+                  <li><a href="logout">LogOut</a></li>
                 </ul>
         </div>
         <%} 
