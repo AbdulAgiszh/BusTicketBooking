@@ -12,7 +12,7 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Wallet</title>
-<link rel="stylesheet" href="css/NavStyleUser.css">
+<link rel="stylesheet" href="css/UserNavigationStyle.css">
 <style>
         #balancediv{
             border: 1px solid black;

@@ -11,7 +11,7 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Invoice</title>
-<link rel="stylesheet" href="css/NavStyleUser.css">
+<link rel="stylesheet" href="css/UserNavigationStyle.css">
  <style>
         
         #btnticket{

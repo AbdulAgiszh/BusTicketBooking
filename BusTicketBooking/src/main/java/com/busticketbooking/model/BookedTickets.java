@@ -16,7 +16,7 @@ public class BookedTickets {
 	private LocalDateTime departureDate;
 	private int ticketCount;
 	private String bookingStatus;
-	private int totalPrice;
+	private double totalPrice;
 	private String paymentStatus;
 	
 	
@@ -27,7 +27,7 @@ public class BookedTickets {
 	}
 
 	public BookedTickets(int bookingId,String ticketNo, User userModel, Bus busModel, LocalDate bookingDate,
-			LocalDateTime departureDate, int ticketCount,  int totalPrice,String bookingStatus,
+			LocalDateTime departureDate, int ticketCount,  double totalPrice,String bookingStatus,
 			String paymentStatus) {
 		super();
 		this.bookingId = bookingId;
@@ -43,7 +43,7 @@ public class BookedTickets {
 	}
 
 	public BookedTickets(int bookingId,String ticketNo, User userModel, Bus busModel, 
-			LocalDateTime departureDate, int ticketCount,  int totalPrice,
+			LocalDateTime departureDate, int ticketCount,  double totalPrice,
 			String paymentStatus) {
 		super();
 		this.bookingId = bookingId;
@@ -120,11 +120,11 @@ public class BookedTickets {
 		this.bookingStatus = bookingStatus;
 	}
 
-	public int getTotalPrice() {
+	public double getTotalPrice() {
 		return totalPrice;
 	}
 
-	public void setTotalPrice(int totalPrice) {
+	public void setTotalPrice(double totalPrice) {
 		this.totalPrice = totalPrice;
 	}
 

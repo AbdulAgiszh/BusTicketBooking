@@ -85,7 +85,7 @@
                     <td><%=rs.getLong(5) %></td>
                     <td><%=rs.getString(6) %></td>
                     <td><%=rs.getString(7) %></td>
-                    <td><%=rs.getInt(8) %></td>
+                    <td><%=rs.getDouble(8) %></td>
                     <td><%=rs.getString(9) %></td>
                 </tr>
                 <%} %>

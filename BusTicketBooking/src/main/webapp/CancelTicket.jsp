@@ -13,7 +13,7 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Cancel Ticket</title>
-<link rel="stylesheet" href="css/NavStyleUser.css">
+<link rel="stylesheet" href="css/UserNavigationStyle.css">
 <style>
         legend{
             font-size: xx-large;
@@ -154,7 +154,7 @@
         <table id="ticketnotable">
             <tr>
                 <td>TICKET NO :</td>
-                <td><input id="tickettext" name="tickettext" type="text" placeholder="Enter the ticket number" autocomplete="off" required></td>
+                <td><input id="tickettext" name="tickettext" type="text" placeholder="Enter the ticket number" autofocus autocomplete="off" required></td>
                 <td><button id="btnticket" type="submit" >Submit</button></td>
             </tr>
         </table>

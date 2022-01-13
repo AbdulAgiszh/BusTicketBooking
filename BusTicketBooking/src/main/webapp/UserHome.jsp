@@ -20,7 +20,7 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Bus Hub</title>
-<link rel="stylesheet" href="css/NavStyleUser.css">
+<link rel="stylesheet" href="css/UserNavigationStyle.css">
 <style>
     </style>
 </head>

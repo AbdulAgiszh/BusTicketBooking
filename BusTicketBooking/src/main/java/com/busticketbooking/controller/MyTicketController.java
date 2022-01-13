@@ -39,22 +39,29 @@ public class MyTicketController extends HttpServlet {
 		String ticketNo=req.getParameter("tickettext");
 		bookTickets = bookTicketsDao.findBookedTicketsObjectDetails(ticketNo);
 		
+		//to take seat no from seat table and store it in string to show 
 		seatNoList=seatDetailsDao.getSeatDetailsUsingTicketNo(ticketNo);
 		String bookSeatNum = "";
 		for (int i = 0; i < seatNoList.size(); i++) {
 			/* bookSeatNo += seatNoList.[i] + " "; */
 			SeatDetails agis= seatNoList.get(i); 
-			bookSeatNum += agis.getSeatNo() + "  ";
-			
+			bookSeatNum += agis.getSeatNo() + "  ";	
 		}
+		
 		if (bookTickets != null) {
 
 			// to convert local date to date format
-			LocalDate date = bookTickets.getBusModel().getDeparture().toLocalDate();
+			LocalDate date = bookTickets.getDepartureDate().toLocalDate();
 			Date localDepartureDate = java.sql.Date.valueOf(date);
-
-			if (localDepartureDate.after(getCurrentDate())) {
+//			System.out.println(getCurrentDate());
+//			System.out.println(localDepartureDate);
+//			System.out.println(getCurrentDate().equals(localDepartureDate)+"Bahdjh" );
+			
+			boolean resultCheck=bookTicketsDao.dateChecking(ticketNo, date);
+			
+			if (resultCheck) { 
 				session.setAttribute("ticketdetailsresult", bookTickets);
+				System.out.println("after");
 				session.setAttribute("seatnumberdetailsresult", bookSeatNum);
 				try {
 					res.sendRedirect("TicketInvoice.jsp");
@@ -63,9 +70,10 @@ public class MyTicketController extends HttpServlet {
 					e.printStackTrace();
 				}
 			} else {
-				session.setAttribute("userHome", "cancelSuccess");
+				session.setAttribute("userHome", "cancelProblem");
+				System.out.println("cancel");
 				try {
-					res.sendRedirect("TicketInvoice.jsp");
+					res.sendRedirect("MyTicket.jsp");
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -74,7 +82,7 @@ public class MyTicketController extends HttpServlet {
 		}
 		// if ticketnumber entered by user is wrong
 		else {
-			session.setAttribute("userHome", "cancelSuccess");
+			session.setAttribute("userHome", "cancelProblem");
 			try {
 				res.sendRedirect("MyTicket.jsp");
 			} catch (IOException e) {

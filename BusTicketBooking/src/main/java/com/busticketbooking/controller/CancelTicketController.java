@@ -59,7 +59,7 @@ public class CancelTicketController extends HttpServlet {
 			LocalDate date = bookedTicketsModel.getDepartureDate().toLocalDate();
 			Date localDepartureDate = java.sql.Date.valueOf(date);
 
-			if(localDepartureDate.after(getCurrentDate())) {
+			if((getCurrentDate()).after(localDepartureDate)) {
 
 				if (!(bookedTicketsModel.getBookingStatus().equals("Cancelled"))) {
 
@@ -84,9 +84,9 @@ public class CancelTicketController extends HttpServlet {
 					if (busSeatUpdateFlag) {
 
 						// to reduce fine amount in 15% in userobject using updatedao
-						int fineFare = (bookedTicketsModel.getTotalPrice() / 100) * 15;
-						int refundFare = bookedTicketsModel.getTotalPrice() - fineFare;
-						int refundPrice = bookedTicketsModel.getUserModel().getUserWallet() + refundFare;
+						double fineFare = (bookedTicketsModel.getTotalPrice() / 100) * 15;
+						double refundFare = bookedTicketsModel.getTotalPrice() - fineFare;
+						double refundPrice = bookedTicketsModel.getUserModel().getUserWallet() + refundFare;
 						boolean userUpdateWalletFlag = userDao.updateWallet(refundPrice,
 								bookedTicketsModel.getUserModel().getUserContact());
 
@@ -114,9 +114,9 @@ public class CancelTicketController extends HttpServlet {
 									// TODO Auto-generated catch block
 									e.printStackTrace();
 								}
-							} // cancel flag
-						} // wallet falg
-					} // seat flag
+							} 
+						} 
+					} 
 				}
 				// already cancel
 				else {
@@ -155,6 +155,3 @@ public class CancelTicketController extends HttpServlet {
 	}
 }
 
-//
-//if (local.after(getcurrentdate())){
-//

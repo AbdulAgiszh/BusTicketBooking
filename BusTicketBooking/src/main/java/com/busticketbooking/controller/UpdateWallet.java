@@ -24,7 +24,7 @@ public class UpdateWallet extends HttpServlet  {
 	    User userModel1=userDao.getUserDetailsById(userModel.getUserId());
 	    
 	    int amountEntered=Integer.parseInt(req.getParameter("amountentered"));
-	    int totalAmount=amountEntered+userModel1.getUserWallet();
+	    double totalAmount=amountEntered+userModel1.getUserWallet();
 	    boolean walletUpdateFlag=userDao.updateWallet(totalAmount, userModel.getUserContact());
 	    PrintWriter out=res.getWriter();
 	    if(walletUpdateFlag) {

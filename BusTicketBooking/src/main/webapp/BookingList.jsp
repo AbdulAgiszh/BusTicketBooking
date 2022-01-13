@@ -87,7 +87,7 @@
                     <td><%=rs.getDate(5).toLocalDate()%></td>
                     <td><%=rs.getTimestamp(6).toLocalDateTime().format(format)%></td>
                     <td><%=rs.getInt(7) %></td>
-                    <td><%=rs.getInt(8) %></td>
+                    <td><%=rs.getDouble(8) %></td>
                     <td><%=rs.getString(9) %></td>
                     <td><%=rs.getString(10) %></td>
                 </tr>

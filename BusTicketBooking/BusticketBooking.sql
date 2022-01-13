@@ -8,7 +8,7 @@ CREATE TABLE BUS_DETAILS (
   TO_CITY varchar(100) NOT NULL,
   DEPARTURE timestamp NOT NULL,
   ARRIVAL timestamp NOT NULL,
-  SEATER_FARE int NULL,
+  SEATER_FARE int NULL,   
   TOTAL_SEAT int NOT NULL,
   SEAT_STATUS varchar(50),
 
@@ -29,7 +29,7 @@ CREATE TABLE USER_DETAILS (
   USER_CONTACT int NOT NULL UNIQUE,
   USER_GENDER varchar(30) NOT NULL,
   USER_PASSWORD varchar(50) NOT NULL,
-  USER_WALLET int DEFAULT 0,
+  USER_WALLET Number(10,2) DEFAULT 0,        
   USER_STATUS varchar(50) DEFAULT 'active',
   
   CONSTRAINT pk_userid PRIMARY KEY (user_id)
@@ -59,7 +59,7 @@ CREATE TABLE BOOKED_TICKETS (
   BOOKING_DATE date DEFAULT sysdate,
   DEPARTURE_DATE date,
   TICKET_COUNT int NOT NULL,
-  TOTAL_PRICE int,
+  TOTAL_PRICE Number(10,2),     
   BOOKING_STATUS varchar(30) DEFAULT 'confirmed',
   PAYMENT_STATUS varchar(50),
 
@@ -118,7 +118,7 @@ select  * from bus_details;
 select * from admin_details;
 select * from user_details where user_contact=7373639018 and user_status='Inactive';
 select * from booked_tickets;
-select * from SEAT_DETAILS;
+select * from SEAT_DETAILS; 
 
 update  user_details set user_wallet=500;
 select seat_no from seat_details where ticket_NO='oSm1No4';
@@ -147,3 +147,4 @@ update ticket_details
 set seat_no = 2;
 select * from ticket_details where seat_no in 1  and bus_id in 2 and status in 'notyet';
 select *from ticket_details where seat_no in 2 and user_id in 1 and bus_id in 2 and status in 'notyet';
+select departure_date from booked_tickets where booking_id=1 and  to_date(departure_date,'yyyy-MM-dd')< sysdate ;

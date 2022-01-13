@@ -15,7 +15,7 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Home</title>
-<link rel="stylesheet" href="css/NavStyleUser.css">
+<link rel="stylesheet" href="css/UserNavigationStyle.css">
 
 <style>
         #searchlocation input{
@@ -34,7 +34,7 @@
     		border-radius: 5px;
     		margin-top: 10px;
 		}
-		#searchlocation table, tr, td {
+		#searchlocation table tr td {
     		box-shadow: -8px 4px 20px 0px #4283af52;
     		padding: 0px;
     		border-spacing: 0px;
@@ -48,7 +48,7 @@
     		width: 1030px;
     		margin-left: 150px;
     		margin-top: 100px;
-    		background: linear-gradient(45deg, #066bb3, #1197e566);
+    		background: linear-gradient(45deg, #0aacf9, #1197e566);
     		border: none;
 	}
 		.fromto {

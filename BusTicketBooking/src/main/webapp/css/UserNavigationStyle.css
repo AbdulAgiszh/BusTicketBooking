@@ -10,6 +10,12 @@
             background-repeat: no-repeat;
             height: 100vh;
         }
+        #nav ul li a:hover {
+        background-color: #4eaad9;
+    color: white;
+    padding: 12px;
+    border-radius: 10px;
+}
 		.dropdown .dropbtn {
   			  font-size: 20px;
     		border: none;
@@ -22,7 +28,6 @@
             border: none;
             outline: none;
         }
-
         .dropdown-content {
             display: none;
             position: absolute;
@@ -30,7 +35,6 @@
             min-width: 160px;
   
         }
-
         .dropdown-content a {
             float: none;
             color: black;

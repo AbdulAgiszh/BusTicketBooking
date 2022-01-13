@@ -48,7 +48,7 @@ public class BookedTicketsController extends HttpServlet {
 		//checking balance from user to book ticket
 		if (user.getUserWallet() >= totalPrice) {
 
-			int updateAmountInWallet = user.getUserWallet() - totalPrice;
+			double updateAmountInWallet = user.getUserWallet() - totalPrice;
 			int updateBusSeat = busModel.getTotalseat() - ticketCount;
 
 			//creating new object by giving new seat update count and update in table 

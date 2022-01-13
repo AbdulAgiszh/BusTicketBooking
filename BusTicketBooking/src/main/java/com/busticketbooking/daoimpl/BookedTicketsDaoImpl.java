@@ -1,4 +1,4 @@
-package com.busticketbooking.daoimpl;
+	package com.busticketbooking.daoimpl;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -44,10 +44,10 @@ public class BookedTicketsDaoImpl implements BookedTicketsDAO {
 			pstatement.setTimestamp(4, departureDateTime);
 			pstatement.setInt(5, bookedTicketsModel.getTicketCount());
 			//pstatement.setString(5, bookedTicketsModel.getSeatNo());
-			pstatement.setInt(6, bookedTicketsModel.getTotalPrice());
+			pstatement.setDouble(6, bookedTicketsModel.getTotalPrice());
 			pstatement.setString(7, bookedTicketsModel.getPaymentStatus());
 			
-			pstatement1.setInt(1, bookedTicketsModel.getUserModel().getUserWallet());
+			pstatement1.setDouble(1, bookedTicketsModel.getUserModel().getUserWallet());
 			pstatement1.setInt(2, bookedTicketsModel.getUserModel().getUserId());
 			
 			result=pstatement.executeUpdate();
@@ -110,9 +110,9 @@ public class BookedTicketsDaoImpl implements BookedTicketsDAO {
 			rs=pstatement.executeQuery();
 			
 			while(rs.next()) {
-				busModel=busDao.findBusDetailsUsingID(rs.getInt(3));
-				userModel1=userDao.getUserDetailsById(userModel.getUserId());
-				BookedTickets bookedTicketsModel=new BookedTickets(rs.getInt(1),rs.getString(2),userModel1,busModel,rs.getDate(5).toLocalDate(),rs.getTimestamp(6).toLocalDateTime(),rs.getInt(7),rs.getInt(8),rs.getString(9),rs.getString(10));
+				busModel=busDao.findBusDetailsUsingID(rs.getInt(4));
+				userModel1=userDao.getUserDetailsById(rs.getInt(3));
+				BookedTickets bookedTicketsModel=new BookedTickets(rs.getInt(1),rs.getString(2),userModel1,busModel,rs.getDate(5).toLocalDate(),rs.getTimestamp(6).toLocalDateTime(),rs.getInt(7),rs.getDouble(8),rs.getString(9),rs.getString(10));
 				bookingList.add(bookedTicketsModel);
 				
 			}	
@@ -147,7 +147,7 @@ public class BookedTicketsDaoImpl implements BookedTicketsDAO {
 				
 				busModel=busDao.findBusDetailsUsingID(rs.getInt(4));
 				userModel=userDao.getUserDetailsById(rs.getInt(3));
-				bookedTicketsModel=new BookedTickets(rs.getInt(1),rs.getString(2),userModel,busModel,rs.getDate(5).toLocalDate(),rs.getTimestamp(6).toLocalDateTime(),rs.getInt(7),rs.getInt(8),rs.getString(9),rs.getString(10));
+				bookedTicketsModel=new BookedTickets(rs.getInt(1),rs.getString(2),userModel,busModel,rs.getDate(5).toLocalDate(),rs.getTimestamp(6).toLocalDateTime(),rs.getInt(7),rs.getDouble(8),rs.getString(9),rs.getString(10));
 				bookTickets.add(bookedTicketsModel);
 			}	
 			
@@ -175,7 +175,6 @@ public class BookedTicketsDaoImpl implements BookedTicketsDAO {
 			e.getMessage();
 		} catch (SQLException e) {
 			e.getMessage();
-			System.out.println("invalid Ticket number");
 		}
 		return result>0;
 		
@@ -234,7 +233,7 @@ public class BookedTicketsDaoImpl implements BookedTicketsDAO {
 				
 				busModel=busDao.findBusDetailsUsingID(rs.getInt(4));
 				userModel=userDao.getUserDetailsById(rs.getInt(3));
-				bookedTicketsModel=new BookedTickets(rs.getInt(1),rs.getString(2),userModel,busModel,rs.getDate(5).toLocalDate(),rs.getTimestamp(6).toLocalDateTime(),rs.getInt(7),rs.getInt(8),rs.getString(9),rs.getString(10));
+				bookedTicketsModel=new BookedTickets(rs.getInt(1),rs.getString(2),userModel,busModel,rs.getDate(5).toLocalDate(),rs.getTimestamp(6).toLocalDateTime(),rs.getInt(7),rs.getDouble(8),rs.getString(9),rs.getString(10));
 			}	
 			return bookedTicketsModel;
 		} catch (ClassNotFoundException e) {
@@ -243,6 +242,33 @@ public class BookedTicketsDaoImpl implements BookedTicketsDAO {
 			e.getMessage();
 		}
 		return bookedTicketsModel;
+	}
+	
+	
+	public boolean dateChecking(String ticketNo,LocalDate departureDate) {
+		String checkDate="select departure_date from booked_tickets where ticket_no=? and to_date(?,'yyyy-MM-dd')>= to_date(sysdate,'yyyy-MM-dd')";
+		
+		Connection con;
+		PreparedStatement pstatement;
+		ResultSet rs = null;
+		boolean resultFlag=false;
+		try {
+			con=ConnectionUtill.connectdb();
+			pstatement=con.prepareStatement(checkDate);
+			pstatement.setString(1, ticketNo);
+			pstatement.setDate(2, java.sql.Date.valueOf(departureDate));
+			rs=pstatement.executeQuery();
+			
+			if(rs.next()) {
+				resultFlag=true;
+			}
+			
+		} catch (ClassNotFoundException e) {
+			e.getMessage();
+		} catch (SQLException e) {
+			e.getMessage();
+		}
+		return resultFlag;
 	}
 	}
 	

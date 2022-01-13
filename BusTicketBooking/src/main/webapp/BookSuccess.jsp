@@ -14,7 +14,7 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Booking</title>
-<link rel="stylesheet" href="css/NavStyleUser.css">
+<link rel="stylesheet" href="css/UserNavigationStyle.css">
 <style>
         
         #successdiv{

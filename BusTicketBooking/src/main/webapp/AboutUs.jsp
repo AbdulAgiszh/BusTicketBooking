@@ -9,7 +9,7 @@
 <title>Insert title here</title>
 
 
-<link rel="stylesheet" href="css/NavStyleUser.css">
+<link rel="stylesheet" href="css/UserNavigationStyle.css">
 
 <style type="text/css">
         #contentdiv{

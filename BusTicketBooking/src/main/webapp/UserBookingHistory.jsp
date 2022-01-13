@@ -18,7 +18,7 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Booking History</title>
-<link rel="stylesheet" href="css/NavStyleUser.css">
+<link rel="stylesheet" href="css/UserNavigationStyle.css">
 <style>
        #nav{
        position:fixed;
@@ -92,6 +92,7 @@
                 </tr>
                 <%for(BookedTickets bookTicket:bookTicketsList){%>
 				<tr>
+				<%System.out.println(bookTicket); %>
                     <td><%=bookTicket.getTicketNo() %></td>
                     <td><%=bookTicket.getBookingDate() %></td>
                     <td><%=bookTicket.getBusModel().getBusCategory() %></td>

@@ -1,6 +1,7 @@
 package com.busticketbooking.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.time.LocalDate;
 
 import javax.servlet.annotation.WebServlet;
@@ -45,14 +46,24 @@ public class UserRegisterController extends HttpServlet {
 				boolean registerFlag = userDao.registrationUser(userModel);
 				System.out.println(registerFlag);
 				if (registerFlag) {
+//					try {
+//						res.sendRedirect("Login.jsp");
+//					} catch (IOException e) {
+//						e.printStackTrace();
+//					}
+					PrintWriter out;
 					try {
-						res.sendRedirect("Login.jsp");
+						out = res.getWriter();
+						out.println("<script type=\"text/javascript\">");
+						out.println("alert('Registered successfully');");
+						out.println("location='UserRegister.jsp';");
+						out.println("</script>");
 					} catch (IOException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
-				} else {
-					System.out.println("ajksfhjkhs");
+				} 
+				else {
 					throw new Register();
 				}
 			} else {

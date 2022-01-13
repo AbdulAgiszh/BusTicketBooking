@@ -19,7 +19,7 @@ public interface UserDAO {
 	
 	public ResultSet viewUserDetails();
 	
-	public boolean updateWallet(int updatedWallet, long userContact);
+	public boolean updateWallet(double updatedWallet, long userContact);
 	 
 	 public User getUserDetailsById(int userId) ;
 	 

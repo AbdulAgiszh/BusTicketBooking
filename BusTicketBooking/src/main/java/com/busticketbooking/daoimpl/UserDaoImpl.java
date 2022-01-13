@@ -24,7 +24,7 @@ public class UserDaoImpl implements UserDAO {
 
 			rs.next();
 			userModel = new User(rs.getInt(1), rs.getString(2), rs.getDate(3).toLocalDate(), rs.getString(4), rs.getLong(5),
-					rs.getString(6), rs.getString(7), rs.getInt(8));
+					rs.getString(6), rs.getString(7), rs.getDouble(8));
 			con.close();
 			pstatement.close();
 		} catch (ClassNotFoundException e) {
@@ -66,7 +66,6 @@ public class UserDaoImpl implements UserDAO {
 
 		String insertUser = "insert into user_details (user_name,user_dob,user_email,user_contact,user_gender,user_password) values (?,?,?,?,?,?)";
 		Connection con;
-		boolean registerFlag=true;
 		int result =0;
 		try {
 			con = ConnectionUtill.connectdb();
@@ -122,6 +121,7 @@ public class UserDaoImpl implements UserDAO {
 
 	}
 
+	//no
 	public boolean deleteUser(User userModel) {
 
 		String userDelete = "update user_details set user_status='Inactive' where user_contact=?";
@@ -142,6 +142,7 @@ public class UserDaoImpl implements UserDAO {
 		return result>0;
 	}
 	
+	//no
 	public void reAddUser(long contact) {
 
 		String userReAdd = "update user_details set user_status='Active' where user_contact='"+contact+"'";
@@ -150,13 +151,13 @@ public class UserDaoImpl implements UserDAO {
 			con = ConnectionUtill.connectdb();
 			PreparedStatement pstatement = con.prepareStatement(userReAdd);
 			int result = pstatement.executeUpdate();
-//			if (result == 1) {
-//				System.out.println("Successfully deleted");
-//				pstatement.close();
-//				con.close();
-//			} else {
-//				System.out.println("Delete unsuccessfull...something went wrong!");
-//			}
+			if (result == 1) {
+				System.out.println("Successfully deleted");
+				pstatement.close();
+				con.close();
+			} else {
+				System.out.println("Delete unsuccessfull...something went wrong!");
+			}
 		} catch (ClassNotFoundException e) {
 			System.out.println(e.getMessage());
 		} catch (SQLException e) {
@@ -197,6 +198,7 @@ public class UserDaoImpl implements UserDAO {
 
 	}
 
+	//no
 	public boolean checkAlreadyUserWhileRegister(long userContact) {
 
 		String checkUser = "select * from user_details where user_contact=?";
@@ -212,7 +214,7 @@ public class UserDaoImpl implements UserDAO {
 
 			if (rs.next()) {
 				userModel = new User(rs.getInt(1), rs.getString(2), rs.getDate(3).toLocalDate(), rs.getString(4), rs.getLong(5),
-						rs.getString(6), rs.getString(7), rs.getInt(8));
+						rs.getString(6), rs.getString(7), rs.getDouble(8));
 				checkUserFlag = true;
 			} else {
 				checkUserFlag = false;
@@ -230,7 +232,8 @@ public class UserDaoImpl implements UserDAO {
 	
 	
 
-	public User getUserDetailsById(int userId) { ////
+	public User getUserDetailsById(int userId) 
+	{ 
 
 		String getUser = "select * from user_details where user_id=?";
 		Connection con = null;
@@ -245,7 +248,7 @@ public class UserDaoImpl implements UserDAO {
 
 			if (rs.next()) {
 				userModel = new User(rs.getInt(1), rs.getString(2),  rs.getDate(3).toLocalDate(), rs.getString(4), rs.getLong(5),
-						rs.getString(6), rs.getString(7), rs.getInt(8));
+						rs.getString(6), rs.getString(7), rs.getDouble(8));
 			}
 			con.close();
 			pstatement.close();
@@ -258,7 +261,7 @@ public class UserDaoImpl implements UserDAO {
 
 	}
 	
-	public boolean updateWallet(int updatedWallet, long userContact) {
+	public boolean updateWallet(double updatedWallet, long userContact) {
 		String wallet = "update user_details set user_wallet=? where user_contact=?";
 
 		Connection con;
@@ -268,7 +271,7 @@ public class UserDaoImpl implements UserDAO {
 			con = ConnectionUtill.connectdb();
 			pstatement = con.prepareStatement(wallet);
 
-			pstatement.setInt(1, updatedWallet);
+			pstatement.setDouble(1, updatedWallet);
 			pstatement.setLong(2, userContact);
 			result = pstatement.executeUpdate();
 		} catch (ClassNotFoundException e) {

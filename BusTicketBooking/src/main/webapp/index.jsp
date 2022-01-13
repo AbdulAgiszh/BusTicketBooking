@@ -10,9 +10,7 @@
     List<String> locationList=new ArrayList<String>(); 
     locationList=busDao.getLocations();
     %>
-       <!--  background: linear-gradient(
-45deg
-, #0aacf9, #1197e566); -->
+       
     <!-- background: linear-gradient(
 45deg
 , #0aacf9, #11bee566); -->
@@ -21,16 +19,12 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Bus Hub</title>
+
 <link rel="stylesheet" href="css/NavStyleIndex.css">
-<style>
-#nav ul li a:hover {
-    font-size:25px;
-    color: black;
-}
-    </style>
+<style type="text/css">
+
+</style>
 </head>
-
-
 <body>
 
         <%session.setAttribute("userHome", "homeSession");%>

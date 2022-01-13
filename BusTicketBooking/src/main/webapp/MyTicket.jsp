@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<link rel="stylesheet" href="css/NavStyleUser.css">
+<link rel="stylesheet" href="css/UserNavigationStyle.css">
 <title>Invoice</title>
     <style>
 
@@ -72,7 +72,7 @@
 <body>
 
 <%String cancelMessage=(String)session.getAttribute("userHome");
-    if(cancelMessage.equals("cancelSuccess")){
+    if(cancelMessage.equals("cancelProblem")){
     	session.setAttribute("userHome", "homeSession");
     	%>
     	<script>
@@ -117,7 +117,7 @@
         <table id="ticketnotable">
             <tr>
                 <td><h3 id="ticketnoword">TICKET NUMBER:</h3></td>
-                <td><input type="text" name="tickettext" placeholder="Enter the ticket number" id="tickettext" autocomplete="off" required></td>
+                <td><input type="text" name="tickettext" placeholder="Enter the ticket number" id="tickettext" autofocus autocomplete="off" required></td>
                 <td><button id="btnticket" type="submit" >Submit</button></td>
             </tr>
         </table>

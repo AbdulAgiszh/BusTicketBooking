@@ -6,7 +6,7 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Profile</title>
-<link rel="stylesheet" href="css/NavStyleUser.css">
+<link rel="stylesheet" href="css/UserNavigationStyle.css">
 <style>
         #profiletable table tr th,td{
             padding: 10px;
