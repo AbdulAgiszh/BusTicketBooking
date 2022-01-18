@@ -15,37 +15,55 @@
 <link rel="stylesheet" href="css/UserNavigationStyle.css">
 <style>
         #balancediv{
-            border: 1px solid black;
-            border-radius: 15px;
-            width: 500px;
-            padding: 50px;
-            margin-top: 100px;
-            margin-left: 350px;
+            width: 600px;
+        	height:205px;
+    		padding: 63px;
+    		background: linear-gradient(45deg, #0aacf9, #1197e566);
+    		border-radius: 10px;
+    		border: none;
+    		margin-top: 160px;
+    		margin-left: 430px;
+    		box-shadow: 0px 0px 5px 0px #161313;
         }
         #btn a{
         	text-decoration: none;
             font-size: large;
         }
        #btn{
-            height: 45px;
-            width: 120px;
-            background-color: rgb(129, 168, 252);
-            outline: none;
-            border: none;
-            margin-left: 100px;
-            margin-top: 30px;
-            cursor: pointer;
+            height: 50px;
+    		width: 200px;
+    		margin-top: 13px;
+    		margin-left: 152px;
+    		font-size: 18px;
+    		color: black;
+    		background-color: rgb(255 255 255);
+    		border: none;
+    		border-radius: 10px;
+    		cursor: pointer;
+    		box-shadow: 0px 0px 5px 0px black;
+    		position: absolute;
         }
-        #btn:hover{
+        .clickmsg{
+        	margin-left: 108px;
+    		margin-top: 24px;
+    		color: white;
+        }
+        /* #btn:hover{
             background-color: rgb(247, 112, 112);
-        }
+        } */
         #availableamount{
-            font-size: 17px;
-            font-style: oblique;
-            border-radius: 5px;
-            border: 1px solid rgb(238, 225, 225);
-            padding: 10px;
-            margin-left: 10px;
+            font-size: 32px;
+    		font-style: oblique;
+    		border-radius: 11px;
+    		border: 1px solid rgb(238, 225, 225);
+    		padding: 10px;
+    		margin-left: 10px;
+    		color: #fff4f4;
+        }
+        .currentbalance{
+        	margin-left: 74px;
+    		font-size: 31px;
+    		color: white;
         }
         #buslogo{
             font-style: italic;
@@ -85,9 +103,9 @@
         </div>
       <form action="UpdateWallet.jsp">
         <div id="balancediv">
-            <label for="balance">Current Balance</label>
+            <label for="balance" class="currentbalance">Current Balance</label>
             <span id="availableamount"><%=userModel1.getUserWallet() %></span> <br><br>
-            <label for="clickbutton">Click here to update your wallet</label>
+            <h3 class="clickmsg">Click here to recharge your wallet</h3>
             <button id="btn" name="btn" type="submit">Deposit</button>
         </div>
         </form>

@@ -18,6 +18,9 @@ import com.busticketbooking.daoimpl.BookedTicketsDaoImpl;
 import com.busticketbooking.daoimpl.BusDaoImpl;
 import com.busticketbooking.daoimpl.SeatDetailsDaoImpl;
 import com.busticketbooking.daoimpl.UserDaoImpl;
+import com.busticketbooking.exception.BusDepartureDateEnded;
+import com.busticketbooking.exception.TicketAlreadyCancel;
+import com.busticketbooking.exception.WrongTicketNumber;
 import com.busticketbooking.model.BookedTickets;
 import com.busticketbooking.model.Bus;
 import com.busticketbooking.model.User;
@@ -32,126 +35,114 @@ public class CancelTicketController extends HttpServlet {
 	SeatDetailsDaoImpl seatDetails = new SeatDetailsDaoImpl();
 	BookedTickets bookedTicketsModel = new BookedTickets();
 
-	// to get current date
-	private static Date getCurrentDate() {
-		java.util.Date today = new java.util.Date();
-		return new java.sql.Date(today.getTime());
-	}
-
 	public void service(HttpServletRequest req, HttpServletResponse res) {
 
 		HttpSession session = req.getSession();
-		// this is user session created when user logged in
-		User userModel = (User) session.getAttribute("userModel");
-		User userModel1 = userDao.getUserDetailsById(userModel.getUserId());
 
 		// ticket number entered by user in cancel ticket jsp
 		String ticketNo = req.getParameter("tickettext");
 
-		// to find booked tickets pojo class by using ticket no entered by user in
-		// cancel ticket jsp
+		// to find booked tickets pojo class by using ticket no entered by user in cancel ticket JSP
 		bookedTicketsModel = bookTicketsDao.findBookedTicketsObjectDetails(ticketNo);
 
-		// to check ticket number entered by user is correct or not
-		if (bookedTicketsModel != null) {
+		try {
+			// to check ticket number entered by user is correct or not
+			if (bookedTicketsModel != null) {
 
-			// to convert local date to date format
-			LocalDate date = bookedTicketsModel.getDepartureDate().toLocalDate();
-			Date localDepartureDate = java.sql.Date.valueOf(date);
+				LocalDate date = bookedTicketsModel.getDepartureDate().toLocalDate();
+				boolean resultCheck = bookTicketsDao.dateChecking(ticketNo, date);
 
-			if((getCurrentDate()).after(localDepartureDate)) {
+				// to check whether departure date is finished or not
+				if (resultCheck) {
 
-				if (!(bookedTicketsModel.getBookingStatus().equals("Cancelled"))) {
+					if (!(bookedTicketsModel.getBookingStatus().equals("Cancelled"))) {
 
-					// to update seat by using bus object from bookedtickets model
-					int totalSeatAlreadyAvailable = bookedTicketsModel.getBusModel().getTotalseat();
-					int seatToUpdate = totalSeatAlreadyAvailable + bookedTicketsModel.getTicketCount();
+						// to update seat by using bus object from bookedTickets model
+						int totalSeatAlreadyAvailable = bookedTicketsModel.getBusModel().getTotalseat();
+						int seatToUpdate = totalSeatAlreadyAvailable + bookedTicketsModel.getTicketCount();
 
-					// update seat to bus constructor
-					Bus bus = new Bus(bookedTicketsModel.getBusModel().getBusId(),
-							bookedTicketsModel.getBusModel().getBusNo(),
-							bookedTicketsModel.getBusModel().getOperatorId(),
-							bookedTicketsModel.getBusModel().getBusCategory(),
-							bookedTicketsModel.getBusModel().getFromCity(),
-							bookedTicketsModel.getBusModel().getToCity(),
-							bookedTicketsModel.getBusModel().getDeparture(),
-							bookedTicketsModel.getBusModel().getArrival(),
-							bookedTicketsModel.getBusModel().getSeaterFare(), seatToUpdate,
-							bookedTicketsModel.getBusModel().getSeatStatus());
-					boolean busSeatUpdateFlag = busDao.updateSeatCount(bus);
+						// update seat to bus constructor
+						Bus bus = new Bus(bookedTicketsModel.getBusModel().getBusId(),
+								bookedTicketsModel.getBusModel().getBusNo(),
+								bookedTicketsModel.getBusModel().getOperatorId(),
+								bookedTicketsModel.getBusModel().getBusCategory(),
+								bookedTicketsModel.getBusModel().getFromCity(),
+								bookedTicketsModel.getBusModel().getToCity(),
+								bookedTicketsModel.getBusModel().getDeparture(),
+								bookedTicketsModel.getBusModel().getArrival(),
+								bookedTicketsModel.getBusModel().getSeaterFare(), seatToUpdate,
+								bookedTicketsModel.getBusModel().getSeatStatus());
+						boolean busSeatUpdateFlag = busDao.updateSeatCount(bus);
 
-					// checking seat count updated
-					if (busSeatUpdateFlag) {
+						// checking seat count updated
+						if (busSeatUpdateFlag) {
 
-						// to reduce fine amount in 15% in userobject using updatedao
-						double fineFare = (bookedTicketsModel.getTotalPrice() / 100) * 15;
-						double refundFare = bookedTicketsModel.getTotalPrice() - fineFare;
-						double refundPrice = bookedTicketsModel.getUserModel().getUserWallet() + refundFare;
-						boolean userUpdateWalletFlag = userDao.updateWallet(refundPrice,
-								bookedTicketsModel.getUserModel().getUserContact());
+							// to reduce fine amount in 15% in userObject using updateDao
+							double fineFare = (bookedTicketsModel.getTotalPrice() / 100) * 15;
+							double refundFare = bookedTicketsModel.getTotalPrice() - fineFare;
+							double refundPrice = bookedTicketsModel.getUserModel().getUserWallet() + refundFare;
+							boolean userUpdateWalletFlag = userDao.updateWallet(refundPrice,
+									bookedTicketsModel.getUserModel().getUserContact());
 
-						if (userUpdateWalletFlag) {
+							if (userUpdateWalletFlag) {
 
-							// to cancel the ticket(changing status) in bookedticket class using
-							// cancelticketdao
-							boolean ticketCancelFlag = bookTicketsDao.cancelTicket(ticketNo);
+								// to cancel the ticket(changing status) in bookedTicket class using cancelTicketdao
+								boolean ticketCancelFlag = bookTicketsDao.cancelTicket(ticketNo);
 
-							// to delete the ticketseats from ticket details table using ticket no and seat
-							try {
-								seatDetails.cancelSeatDetails(ticketNo);
-							} catch (ClassNotFoundException e1) {
-								System.out.println(e1.getMessage());
-							} catch (SQLException e1) {
-								System.out.println(e1.getMessage());
-							}
-
-							if (ticketCancelFlag) {
-								// session.setAttribute("ticketdetailsresult", bookTicketsList);
+								// to delete the ticketSeats from ticket details table using ticket no and seat
 								try {
-									session.setAttribute("userHome", "cancelSuccess");
-									res.sendRedirect("CancelTicket.jsp");
-								} catch (IOException e) {
-									// TODO Auto-generated catch block
-									e.printStackTrace();
+									seatDetails.cancelSeatDetails(ticketNo);
+								} catch (ClassNotFoundException e1) {
+									System.out.println(e1.getMessage());
+								} catch (SQLException e1) {
+									System.out.println(e1.getMessage());
 								}
-							} 
-						} 
-					} 
-				}
-				// already cancel
-				else {
-					session.setAttribute("userHome", "TicketAlreadyCancel");
-					try {
-						res.sendRedirect("CancelTicket.jsp");
-					} catch (IOException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-				}
 
-			} // already date flag
-			else {
-				session.setAttribute("userHome", "BusAlreadyDeparture");
-				try {
-					res.sendRedirect("CancelTicket.jsp");
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+								if (ticketCancelFlag) {
+									try {
+										session.setAttribute("userHome", "cancelSuccess");
+										res.sendRedirect("CancelTicket.jsp");
+									} catch (IOException e) {
+										e.printStackTrace();
+									}
+								}
+							}
+						}
+					}
+					// already cancel
+					else {
+						throw new TicketAlreadyCancel();
+					}
+				} else {
+					throw new BusDepartureDateEnded();
 				}
 			}
-		}
 
-		// if ticketnumber entered by user is wrong
-		else {
-			session.setAttribute("userHome", "wrongTicketNumber");
+			// if ticketNumber entered by user is wrong
+			else {
+				throw new WrongTicketNumber();
+			}
+		} catch (WrongTicketNumber t) {
+			session.setAttribute("WrongNumber", t.getWrongNumber());
 			try {
 				res.sendRedirect("CancelTicket.jsp");
-				System.out.println("wrongsession");
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		} catch (TicketAlreadyCancel t1) {
+			session.setAttribute("AlreadyCancel", t1.getAlreadyCancelMessage());
+			try {
+				res.sendRedirect("CancelTicket.jsp");
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		} catch (BusDepartureDateEnded b) {
+			session.setAttribute("DateEnded", b.getDepartureMessage());
+			try {
+				res.sendRedirect("CancelTicket.jsp");
+			} catch (IOException e) {
 				e.printStackTrace();
 			}
 		}
 	}
 }
-

@@ -97,14 +97,12 @@
             return false;
         }
         <%for(int i=0;i<locationList.size();i++){%>
-        else if(from.value.trim()=="<%=locationList.get(i)%>" || to.value.trim()=="<%=locationList.get(i)%>"){
-        	console.log("rei");
-        	console.log("<%=locationList%>");
+        else if(from.value.trim()=="<%=locationList.get(i)%>" && to.value.trim()=="<%=locationList.get(i)%>"){
         	return true;
         }
         <%}%>
         else{
-        	alert("please enter correct location1");
+        	alert("please enter correct location");
         return false;
         }
     }

@@ -13,45 +13,56 @@
 <title>Wallet</title>
 <link rel="stylesheet" href="css/UserNavigationStyle.css">
 <style>
+body{
+ color:white;
+}
     #updatewalletdiv{
-        border: 2px solid black;
-        border-radius: 10px;
-        width: 400px;
-        padding: 40px;
-        margin-left: 450px;
-        margin-top: 100px;
+        width: 600px;
+        	height:333px; 
+    		padding: 45px;
+    		background: linear-gradient(45deg, #0aacf9, #1197e566);
+    		border-radius: 10px;
+    		border: none;
+    		margin-top: 111px;
+    		margin-left: 430px;
+    		box-shadow: 0px 0px 5px 0px #161313;
     }
     #updatewalletdiv table tr td{
         padding: 8px;
         font-size: x-large;
     }
+    #updatewalletdiv table{
+    	margin-left:50px;
+    	color:white;
+    }
     #amounttext{
-        height: 30px;
+        height: 40px;
         width: 200px;
         font-size: 15px;
+        text-align: center;
     }
     #amountdiv{
-        margin-top: 20px;
-        margin-left: 50px;
-        font-size: x-large;
+        margin-top: 35px;
+        margin-left: 138px;
+        font-size: 26px;
     }
     #btn{
-            height: 45px;
-            width: 120px;
-            background-color: rgb(129, 168, 252);
-            outline: none;
-            border: none;
-            margin-left: 100px;
-            margin-top: 30px;
-            cursor: pointer;
+    		height: 50px;
+    		width: 200px;
+    		margin-top: 62px;
+    		margin-left: 145px;
+    		font-size: 18px;
+    		color: black;
+    		background-color: rgb(255 255 255);
+    		border: none;
+    		border-radius: 10px;
+    		cursor: pointer;
+    		box-shadow: 0px 0px 5px 0px black;
+    		position: absolute;
         }
-        #btn a{
-        	text-decoration: none;
-            font-size: large;
-        }
-        #btn:hover{
+        /* #btn:hover{
             background-color: rgb(247, 112, 112);
-        }
+        } */
         #buslogo{
             font-style: italic;
             font-family: cursive;
@@ -92,7 +103,8 @@
     <div id="updatewalletdiv">
         <table>
             <tr>
-                <td>LoginId :</td>
+                <td>Login Id</td>
+                <td>:</td>
                 <td><%=userModel1.getUserContact() %></td>
             </tr>
             <%String walletMessage=(String)session.getAttribute("userHome");
@@ -106,12 +118,13 @@
             <%} %>
             
             <tr>
-                <td>Available Balance :</td>
+                <td>Available Balance</td>
+                <td>:</td>
                 <td><%=userModel1.getUserWallet() %></td>
             </tr>
         </table>
     <div id="amountdiv">
-        <label for="enteramount">Enter the amount</label>
+        <label for="enteramount" >Enter the amount</label>
         <input id="amounttext" name="amountentered" type="number" placeholder="To be added to your wallet" autocomplete="off" min="100" autofocus required>
     </div>
          <button id="btn" name="btn" type="submit">Submit</button>

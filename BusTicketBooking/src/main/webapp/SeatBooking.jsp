@@ -1,3 +1,4 @@
+<%@page import="com.busticketbooking.exception.SeatsUnavailable"%>
 <%@page import="com.busticketbooking.daoimpl.UserDaoImpl"%>
 <%@page import="com.busticketbooking.model.User"%>
 <%@page import="com.busticketbooking.model.BookedTickets"%>
@@ -46,18 +47,20 @@
         }
         #seatsunavailable{
         	padding: 15px;
-        	font-size: large;
+			margin-left: 230px;
+    		font-size: 25px;
         	color: red;
+        	font-variant: all-petite-caps;
         }
         #seatbookingtable tr td{
             padding: 15px;
         }
         #seatcountdiv {
-    /* margin-left: 378px; */
-    /* position: absolute; */
-    /* margin-top: -190px; */
-    text-align: center;
-    margin-bottom: 14px;
+   		margin-left: 245px; 
+       position: absolute;
+    	margin-top: -68px;
+    	text-align: center;
+    	margin-bottom: 14px;
 }
         #seatinfotable tr td{
             padding: 15px;
@@ -86,31 +89,27 @@ input {
     padding-left: 100px;
     padding: 20px;
     width: 696px;
-    background: antiquewhite;
+    background: linear-gradient(45deg,#7dd0f7, #1197e566);
 }
    
 element.style {
 }
 #btn {
-    height: 45px;
-    width: 213px;
-    background-color: rgb(255 255 255);
-    outline: none;
-    border: none;
-    margin-left: 213px;
-    /* margin-top: -50px; */
-    /* position: absolute; */
-    cursor: pointer;
-    color: white;
-    font-size: 19px;
+    		height: 50px;
+    		width: 200px;
+    		margin-left: 240px;
+    		font-size: 18px;
+    		color: black;
+    		background-color: rgb(255 255 255);
+    		border: none;
+    		border-radius: 10px;
+    		cursor: pointer;
+    		box-shadow: 0px 0px 5px 0px black;
 }
-button#btn:hover {
-    background: black;
+#btn:hover {
+        background-color: green;
     color: white;
 }
-        /* #btn:hover{
-            background-color: rgba(213, 253, 101, 0.911);
-        } */
     </style>
 </head>
 <body onmouseover="check()">
@@ -149,7 +148,7 @@ button#btn:hover {
          </table>
 
          <div id="seatcountdiv">
-            <label for="seatercount">Seater Count</label>
+            <label for="seatercount">Select Seater Count</label>
             <select name="seatcount" id="seatcount" >
             <%int totalSeat=busModel.getTotalseat();
             for(int i=1;i<=totalSeat;i++) { %>
@@ -157,13 +156,17 @@ button#btn:hover {
                <%} %>
               </select>
            </div>
-		<%if(totalSeat!=0){ %>
+           
+		<%try{
+		if(totalSeat!=0){ %>
          <button id="btn" name="btn" type="submit">BookTicket</button>
          <%} else{ 
-        	 //boolean
-         busDao.updateBusStatus("unavailable", busModel.getBusId());%>
-         
-         <p id="seatsunavailable">Seats are unavailable</p>
+         busDao.updateBusStatus("unavailable", busModel.getBusId());
+         throw new SeatsUnavailable();
+         }
+         }
+         catch(SeatsUnavailable un){%>
+         <p id="seatsunavailable"><%=un.getUnavailableMessage()%></p>
          <%} %>
          
     </div>

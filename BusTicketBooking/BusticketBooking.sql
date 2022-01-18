@@ -119,7 +119,6 @@ select * from admin_details;
 select * from user_details where user_contact=7373639018 and user_status='Inactive';
 select * from booked_tickets;
 select * from SEAT_DETAILS; 
-
 update  user_details set user_wallet=500;
 select seat_no from seat_details where ticket_NO='oSm1No4';
 
@@ -145,6 +144,7 @@ commit;
 insert into ticket_details(user_id,bus_id,seat_no) values(1,2,2);
 update ticket_details
 set seat_no = 2;
+
 select * from ticket_details where seat_no in 1  and bus_id in 2 and status in 'notyet';
 select *from ticket_details where seat_no in 2 and user_id in 1 and bus_id in 2 and status in 'notyet';
-select departure_date from booked_tickets where booking_id=1 and  to_date(departure_date,'yyyy-MM-dd')< sysdate ;
+select departure_date from booked_tickets where booking_id=1 and to_date(departure_date,'yyyy-MM-dd')>= to_date(sysdate,'yyyy-MM-dd') ;

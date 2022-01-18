@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.busticketbooking.daoimpl.UserDaoImpl;
-import com.busticketbooking.exception.Register;
+import com.busticketbooking.exception.UserRegister;
 import com.busticketbooking.model.User;
 
 @WebServlet("/registerpage")
@@ -64,12 +64,12 @@ public class UserRegisterController extends HttpServlet {
 					}
 				} 
 				else {
-					throw new Register();
+					throw new UserRegister();
 				}
 			} else {
-				throw new Register();
+				throw new UserRegister();
 			}
-		} catch (Register e) {
+		} catch (UserRegister e) {
 			session.setAttribute("registerMessage", e.getPhoneRegisterMessage());
 			try {
 				res.sendRedirect("UserRegister.jsp");

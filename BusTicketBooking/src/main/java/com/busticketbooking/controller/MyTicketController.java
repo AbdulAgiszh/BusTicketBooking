@@ -15,6 +15,7 @@ import javax.servlet.http.HttpSession;
 
 import com.busticketbooking.daoimpl.BookedTicketsDaoImpl;
 import com.busticketbooking.daoimpl.SeatDetailsDaoImpl;
+import com.busticketbooking.exception.WrongTicketNumber;
 import com.busticketbooking.model.BookedTickets;
 import com.busticketbooking.model.SeatDetails;
 
@@ -26,12 +27,6 @@ public class MyTicketController extends HttpServlet {
 	SeatDetailsDaoImpl seatDetailsDao = new SeatDetailsDaoImpl();
 	BookedTickets bookedTicketsModel = new BookedTickets();
 	List<SeatDetails> seatNoList=new ArrayList<SeatDetails>();
-
-	// to get current date
-	private static Date getCurrentDate() {
-		java.util.Date today = new java.util.Date();
-		return new java.sql.Date(today.getTime());
-	}
 
 	public void service(HttpServletRequest req, HttpServletResponse res) {
 		HttpSession session = req.getSession();
@@ -47,18 +42,14 @@ public class MyTicketController extends HttpServlet {
 			SeatDetails agis= seatNoList.get(i); 
 			bookSeatNum += agis.getSeatNo() + "  ";	
 		}
-		
+		try {
 		if (bookTickets != null) {
 
-			// to convert local date to date format
+		
 			LocalDate date = bookTickets.getDepartureDate().toLocalDate();
-			Date localDepartureDate = java.sql.Date.valueOf(date);
-//			System.out.println(getCurrentDate());
-//			System.out.println(localDepartureDate);
-//			System.out.println(getCurrentDate().equals(localDepartureDate)+"Bahdjh" );
-			
 			boolean resultCheck=bookTicketsDao.dateChecking(ticketNo, date);
 			
+			//to check whether departure date is finished or not
 			if (resultCheck) { 
 				session.setAttribute("ticketdetailsresult", bookTickets);
 				System.out.println("after");
@@ -70,19 +61,16 @@ public class MyTicketController extends HttpServlet {
 					e.printStackTrace();
 				}
 			} else {
-				session.setAttribute("userHome", "cancelProblem");
-				System.out.println("cancel");
-				try {
-					res.sendRedirect("MyTicket.jsp");
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
+				throw new WrongTicketNumber();
 			}
 		}
 		// if ticketnumber entered by user is wrong
 		else {
-			session.setAttribute("userHome", "cancelProblem");
+			throw new WrongTicketNumber();
+		}
+		}
+		catch(WrongTicketNumber t) {
+			session.setAttribute("WrongNumber", t.getWrongNumber());
 			try {
 				res.sendRedirect("MyTicket.jsp");
 			} catch (IOException e) {
@@ -90,5 +78,6 @@ public class MyTicketController extends HttpServlet {
 				e.printStackTrace();
 			}
 		}
+		
 	}
 }

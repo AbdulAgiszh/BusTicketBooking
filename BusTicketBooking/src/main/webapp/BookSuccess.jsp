@@ -18,7 +18,6 @@
 <style>
         
         #successdiv{
-            border: solid black;
             width: 450px;
             height: 300px;
             padding: 50px;
@@ -27,7 +26,8 @@
             margin-top: 120px;
             border-radius: 25px;
             background-color: rgb(91, 253, 91);
-            
+            border:none;
+            box-shadow: 0px 0px 6px 0px #161313;
         }
     </style>
 </head>

@@ -89,10 +89,10 @@
             border: 1px solid black;
             background-color: rgb(188, 187, 247);
             border: none;
-            padding: 5px;
+            padding: 6px;
             height: 30px;
             width: 150px;
-            margin-left: 560px;
+            margin-left: 615px;
             border-radius: 5px;
          }
          #busId{

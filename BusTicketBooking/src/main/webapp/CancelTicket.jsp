@@ -15,15 +15,7 @@
 <title>Cancel Ticket</title>
 <link rel="stylesheet" href="css/UserNavigationStyle.css">
 <style>
-        legend{
-            font-size: xx-large;
-            text-align: center;
-            
-        }
-        #invoicediv {
-            border:  solid black;
-            padding: 30px;
-        }
+        
         #tickettext {
             border-top: none;
             border-left: none;
@@ -37,48 +29,52 @@
             width: 200px;
             text-align: center;
         }
-        #traveltable tr td{
-            padding: 25px;
-            
-        }
-        #ticketnotable{
+       	#ticketnotable{
             padding: 35px;
-            margin-left: 30px;
+            padding-top:0px;
+            margin-left: 65px;
+    		color: white;
+    		font-size: 20px;
         }
-        #traveltable{
-            margin-left: 220px;
-        }
-        #invoicediv {
-    		border: solid black;
-   			 padding: 18px;
-    		height: 200px;
-    		width: 640px;
-    		margin-left: 350px;
-    		margin-top: 100px;
-    		}
         #deductedmessage{
             position: absolute;
             color: red;
             font-size: 17px;
-            margin-left: 58px;
-            margin-top: -20px;
+            margin-left: 22px;
+    		margin-top: -27px;
         }
-        #btnticket{
-            margin-left: 40px;
-            
+         #cancelticketdiv{
+        	width: 600px;
+        	height:215px;
+    		padding: 50px;
+    		background: linear-gradient(45deg, #0aacf9, #1197e566);
+    		border-radius: 10px;
+    		border: none;
+    		margin-top: 160px;
+    		margin-left: 430px;
+    		box-shadow: 0px 0px 5px 0px #161313;
         }
-        #btnticket{
-            height: 45px;
-            width: 120px;
-            background-color: rgb(129, 168, 252);
-            outline: none;
-            border: none;
-            color: blanchedalmond;
-            text-decoration: none;
-            font-size: large;
-        }
-        #btnticket:hover{
-            background-color: rgb(247, 112, 112);
+        #submitbutton {
+    		height: 50px;
+    		width: 200px;
+    		margin-top: 72px;
+    		margin-left: 159px;
+    		font-size: 18px;
+    		color: black;
+    		background-color: rgb(255 255 255);
+    		border: none;
+    		border-radius: 10px;
+    		cursor: pointer;
+    		box-shadow: 0px 0px 5px 0px black;
+    		position: absolute;
+		}
+		#msgtag{
+        	margin-left: 105px;
+    		font-size: 25px;
+    		margin-top: 25px;
+    		color: red;
+   			position: absolute;
+   			font-variant: all-petite-caps;
         }
         #buslogo{
             font-style: italic;
@@ -147,20 +143,35 @@
                   <li><a href="logout">LogOut</a></li>
                 </ul>
         </div>
-
-    <fieldset id="invoicediv">
-        <legend>CancelTicket</legend>
+	
+	<div id="cancelticketdiv">
         <form action="cancelticketservlet">
         <table id="ticketnotable">
             <tr>
                 <td>TICKET NO :</td>
                 <td><input id="tickettext" name="tickettext" type="text" placeholder="Enter the ticket number" autofocus autocomplete="off" required></td>
-                <td><button id="btnticket" type="submit" >Submit</button></td>
             </tr>
         </table>
         <label for="deductedmessage" id="deductedmessage">If you want to cancel your ticket(15% amount will be deducted)</label>
+       	
+    <%String wrongNumberMessage=(String)session.getAttribute("WrongNumber");
+    if(wrongNumberMessage!=null){%>
+    	<p id="msgtag"><%=wrongNumberMessage %></p>
+    <%}session.removeAttribute("WrongNumber");%>
+    
+    <%String alreadyCancelMessage=(String)session.getAttribute("AlreadyCancel");
+    if(alreadyCancelMessage!=null){%>
+    	<p id="msgtag"><%=alreadyCancelMessage %></p>
+    <%}session.removeAttribute("AlreadyCancel");%>
+    
+    <%String DateEndedMessage=(String)session.getAttribute("DateEnded");
+    if(DateEndedMessage!=null){%>
+    	<p id="msgtag"><%=DateEndedMessage %></p>
+    <%}session.removeAttribute("DateEnded");%>
+    
+        <button id="submitbutton" type="submit" >Submit</button>
         </form>
-</fieldset>
+        </div>
 <script type="text/javascript">
 
 </script>

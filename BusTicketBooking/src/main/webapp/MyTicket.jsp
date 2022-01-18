@@ -10,27 +10,14 @@
 <title>Invoice</title>
     <style>
 
-        #invoicediv legend{
-            font-size: xx-large;
-            text-align: center;
-            
-        }
-        #invoicediv {
-    		border: solid black;
-   			 padding: 18px;
-    		height: 200px;
-    		width: 640px;
-    		margin-left: 350px;
-    		margin-top: 100px;
-    		}
         #tickettext {
             border-top: none;
             border-left: none;
             border-right: none;
         }
         #tickettext{
-            height: 30px;    
-            font-size: 18px;
+            height: 40px;    
+            font-size: 19px;
             outline: none;
             color: rgb(24, 11, 7);
             width: 200px;
@@ -38,29 +25,50 @@
             margin-left:20px;
         }
         #ticketnoword{
-         color: rgb(95, 95, 224);
+         color: white;
         }
         #ticketnotable{
             padding: 35px;
+            padding-top:0px;
             margin-left: 30px;
         }
-        #btnticket{
-            margin-left: 40px;
-            
+        #myticketdiv{
+        	width: 600px;
+        	height:190px;
+    		padding: 50px;
+    		background: linear-gradient(45deg, #0aacf9, #1197e566);
+    		border-radius: 10px;
+    		border: none;
+    		margin-top: 160px;
+    		margin-left: 430px;
+    		box-shadow: 0px 0px 5px 0px #161313;
         }
-        #btnticket{
-            height: 45px;
-            width: 120px;
-            background-color: rgb(129, 168, 252);
-            outline: none;
-            border: none;
-            color: blanchedalmond;
-            text-decoration: none;
-            font-size: large;
-        }
-        #btnticket:hover{
+        
+        /* #btnticket:hover{
             background-color: rgb(247, 112, 112);
+        } */
+        #msgtag{
+        	margin-left: 130px;
+    		font-size: 25px;
+    		margin-top: -10px;
+    		color:red;
+    		position: absolute;
+    		font-variant: all-petite-caps;
         }
+         #searchbutton {
+    		height: 50px;
+    		width: 200px;
+    		margin-top: 36px;
+    		margin-left: 156px;
+    		font-size: 18px;
+    		color: black;
+    		background-color: rgb(255 255 255);
+    		border: none;
+    		border-radius: 10px;
+    		cursor: pointer;
+    		box-shadow: 0px 0px 5px 0px black;
+    		position: absolute;
+		}
         #buslogo{
             font-style: italic;
             font-family: cursive;
@@ -70,16 +78,6 @@
     </style>
 </head>
 <body>
-
-<%String cancelMessage=(String)session.getAttribute("userHome");
-    if(cancelMessage.equals("cancelProblem")){
-    	session.setAttribute("userHome", "homeSession");
-    	%>
-    	<script>
-    	alert("Please enter correct ticket number");
-    </script>
-    
-    <%}%>
     
     
     <div id="nav">
@@ -110,18 +108,22 @@
             </ul>
     </div>
 
-    <fieldset id="invoicediv">
-        <legend>Invoice</legend>
-        
+    <div id="myticketdiv">
         <form action="myticketservlet">
         <table id="ticketnotable">
             <tr>
                 <td><h3 id="ticketnoword">TICKET NUMBER:</h3></td>
                 <td><input type="text" name="tickettext" placeholder="Enter the ticket number" id="tickettext" autofocus autocomplete="off" required></td>
-                <td><button id="btnticket" type="submit" >Submit</button></td>
             </tr>
         </table>
+        
+        <%String cancelMessage=(String)session.getAttribute("WrongNumber");
+    if(cancelMessage!=null){%>
+    	<p id="msgtag"><%=cancelMessage %></p>
+    <%}session.removeAttribute("WrongNumber");%>
+        
+        <button id="searchbutton" type="submit" >Submit</button>
 		</form>
-    </fieldset>
+		</div>
 </body>
 </html>

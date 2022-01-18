@@ -1,6 +1,6 @@
 package com.busticketbooking.exception;
 
-public class Register extends Exception{
+public class UserRegister extends Exception{
 
 
 	public String getEmailRegisterMessage() {

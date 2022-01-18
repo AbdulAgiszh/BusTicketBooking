@@ -166,8 +166,14 @@
         	alert("please enter correct location");
             return false;
         }
+        <%for(int i=0;i<locationList.size();i++){%>
+        else if(from.value.trim()=="<%=locationList.get(i)%>" || to.value.trim()=="<%=locationList.get(i)%>"){
+        	return true;
+        }
+        <%}%>
         else{
-        return true;
+        	alert("please enter correct location");
+        return false;
         }
     }
     </script>
