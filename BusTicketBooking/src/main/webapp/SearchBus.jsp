@@ -119,7 +119,7 @@
                 <tr>
                     <td><div class="fromto">
                         <span>FROM</span><br>
-                        <input name="fromlocation"  id="fromlocation" autocomplete="off" placeholder="Search Locations" list = "from" required>
+                        <input name="fromlocation"  id="fromlocation" pattern="[a-zA-Z]{2,}" title="please enter correct city" autocomplete="off" placeholder="Search Locations" list = "from" required>
                             <datalist id = "from">
                             <%for(int i=0;i<locationList.size();i++){%>
                         	<option value="<%=locationList.get(i)%>"><%=locationList.get(i)%></option>
@@ -127,7 +127,7 @@
                             </datalist></div></td																																																																																																		>
                     <td><div class="fromto">
                         <span>TO</span><br>
-                        <input name="tolocation" id="tolocation" autocomplete="off" placeholder="Search Locations" list = "to" required>
+                        <input name="tolocation" id="tolocation" pattern="[a-zA-Z]{2,}" title="please enter correct city" autocomplete="off" placeholder="Search Locations" list = "to" required>
                         <datalist id = "to">
                         <%for(int i=0;i<locationList.size();i++){%>
                         <option value="<%=locationList.get(i)%>"><%=locationList.get(i)%></option>
@@ -166,11 +166,12 @@
         	alert("please enter correct location");
             return false;
         }
-        <%for(int i=0;i<locationList.size();i++){%>
-        else if(from.value.trim()=="<%=locationList.get(i)%>" || to.value.trim()=="<%=locationList.get(i)%>"){
+        <%for(int i=0;i<locationList.size();i++){
+         for(int j=0;j<locationList.size();j++){%>
+        else if((from.value.trim()=="<%=locationList.get(i)%>") && (to.value.trim()=="<%=locationList.get(j)%>")){
         	return true;
         }
-        <%}%>
+        <%}}%>
         else{
         	alert("please enter correct location");
         return false;

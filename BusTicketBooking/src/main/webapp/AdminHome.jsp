@@ -8,7 +8,22 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" ></script>
 <title>Home</title>
 <link rel="stylesheet" href="css/NavStyleAdmin.css">
-
+<style type="text/css">
+	#logout {
+    		height: 50px;
+    		width: 200px;
+    		margin-top: 70px;
+    		margin-left: 600px;
+    		padding:8px;
+    		color: black;
+    		background-color: rgb(255 255 255);
+    		border: none;
+    		border-radius: 10px;
+    		cursor: pointer;
+    		box-shadow: 0px 0px 5px 0px black;
+    		text-allign:center;
+	}
+</style>
  </head>
  <body>
      <div id="homeadmin" class="container-fluid">
@@ -23,28 +38,8 @@
              <li><a href="SeatList.jsp">Seat list</a></li>
          </ul>
      </div>
-
-     <!--<div  id="profiletable">
-        <table>
-            <tr>
-                <th><label for="name">Name</label></th>
-                <th></th>
-            </tr>
-            <tr>
-                <th><label for="mobile">Mobile</label></th>
-                <th></th>
-            </tr>
-            <tr>
-                <th><label for="emailId">Email Id</label></th>
-                <th></th>
-            </tr>
-            <tr>
-                <th><label for="password">Password</label></th>
-                <th></th>
-            </tr>
-        </table>
-            
-    </div>-->
-
+     <form action="logout">
+	<button type="submit" id="logout" ><h3>LogOut</h3></button>
+	</form>
  </body>
  </html>

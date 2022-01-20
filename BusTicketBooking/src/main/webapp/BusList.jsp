@@ -21,6 +21,12 @@
         background: #79a6dd;
     color: aliceblue;
 }
+#homeadmin{
+position:fixed;
+width:100%;
+top:0%;
+}
+
 #buslistdiv table tr:hover {
     background: #e7e7e7;
 }
@@ -34,7 +40,7 @@
             border-collapse: collapse;
          }
         #buslistfieldset{
-            margin-top: 20px;
+            margin-top: 110px;
             
         }
         #buslistdiv{

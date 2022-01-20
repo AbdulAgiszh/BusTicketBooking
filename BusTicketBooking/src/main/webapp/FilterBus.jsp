@@ -108,7 +108,8 @@
              text-decoration: none;
          }
          #busId:hover{
-            background-color: rgb(130, 238, 130);
+            background-color: green;
+            color:white;
          }
         </style>
     </head>

@@ -1,10 +1,15 @@
+<%@page import="com.busticketbooking.daoimpl.UserDaoImpl"%>
 <%@page import="com.busticketbooking.model.BookedTickets"%>
 <%@page import="com.busticketbooking.model.SeatDetails"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
     <% 
+    UserDaoImpl dao=new UserDaoImpl();
     BookedTickets bookTickets=new BookedTickets();
+    
      bookTickets=(BookedTickets)session.getAttribute("ticketdetailsresult");
+
+     int age=dao.findUserAge(bookTickets.getUserModel().getUserDOB() );
     %>
 <!DOCTYPE html>
 <html>
@@ -203,7 +208,7 @@
                 </tr>
                 <tr>
                     <td><h4><%=bookTickets.getUserModel().getUserName() %></h4></td>
-                    <td><h4><%=bookTickets.getUserModel().getUserDOB() %></h4></td>
+                    <td><h4><%=age %></h4></td>
                     <td><h4><%=bookTickets.getUserModel().getUserContact() %></h4></td>
                     <td><h4><%=bookTickets.getUserModel().getUserGender() %></h4></td>
                 </tr>

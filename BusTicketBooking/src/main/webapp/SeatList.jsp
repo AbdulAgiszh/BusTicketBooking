@@ -19,6 +19,12 @@
 <title>Seat List</title>
 <link rel="stylesheet" href="css/NavStyleAdmin.css">
 <style>
+
+#homeadmin{
+	position:fixed;
+	width:100%;
+	top:0%;
+}
 #seatlistdiv table tr th {
         background: #79a6dd;
     color: aliceblue;
@@ -37,7 +43,7 @@
          }
          
         #seatlistfieldset{
-            margin-top: 20px;
+            margin-top: 107px;
         }
         #seatlistdiv{
             margin-top: 20px;

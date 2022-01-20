@@ -77,7 +77,7 @@ CREATE TABLE SEAT_DETAILS (
  BUS_ID INT,
  SEAT_NO INT,
  SEAT_STATUS varchar2(80) default 'booked'
---  CONSTRAINT fk_ticket_ticketno FOREIGN KEY (ticket_no) REFERENCES booked_tickets (ticket_no),
+  CONSTRAINT fk_ticket_ticketno FOREIGN KEY (ticket_no) REFERENCES booked_tickets (ticket_no)
 --  CONSTRAINT fk_ticket_busid FOREIGN KEY (bus_Id) REFERENCES bus_details (bus_Id),
 --  CONSTRAINT fk_ticket_userid FOREIGN KEY (user_Id) REFERENCES user_details (user_Id) 
 );

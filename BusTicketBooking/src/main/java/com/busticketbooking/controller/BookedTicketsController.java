@@ -32,7 +32,7 @@ public class BookedTicketsController extends HttpServlet {
 	public void service(HttpServletRequest req, HttpServletResponse res) {
 
 		HttpSession session = req.getSession();
-		//getting userdetails from session from logincontroller
+		//getting userDetails from session from loginController
 		User user1 = (User) session.getAttribute("userModel");
 		User user = userDao.getUserDetailsById(user1.getUserId());
 		

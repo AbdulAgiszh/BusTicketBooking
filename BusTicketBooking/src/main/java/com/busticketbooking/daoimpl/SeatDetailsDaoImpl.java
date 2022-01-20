@@ -85,7 +85,7 @@ public class SeatDetailsDaoImpl {
 	if(seatcount == ticketCountEntered) {
 		return true;
 	}}else {
-		System.out.println("bus out of seat!!");
+		//System.out.println("bus out of seat!!");
 		return false;
 	}
 	

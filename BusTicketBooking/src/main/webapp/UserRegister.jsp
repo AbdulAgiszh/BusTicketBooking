@@ -73,11 +73,11 @@
         <table id="signuptable" style="border-spacing: 5px;">
             <tr>
                 <th><label for="name">UserName</label></th>
-                <th><input type="text" name="name" id="name" required autofocus autocomplete="off" required></th>
+                <th><input type="text" name="name" id="name" pattern="[aA-zZ]{4,}" title="Min 4 characters....Numbers and symbols are not allowed" required autofocus autocomplete="off"></th>
             </tr>
             <tr>
                 <th><label for="emailId">EmailId</label></th>
-                <th><input name="emailId" type="email" id="emailId" autocomplete="off" pattern="[A-Za-z0-9]+[@][a-zA-Z]+[.][A-Za-z]{2,3}" required ></th>
+                <th><input name="emailId" type="email" id="emailId" autocomplete="off" pattern="[A-Za-z0-9]+[@][a-zA-Z]+[.][A-Za-z]{2,3}" placeholder="eg.abc@gmail.com" required ></th>
             </tr>
             <tr>
                 <th><label for="mobile">MobileNumber</label></th>

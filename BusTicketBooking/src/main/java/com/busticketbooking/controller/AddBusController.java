@@ -26,16 +26,15 @@ public class AddBusController extends HttpServlet {
 	public void service(HttpServletRequest req,HttpServletResponse res) {
 		
 		HttpSession session=req.getSession();
-//		int busNo=Integer.parseInt(req.getParameter("busNo"));
-//		int operatorId=Integer.parseInt(req.getParameter("operatorId"));
-		String busCategory=req.getParameter("busCategory");
-		String fromCity=req.getParameter("fromCity");
-		String toCity=req.getParameter("toCity");
+
+		String busCategory=req.getParameter("busCategory").toLowerCase();
+		String fromCity=req.getParameter("fromCity").toLowerCase();
+		String toCity=req.getParameter("toCity").toLowerCase();
 		LocalDateTime departure=LocalDateTime.parse(req.getParameter("departure"));
 		LocalDateTime arrival=LocalDateTime.parse(req.getParameter("arrival"));
 		int seaterFare=Integer.parseInt(req.getParameter("seaterFare"));
 		int totalSeat=Integer.parseInt(req.getParameter("totalSeat"));
-		String status=req.getParameter("seatStatus");
+		String status=req.getParameter("seatStatus").toLowerCase();
 		
 		Bus busmodel = new Bus(0,0,0,busCategory, fromCity, toCity,
 				departure, arrival, seaterFare, totalSeat,status);

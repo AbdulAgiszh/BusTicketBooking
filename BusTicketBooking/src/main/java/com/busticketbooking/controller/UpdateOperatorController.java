@@ -21,15 +21,14 @@ public class UpdateOperatorController extends HttpServlet {
 		HttpSession session=req.getSession();
 		Operator operatorModel=(Operator) session.getAttribute("operatorModel");	
 		int operatorId=operatorModel.getOperatorId();
-		String operatorName=req.getParameter("operatorName");
-		String operatorEmail=req.getParameter("operatorEmail");
+		String operatorName=req.getParameter("operatorName").toLowerCase();
+		String operatorEmail=req.getParameter("operatorEmail").toLowerCase();
 		long operatorContact=Long.parseLong(req.getParameter("operatorContact"));
 		int operatorAge=Integer.parseInt(req.getParameter("operatorAge"));
 		
 		Operator operator= new Operator(operatorId,operatorName,
 				operatorEmail, operatorContact, operatorAge);
 		boolean updateOperatorFlag=operatorDao.updateOperator(operator);
-		System.out.println(updateOperatorFlag);
 		if(updateOperatorFlag) {
 			try {
 				session.setAttribute("AdminHome", "UpdateOperatorSession");    

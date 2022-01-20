@@ -25,24 +25,15 @@ public class UpdateBusController extends HttpServlet  {
 			Bus busModel=(Bus) session.getAttribute("busModell");
 			
 			int busId=busModel.getBusId();
-			System.out.println(busId);
 			
-			String busCategory=req.getParameter("busCategory");
-			System.out.println(busCategory);
-			String fromCity=req.getParameter("fromCity");
-			System.out.println("fromCity");
-			String toCity=req.getParameter("toCity");
-			System.out.println(toCity);
+			String busCategory=req.getParameter("busCategory").toLowerCase();
+			String fromCity=req.getParameter("fromCity").toLowerCase();
+			String toCity=req.getParameter("toCity").toLowerCase();
 			LocalDateTime departure=LocalDateTime.parse(req.getParameter("departure"));
-			System.out.println(departure);
 			LocalDateTime arrival=LocalDateTime.parse(req.getParameter("arrival"));
-			System.out.println(arrival);
 			int seaterFare=Integer.parseInt(req.getParameter("seaterFare"));
-			System.out.println(seaterFare);
 			int totalSeat=Integer.parseInt(req.getParameter("totalSeat"));
-			System.out.println(totalSeat);
-			String status=req.getParameter("seatStatus");
-			System.out.println(status);	
+			String status=req.getParameter("seatStatus");	
 			
 			Bus bus=new Bus(busId,0,0,busCategory,fromCity,toCity,departure,arrival,seaterFare,totalSeat,status);
 			boolean busUpdateFlag=busDao.updateBus(bus);

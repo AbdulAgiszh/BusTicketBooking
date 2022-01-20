@@ -28,7 +28,7 @@
          color: white;
         }
         #ticketnotable{
-            padding: 35px;
+            padding: 10px;
             padding-top:0px;
             margin-left: 30px;
         }
@@ -58,7 +58,7 @@
          #searchbutton {
     		height: 50px;
     		width: 200px;
-    		margin-top: 36px;
+    		margin-top: 60px;
     		margin-left: 156px;
     		font-size: 18px;
     		color: black;
@@ -113,7 +113,7 @@
         <table id="ticketnotable">
             <tr>
                 <td><h3 id="ticketnoword">TICKET NUMBER:</h3></td>
-                <td><input type="text" name="tickettext" placeholder="Enter the ticket number" id="tickettext" autofocus autocomplete="off" required></td>
+                <td><input type="text" pattern="[A-Za-z0-9]{7}" title="please enter 7 digit ticket number" name="tickettext" placeholder="Enter the ticket number"   id="tickettext" autofocus autocomplete="off" required></td>
             </tr>
         </table>
         

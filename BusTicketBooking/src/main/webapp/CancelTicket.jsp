@@ -149,7 +149,7 @@
         <table id="ticketnotable">
             <tr>
                 <td>TICKET NO :</td>
-                <td><input id="tickettext" name="tickettext" type="text" placeholder="Enter the ticket number" autofocus autocomplete="off" required></td>
+                <td><input id="tickettext" name="tickettext" type="text" placeholder="Enter the ticket number" pattern="[A-Za-z0-9]{7}" title="please enter 7 digit ticket number" autofocus autocomplete="off" required></td>
             </tr>
         </table>
         <label for="deductedmessage" id="deductedmessage">If you want to cancel your ticket(15% amount will be deducted)</label>

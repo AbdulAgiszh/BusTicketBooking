@@ -83,17 +83,14 @@ public class LoginController extends HttpServlet {
 		else {
 			boolean userCheckFlag;
 			long userId = Long.parseLong(loginId);
-			System.out.println(userId);
 			userCheckFlag = userDao.checkUser(userId);
 			try {
 				if (userCheckFlag) {
 					userModel = userDao.loginUser(userId);
-					System.out.println(userModel.getUserPassword());
 
 					if (userModel.getUserPassword().equals(password)) {
 						try {
 							session.setAttribute("userModel", userModel);
-							System.out.println(userModel);
 							session.setAttribute("userHome", "loginSession");
 							res.sendRedirect("SearchBus.jsp");
 						} catch (IOException e) {

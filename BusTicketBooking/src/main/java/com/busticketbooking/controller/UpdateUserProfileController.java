@@ -26,12 +26,12 @@ public class UpdateUserProfileController extends HttpServlet {
 		
 		User user=(User) session.getAttribute("userModel");	
 		int userId= user.getUserId();
-		String userName=req.getParameter("userName");
-		String userEmail=req.getParameter("emailId");
+		String userName=req.getParameter("userName").toLowerCase();
+		String userEmail=req.getParameter("emailId").toLowerCase();
 		long userContact=Long.parseLong(req.getParameter("mobile"));
 		String userPassword=req.getParameter("password");
 		LocalDate userDOB=LocalDate.parse(req.getParameter("dob"));
-		String userGender=req.getParameter("gender");
+		String userGender=req.getParameter("gender").toLowerCase();
 		User userModel= new User(userId,userName,userDOB,
 				userEmail, userContact,userGender, userPassword,0);
 		boolean userUpdateFlag=userDao.updateUser(userModel);

@@ -88,22 +88,21 @@
      
          <table >
              <tr>
-                 <th><label for="operatorName">Operator Name</label></th>
-                 <th><input name="operatorName" type="text" id="operatorName" required autofocus></th>
-             </tr>
-             <tr>
-                 <th><label for="operatorEmail">Operator Email</label></th>
-                 <th><input name="operatorEmail" type="text" id="operatorEmail" ></th>
-             </tr>
-             <tr>
-                 <th><label for="operatorContact">Operator Contact</label></th>
-                 <th><input name="operatorContact" type="text" id="operatorContact"></th>
-             </tr>
-             <tr>
-                 <th><label for="operatorAge">Operator Age</label></th>
-                 <th><input name="operatorAge" type="text" id="operatorAge"></th>
-             </tr>
-             
+                <th><label for="operatorName">Operator Name</label></th>
+                <th><input name="operatorName" type="text" id="operatorName" pattern="[aA-zZ]{4,}" title="Min 4 characters...Numbers and symbols are not allowed" required autofocus autocomplete="off"></th>
+            </tr>
+            <tr>
+                <th><label for="operatorEmail">Operator Email</label></th>
+                <th><input name="operatorEmail" type="email" id="operatorEmail" autocomplete="off" pattern="[A-Za-z0-9]+[@][a-zA-Z]+[.][A-Za-z]{2,3}" placeholder="eg.abc@gmail.com" required ></th>
+            </tr>
+            <tr>
+                <th><label for="operatorContact">Operator Contact</label></th>
+                <th><input name="operatorContact" type="text" id="operatorContact" pattern="[6-9][0-9]{9}" title="Must contain 10 numbers only" autocomplete="off" required></th>
+            </tr>
+            <tr>
+                <th><label for="operatorAge">Operator Age</label></th>
+                <th><input name="operatorAge" type="text" id="operatorAge" pattern="[0-9]{2}" title="please enter correct age" required></th>
+            </tr>
             
       </table>
          <div id="btn"><br>

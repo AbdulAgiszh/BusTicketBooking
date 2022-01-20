@@ -19,6 +19,12 @@
 <title>Booking List</title>
 <link rel="stylesheet" href="css/NavStyleAdmin.css">
 <style>
+
+#homeadmin{
+	position:fixed;
+	width:100%;
+	top:0%;
+}
 #bookinglistdiv table tr th {
         background: #79a6dd;
     color: aliceblue;
@@ -36,7 +42,7 @@
             border-collapse: collapse;
              }
             #bookinglistfieldset{
-                margin-top: 20px;
+                margin-top: 107px;
             }
             #bookinglistdiv{
                 margin-top: 20px;

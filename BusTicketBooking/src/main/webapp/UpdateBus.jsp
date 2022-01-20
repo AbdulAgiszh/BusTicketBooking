@@ -101,9 +101,14 @@ margin-left:20px;
         #btn{
             text-align:center
         }
-        #btn button:hover{
-            background-color: rgb(247, 112, 112);
+        #btnsubmit:hover{
+                background-color: #008000c9;
+                color:white;
         }
+        #btnreset:hover{
+        	background-color: red;
+                color:white;
+        } 
         
      </style>
  </head>
@@ -130,43 +135,43 @@ margin-left:20px;
                 <table>
                     <tr>
                         <th><label for="busCategory">Bus Category</label></th>
-                        <th><input name="busCategory" type="text" id="busCategory" ></th>
+                        <th><input name="busCategory" type="text" id="busCategory" pattern="[A-Za-z]{3,}" title="please enter correct bus category" placeholder="Enter the category"  autofocus autocomplete="off" required ></th>
                     </tr>
                     <tr>
-                        <th><label for="fromCity">From City</label></th>
-                        <th><input name="fromCity" type="text" id="fromCity" ></th>
-                    </tr>
-                    <tr>
-                        <th><label for="toCity">To City</label></th>
-                        <th><input name="toCity" type="text" id="toCity" ></th>
-                    </tr>
-                    <tr>
-                        <th><label for="departure">Departure</label></th>
-                        <th><input name="departure" type="datetime-local" id="departure" ></th>
-                    </tr>
-                    <tr>
-                        <th><label for="arrival">Arrival</label></th>
-                        <th><input name="arrival" type="datetime-local" id="arrival" ></th>
-                    </tr>
-                    <tr>
-                        <th><label for="seaterFare">Seater Fare</label></th>
-                        <th><input name="seaterFare" type="number" id="seaterFare" ></th>
-                    </tr>
-                    <tr>
-                        <th><label for="totalSeat">Total Seat</label></th>
-                        <th><input name="totalSeat" type="number" id="totalSeat" ></th>
-                    </tr>
-                    <tr>
-                        <th><label for="seatStatus">Status</label></th>
-                        <th><input type="radio" id="seatStatus" name="seatStatus" value="available" required ><label for="available"> Available</label> 
-                           <input type="radio" id="seatStatus" value="unavailable" name="seatStatus" required ><label for="unavailable">UnAvailable</label></th>
-                    </tr>
-        
-                </table>
-                <div id="btn"><br>
-                    <button type="submit">Submit</button>
-                    <button id="reset" type="reset">Reset</button>
-                </div>
+                <th><label for="fromCity">From City</label></th>
+                <th><input name="fromCity" type="text" id="fromCity" pattern="[A-Za-z]{3,}" title="please enter correct bus category" placeholder="Enter from city" autocomplete="off" required ></th>
+            </tr>
+            <tr>
+                <th><label for="toCity">To City</label></th>
+                <th><input name="toCity" type="text" id="toCity" pattern="[A-Za-z]{3,}" title="please enter correct bus category" placeholder="Enter to city" autocomplete="off" required ></th>
+            </tr>
+            <tr>
+                <th><label for="departure">Departure</label></th>
+                <th><input name="departure" type="datetime-local" id="departure" required></th>
+            </tr>
+            <tr>
+                <th><label for="arrival">Arrival</label></th>
+                <th><input name="arrival" type="datetime-local" id="arrival" required></th>
+            </tr>
+            <tr>
+                <th><label for="seaterFare">Seater Fare</label></th>
+                <th><input name="seaterFare" type="number" id="seaterFare" placeholder="Enter seater fare" required></th>
+            </tr>
+            <tr>
+                <th><label for="totalSeat">Total Seat</label></th>
+                <th><input name="totalSeat" type="number" id="totalSeat" placeholder="Enter total seat" required></th>
+            </tr>
+			<tr>
+                 <th><label for="seatStatus">Status</label></th>
+                 <th><input type="radio" id="seatStatus" name="seatStatus" value="available" required ><label for="available"> Available</label> 
+                    <input type="radio" id="seatStatus" value="unavailable" name="seatStatus" required ><label for="unavailable">UnAvailable</label></th>
+             </tr>
+        </table>
+
+        <div id="btn"><br>
+            <button id="btnsubmit" type="submit">Submit</button>
+            <button id="btnreset" type="reset">Reset</button>
+        </div>
                 </form>
                 </div>
 
@@ -177,16 +182,16 @@ margin-left:20px;
             <table>
                 <tr>
                     <th><label for="busno">Bus No</label></th>
-                    <th><input name="busNo" type="text" id="busno" placeholder="Enter Bus No"   ></th>
+                    <th><input name="busNo" type="text" id="busno" pattern="[0-9]{4}" title="only numbers are allowed" placeholder="Enter Bus No"   ></th>
                 </tr>
                 <tr>
                     <th><label for="operatorId">Operator ID</label></th>
-                    <th><input name="operatorId" type="text" id="operatorId"   placeholder="Enter operator Id" ></th>
+                    <th><input name="operatorId" type="text" id="operatorId" pattern="[0-9]" title="only numbers are allowed"  placeholder="Enter operator Id" ></th>
                 </tr>
             </table>
             <div id="btn"><br>
-                <button type="submit">Submit</button>
-                <button id="reset" type="reset">Reset</button>
+                <button id="btnsubmit" type="submit">Submit</button>
+            	<button id="btnreset" type="reset">Reset</button>
             </div>
             </form>
             </div>

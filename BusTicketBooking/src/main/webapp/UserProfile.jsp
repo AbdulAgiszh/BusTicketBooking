@@ -1,6 +1,11 @@
+<%@page import="com.busticketbooking.daoimpl.UserDaoImpl"%>
 <%@page import="com.busticketbooking.model.User"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+    <%User user=(User) session.getAttribute("userModel"); %>
+    <%UserDaoImpl dao=new UserDaoImpl();
+    User userModel=dao.getUserDetailsById(user.getUserId());
+    int userAge=dao.findUserAge(userModel.getUserDOB());%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,16 +17,17 @@
             padding: 10px;
         }
         #profiletable{
-            margin-left: 40px;
-            margin-top: 50px;
+            margin-left: 70px;
+            margin-top: 70px;
         }
         legend{
             text-align: center;
         }
         #updateprofile{
             width: 500px;
-            margin-left: 500px;
-            margin-top: -332px;
+            margin-left: 600px;
+            margin-top: -250px;
+            padding:20px;
         }
         #updateprofile table tr td,th{
             padding: 10px;
@@ -33,31 +39,40 @@
         input{
             height: 25px; 
         }
-        #btn a{
+        /* #btn a{
         	text-decoration: none;
             font-size: large;
-        }
+        } */
        #btn{
-            height: 45px;
-            width: 120px;
-            background-color: rgb(129, 168, 252);
-            outline: none;
-            border: none;
-            margin-left: 100px;
-            margin-top: 30px;
-            cursor: pointer;
+            height: 50px;
+    		width: 200px;
+    		margin-top: 36px;
+    		margin-left: 60px;
+    		font-size: 18px;
+    		color: black;
+    		background-color: rgb(255 255 255);
+    		border: none;
+    		border-radius: 10px;
+    		cursor: pointer;
+    		box-shadow: 0px 0px 5px 0px black;
+    		position: absolute;
         }
-        #btn:hover , #btnupdatediv:hover{
+        /* #btn:hover , #btnupdatediv:hover{
             background-color: rgb(247, 112, 112);
-        }
+        } */
          #btnupdatediv{
-             margin-left: 175px;
-              height: 45px;
-              width: 120px;
-              background-color: rgb(129, 168, 252);
-              outline: none;
-              border: none;
-              cursor: pointer;
+             height: 50px;
+    		width: 200px;
+    		margin-top: -10px;
+    		margin-left: 125px;
+    		font-size: 18px;
+    		color: black;
+    		background-color: rgb(255 255 255);
+    		border: none;
+    		border-radius: 10px;
+    		cursor: pointer;
+    		box-shadow: 0px 0px 5px 0px black;
+    		
          }
          #buslogo{
             font-style: italic;
@@ -107,33 +122,37 @@
                   <li><a href="logout">LogOut</a></li>
                 </ul>
         </div>
-    <%User userModel=(User) session.getAttribute("userModel"); %>
-    </ul>
-    </div>
+    
     <div  id="profiletable">
         <table>
             <tr>
                 <th><label for="mobile">MobileNumber</label></th>
+                <th>:</th>
                 <th><%=userModel.getUserContact() %></th>
             </tr>
             <tr>
                 <th><label for="name">UserName</label></th>
+                <th>:</th>
                 <th><%=userModel.getUserName()%></th>
             </tr>
             <tr>
                 <th><label for="emailId">EmailId</label></th>
+                <th>:</th>
                 <th><%=userModel.getUserEmail() %></th>
             </tr>
             <tr>
-                <th><label for="dob">DOB</label></th>
-                <th><%=userModel.getUserDOB()%></th>
+                <th><label for="dob">Age</label></th>
+                <th>:</th>
+                <th><%=userAge%></th>
             </tr>
             <tr>
                 <th><label for="password">Password</label></th>
+                <th>:</th>
                 <th><%=userModel.getUserPassword()%></th>
             </tr>
             <tr>
                 <th><label for="gender">Gender</label></th>
+                <th>:</th>
                 <th><%=userModel.getUserGender()%></th>
             </tr>
         </table>

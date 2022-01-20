@@ -24,8 +24,8 @@ public class AddOperatorController extends HttpServlet {
 	public void service(HttpServletRequest req,HttpServletResponse res) {
 		
 		HttpSession session=req.getSession();
-		String operatorName=req.getParameter("operatorName");
-		String operatorEmail=req.getParameter("operatorEmail");
+		String operatorName=req.getParameter("operatorName").toLowerCase();
+		String operatorEmail=req.getParameter("operatorEmail").toLowerCase();
 		long operatorContact=Long.parseLong(req.getParameter("operatorContact"));
 		int operatorAge=Integer.parseInt(req.getParameter("operatorAge"));
 		

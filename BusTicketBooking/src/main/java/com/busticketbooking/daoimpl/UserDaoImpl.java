@@ -1,7 +1,12 @@
 package com.busticketbooking.daoimpl;
 
 import java.sql.*;
-
+import java.text.SimpleDateFormat;
+import java.time.Instant;
+import java.time.LocalDate;
+import java.time.Period;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
 
 import com.busticketbooking.connection.ConnectionUtill;
 import com.busticketbooking.dao.UserDAO;
@@ -283,6 +288,13 @@ public class UserDaoImpl implements UserDAO {
 
 	}
 
+	
+	public int findUserAge(LocalDate DOB) {
+		
+	      Period period = Period.between(DOB, LocalDate.now());
+	      
+	      return period.getYears();
+	}
 
 }
 

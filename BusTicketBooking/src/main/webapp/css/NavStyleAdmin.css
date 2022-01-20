@@ -16,6 +16,7 @@
     display: flex;
     align-items: center;
     padding: 30px;
+    position:fixed;
 }
 #homeadmin ul {
     width: 100%;
